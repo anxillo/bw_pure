@@ -1,0 +1,85 @@
+@import "helpers";
+
+$grid-size: 540px;
+$num-cell-row: 5;
+$color-empty-cell: #cecece;
+$cell-margin: 10px;
+$cell-size: ($grid-size - $cell-margin * ($num-cell-row + 1)) / $num-cell-row;
+$tile-border-radius: $cell-size / 2;
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  background: #faf8ef;
+  //color: $text-color;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+}
+
+.container {
+  width: $grid-size;
+  margin: 0 auto;
+}
+
+
+.game-container {
+  position: relative;
+  padding: $cell-margin;
+
+  cursor: default;
+  -webkit-touch-callout: none;
+  -ms-touch-callout: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  -ms-touch-action: none;
+  touch-action: none;
+
+  //background: $game-container-background;
+  //border-radius: $tile-border-radius * 2;
+  width: $grid-size;
+  height: $grid-size;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.grid-container{
+  position: absolute;
+  z-index: 1;
+}
+
+.grid-row{
+  margin-bottom: $cell-margin;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+
+.grid-cell{
+  margin-right: $cell-margin;
+  width: $cell-size;
+  height: $cell-size;
+  float: left;
+  background-color: $color-empty-cell;
+  border: 1px solid white;
+  border-radius: $tile-border-radius;
+
+  &:last-child{
+    margin-right: 0;
+  }
+
+
+}
