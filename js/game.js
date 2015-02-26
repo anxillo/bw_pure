@@ -4,12 +4,14 @@
 
 
 function Game () {
+    this.board  = new Board();
+    this.dom    = new DOM_handler();
+    this.inputManager = new HandleEvents();
+    this.score  = 0;
 
 
-
-    this.board        = new Board();
-    this.dom            = new DOM_handler();
-    this.score       = 0;
+    this.inputManager.on("move", this.move.bind(this));
+    //this.inputManager.on("restart", this.restart.bind(this));
 
     this.setup();
 }
@@ -30,7 +32,10 @@ Game.prototype.insertPieces = function (nr) {                       // insert nr
     }
 };
 
+Game.prototype.move = function (direction, x,y) {
+    console.log("moved " + direction + "x: " + x + " Y: " + y);
 
+};
 
 
 /*

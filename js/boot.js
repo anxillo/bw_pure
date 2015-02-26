@@ -10,10 +10,8 @@ var BW =  {
 
 };
 
-BW.getNr = function (position) {
+BW.getNr = function (x,y) {
     var nr;
-    var x = position.x;
-    var y = position.y;
     nr = y * BW.BOARD_SIZE_X + x;
     return nr;
 };

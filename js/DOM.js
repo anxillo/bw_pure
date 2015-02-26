@@ -4,6 +4,8 @@
 function DOM_handler () {
   this.PIECES_CONTAINER = document.querySelector(".pieces-container");
 
+    //this.handleEvents = new HandleEvents();
+
 
 }
 
@@ -35,14 +37,13 @@ DOM_handler.prototype.addPiece = function (piece) {
     var typePiece = piece.isTypeA;
     var typePieceClass = typePiece ? "piece-a" : "piece-b";
     var positionClass  =  this.positionClass(nr);
-    var classes = ["piece",  typePieceClass, "piece-" + positionClass];
+    var classes = ["piece",  typePieceClass, positionClass];
 
     this.applyClasses(wrapper, classes);
+    this.applyPositionData (inner, nr);
 
     inner.classList.add("piece-inner");
     inner.textContent = piece.value;
-
-
 
 
 
@@ -57,13 +58,22 @@ DOM_handler.prototype.addPiece = function (piece) {
     // Add the inner part of the tile to the wrapper
     wrapper.appendChild(inner);
 
+
+
     // Put the tile on the board
     this.PIECES_CONTAINER.appendChild(wrapper);
 };
 
+
+DOM_handler.prototype.applyPositionData = function (element, nr) {
+    var coords = BW.getCoords(nr);
+    element.setAttribute("Data-x", coords.x);
+    element.setAttribute("Data-y", coords.y);
+};
+
 DOM_handler.prototype.positionClass = function (nr) {
     var coords = BW.getCoords(nr);
-    return "position-" + coords.x + "-" + coords.y;
+    return "piece-position-" + coords.x + "-" + coords.y;
 };
 
 DOM_handler.prototype.applyClasses = function (element, classes) {
