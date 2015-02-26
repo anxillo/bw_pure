@@ -2,11 +2,13 @@
 @import "fonts/clear-sans.css";
 
 
-$grid-size: 540px;
-$num-cell-row: 5;
-$color-empty-cell: #cecece;
+$board-size-x: 540px;
+$num-cell-x: 5;
+$num-cell-y: 5;
+$color-empty-cell: #e6e6e6;
 $cell-margin: 10px;
-$cell-size: ($grid-size - $cell-margin * ($num-cell-row + 1)) / $num-cell-row;
+$cell-size: ($board-size-x - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
+$board-size-y: ($board-size-x / $num-cell-x) * $num-cell-y;
 $tile-border-radius: $cell-size / 2;
 $transition-speed: 100ms;
 
@@ -15,14 +17,14 @@ html, body {
   margin: 0;
   padding: 0;
 
-  background: #c9c9c9;
+  background: white;
   //color: $text-color;
-  font-family:"Helvetica Neue", Arial, sans-serif;
+  font-family:"Roboto", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
 }
 
 .container {
-  width: $grid-size;
+  width: $board-size-x;
   margin: 0 auto;
 }
 
@@ -44,19 +46,19 @@ html, body {
 
   //background: $game-container-background;
   //border-radius: $tile-border-radius * 2;
-  width: $grid-size;
-  height: $grid-size;
+  width: $board-size-x;
+  height: $board-size-y;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-.grid-container{
+.board-container{
   position: absolute;
   z-index: 1;
 }
 
-.grid-row{
+.board-row{
   margin-bottom: $cell-margin;
 
   &:last-child {
@@ -67,7 +69,7 @@ html, body {
 }
 
 
-.grid-cell{
+.board-cell{
   margin-right: $cell-margin;
   width: $cell-size;
   height: $cell-size;
@@ -91,7 +93,22 @@ html, body {
     width: ceil($cell-size);
     height: ceil($cell-size);
     line-height: ceil($cell-size);
+    //@include material-Shadow;
   }
+
+  // Build position classes
+  @for $x from 0 through $num-cell-x  {
+    @for $y from 0 through $num-cell-y {
+      &.piece-position-#{$x}-#{$y} {
+        $xPos: floor(($cell-size + $cell-margin) * ($x));
+        $yPos: floor(($cell-size + $cell-margin) * ($y));
+        @include transform(translate($xPos, $yPos));
+
+      }
+    }
+  }
+
+
 }
 
 .piece {
@@ -105,28 +122,33 @@ html, body {
     //color:white;
     z-index: 10;
     font-size: 35px;
+
+
   }
+
+  // Movement transition
+  @include transition($transition-speed ease-in-out);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
 }
 
 /*
  * Modifiers
  */
 
-.piece-white .piece-inner {
-  background-color: black;
+.piece-a .piece-inner {
+  background-color: #f30053;
+  color: white;
+
+}
+
+.piece-b .piece-inner {
+  background-color: #00bcd4;
   color: white;
 }
 
-.piece-black .piece-inner {
-  background-color: white;
-  color: black;
-}
 
-
-.piece-1-4{
-  top: 0;
-  left: $cell-size * 3 + $cell-margin * 3;
-}
 
 /*
  * Animation class
@@ -141,16 +163,24 @@ html, body {
   @include animation-fill-mode(backwards);
 }
 
-.piece-disappear{
+.piece-disappear .piece-inner{
   z-index: 20;
   @include animation(disappear $transition-speed * 4 ease $transition-speed);
   @include animation-fill-mode(forwards);
 
 }
 
+
+
+
+
+
 /*
  * Animation keyframes
  */
+
+
+
 
 
 @include keyframes(appear) {
