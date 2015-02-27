@@ -149,6 +149,21 @@ HandleEvents.prototype.listen = function () {
     });
 };
 
+HandleEvents.prototype.restart = function (event) {
+    event.preventDefault();
+    this.emit("restart");
+};
+
+HandleEvents.prototype.keepPlaying = function (event) {
+    event.preventDefault();
+    this.emit("keepPlaying");
+};
+
+HandleEvents.prototype.bindButtonPress = function (selector, fn) {
+    var button = document.querySelector(selector);
+    button.addEventListener("click", fn.bind(this));
+    button.addEventListener(this.eventTouchend, fn.bind(this));
+};
 
 
 

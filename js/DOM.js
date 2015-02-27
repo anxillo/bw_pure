@@ -2,9 +2,12 @@
  * Created by andrea on 25.02.15.
  */
 function DOM_handler () {
-  this.PIECES_CONTAINER = document.querySelector(".pieces-container");
+    this.PIECES_CONTAINER = document.querySelector(".pieces-container");
+    this.SCORE_CONTAINER   = document.querySelector(".score-container");
+    this.BEST_CONTAINER    = document.querySelector(".best-container");
+    this.MESSAGE_CONTAINER = document.querySelector(".game-message");
 
-    //this.handleEvents = new HandleEvents();
+    this.score = 0;
 
 
 }
@@ -13,22 +16,94 @@ function DOM_handler () {
 /*
  * Render function: render the board.
  */
-DOM_handler.prototype.render = function (board) {
-    var _this = this;
-    var length = board.cells.length;
-    var cells   = board.cells;
+DOM_handler.prototype.refresh = function (board, metadata) {
+    var self = this;
 
-    this.clearContainer(this.PIECES_CONTAINER);
     window.requestAnimationFrame(function () {
-        for (var i = 0; i < length; i++) {
+        self.clearContainer(self.PIECES_CONTAINER);
 
-            if (cells[i]) {
-                _this.addPiece(cells[i]);
+        board.cells.forEach(function (column) {
+            column.forEach(function (cell) {
+                if (cell) {
+                    self.addPiece(cell);
+                }
+            });
+        });
+
+        self.updateScore(metadata.score);
+        self.updateBestScore(metadata.bestScore);
+
+        if (metadata.terminated) {
+            if (metadata.over) {
+                self.message(false); // You lose
+            } else if (metadata.won) {
+                self.message(true); // You win!
             }
         }
     });
 };
 
+
+// Continues the game (both restart and keep playing)
+DOM_handler.prototype.continueGame = function () {
+    this.clearMessage();
+};
+
+DOM_handler.prototype.clearContainer = function (container) {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+};
+
+DOM_handler.prototype.addPiece = function (piece) {
+    var self = this;
+
+    var wrapper   = document.createElement("div");
+    var inner     = document.createElement("div");
+    var position  = piece.previousPosition || { x: piece.x, y: piece.y };
+    var positionClass = this.positionClass(position);
+    var typePiece = piece.isTypeA;
+    var typePieceClass = typePiece ? "piece-a" : "piece-b";
+
+    var classes = ["piece",  typePieceClass, positionClass];
+
+    this.applyClasses(wrapper, classes);
+    this.applyPositionData (inner, position);
+
+    inner.classList.add("piece-inner");
+    inner.textContent = piece.value;
+
+    if (piece.previousPosition) {
+        // Make sure that the piece gets rendered in the previous position first
+        window.requestAnimationFrame(function () {
+            classes[2] = self.positionClass({ x: piece.x, y: piece.y });
+            self.applyClasses(wrapper, classes); // Update the position
+        });
+    } else if (piece.mergedFrom) {
+        classes.push("piece-merged");
+        this.applyClasses(wrapper, classes);
+
+        // Render the pieces that merged
+        piece.mergedFrom.forEach(function (merged) {
+            self.addPiece(merged);
+        });
+    } else {
+        classes.push("piece-new");
+        this.applyClasses(wrapper, classes);
+    }
+
+    // Add the inner part of the piece to the wrapper
+    wrapper.appendChild(inner);
+
+    // Put the piece on the board
+    this.PIECES_CONTAINER.appendChild(wrapper);
+};
+
+
+
+
+
+/* La mia versione
 DOM_handler.prototype.addPiece = function (piece) {
     var _this = this;
     var wrapper   = document.createElement("div");
@@ -48,33 +123,41 @@ DOM_handler.prototype.addPiece = function (piece) {
 
 
     if (piece.previousPosition) {
-        // Make sure that the tile gets rendered in the previous position first
+        // Make sure that the piece gets rendered in the previous position first
         window.requestAnimationFrame(function () {
             classes[2] = _this.positionClass(nr);
             _this.applyClasses(wrapper, classes); // Update the position
         });
     }
 
-    // Add the inner part of the tile to the wrapper
+    // Add the inner part of the piece to the wrapper
     wrapper.appendChild(inner);
 
 
 
-    // Put the tile on the board
+    // Put the piece on the board
     this.PIECES_CONTAINER.appendChild(wrapper);
 };
 
+*/
 
-DOM_handler.prototype.applyPositionData = function (element, nr) {
-    var coords = BW.getCoords(nr);
-    element.setAttribute("Data-x", coords.x);
-    element.setAttribute("Data-y", coords.y);
+
+DOM_handler.prototype.normalizePosition = function (position) {
+    return { x: position.x + 1, y: position.y + 1 };
 };
 
-DOM_handler.prototype.positionClass = function (nr) {
-    var coords = BW.getCoords(nr);
-    return "piece-position-" + coords.x + "-" + coords.y;
+
+DOM_handler.prototype.applyPositionData = function (element, position) {
+    position = this.normalizePosition(position);
+    element.setAttribute("Data-x", position.x);
+    element.setAttribute("Data-y", position.y);
 };
+
+DOM_handler.prototype.positionClass = function (position) {
+    position = this.normalizePosition(position);
+    return "piece-position-" + position.x + "-" + position.y;
+};
+
 
 DOM_handler.prototype.applyClasses = function (element, classes) {
     element.setAttribute("class", classes.join(" "));
@@ -84,5 +167,40 @@ DOM_handler.prototype.clearContainer = function (container) {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
+};
+
+DOM_handler.prototype.updateScore = function (score) {
+    this.clearContainer(this.SCORE_CONTAINER);
+
+    var difference = score - this.score;
+    this.score = score;
+
+    this.SCORE_CONTAINER.textContent = this.score;
+
+    if (difference > 0) {
+        var addition = document.createElement("div");
+        addition.classList.add("score-addition");
+        addition.textContent = "+" + difference;
+
+        this.SCORE_CONTAINER.appendChild(addition);
+    }
+};
+
+DOM_handler.prototype.updateBestScore = function (bestScore) {
+    this.BEST_CONTAINER.textContent = bestScore;
+};
+
+DOM_handler.prototype.message = function (won) {
+    var type    = won ? "game-won" : "game-over";
+    var message = won ? "You win!" : "Game over!";
+
+    this.MESSAGE_CONTAINER.classList.add(type);
+    this.MESSAGE_CONTAINER.getElementsByTagName("p")[0].textContent = message;
+};
+
+DOM_handler.prototype.clearMessage = function () {
+    // IE only takes one value to remove at a time.
+    this.MESSAGE_CONTAINER.classList.remove("game-won");
+    this.MESSAGE_CONTAINER.classList.remove("game-over");
 };
 

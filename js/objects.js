@@ -2,19 +2,33 @@
  * Piece: the single piece on board
  */
 
-function Piece(nr, isTypeA, value){
-    this.nr                 = nr;
+function Piece(position, isTypeA, value){
+    this.x                  = position.x;
+    this.y                  = position.y;
     this.isTypeA            = isTypeA;
     this.value              = value;
     this.previousPosition   = null;
+    this.mergedFrom         = null;
 }
 
 Piece.prototype.savePosition = function () {
-    this.previousPosition = this.nr;
+    this.previousPosition = { x: this.x, y: this.y };
 };
 
 Piece.prototype.updatePosition = function (position) {
-    this.nr = position.nr;
+    this.x = position.x;
+    this.y = position.y;
+};
+
+Piece.prototype.serialize = function () {
+    return {
+        position: {
+            x: this.x,
+            y: this.y
+        },
+        value: this.value,
+        isTypeA: this.isTypeA
+    };
 };
 
 
@@ -25,43 +39,75 @@ Piece.prototype.updatePosition = function (position) {
  * Board: the board where the pieces are
  */
 
-function Board() {
-    this.size = {x: BW.BOARD_SIZE_X, y: BW.BOARD_SIZE_Y};
-    this.cells =  this.create();
-    this.piecesCount = {a : 0, b : 0};
-    this.availableCells = this.listAllCells();
+function Board(previousState) {
+    this.size               = {x: BW.BOARD_SIZE_X, y: BW.BOARD_SIZE_Y};
+    this.cells              = previousState ? this.fromState(previousState) : this.create();
+    this.piecesCount        = {a : 0, b : 0};
+
 }
 
-Board.prototype.size = function (){
-
-};
-
+// Build a grid of the specified size
 Board.prototype.create = function () {
     var cells = [];
-    var length = this.size.x * this.size.y;
 
-    for (var i = 0; i < length; i++) {
-        cells.push(null);
+    for (var x = 0; x < this.size.x; x++) {
+        var row = cells[x] = [];
+
+        for (var y = 0; y < this.size.y; y++) {
+            row.push(null);
+        }
     }
 
     return cells;
 };
 
-Board.prototype.listAllCells = function () {
+//resume board if saved
+Board.prototype.fromState = function (state) {
     var cells = [];
-    var lenght = this.size.x * this.size.y;
 
-    for (var i = 0; i < lenght; i++) {
-        cells.push(i);
+    for (var x = 0; x < this.size.x; x++) {
+        var row = cells[x] = [];
+
+        for (var y = 0; y < this.size.y; y++) {
+            var piece = state[x][y];
+            row.push(piece ? new Piece(piece.position, piece.value, piece.isTypeA) : null);
+        }
     }
 
     return cells;
 };
 
-Board.prototype.boardIsFull = function () {
-    return (this.availableCells.length == 0);                            // if lenght = 0 return true, else false
+// Find the first available random position
+Board.prototype.randomAvailableCell = function () {
+    var cells = this.availableCells();
 
+    if (cells.length) {
+        return cells[Math.floor(Math.random() * cells.length)];
+    }
 };
+
+Board.prototype.availableCells = function () {
+    var cells = [];
+
+    this.eachCell(function (x, y, piece) {
+        if (!piece) {
+            cells.push({ x: x, y: y });
+        }
+    });
+
+    return cells;
+};
+
+
+// Call callback for every cell
+Board.prototype.eachCell = function (callback) {
+    for (var x = 0; x < this.size.x; x++) {
+        for (var y = 0; y < this.size.y; y++) {
+            callback(x, y, this.cells[x][y]);
+        }
+    }
+};
+
 
 Board.prototype.thereAreMoreA = function () {                           // check if there are more A pieces
     var typeAisMorePresent = (this.piecesCount.a - this.piecesCount.b);
@@ -70,29 +116,48 @@ Board.prototype.thereAreMoreA = function () {                           // check
     return isTypeA;
 };
 
+// Check if there are any cells available
+Board.prototype.cellsAvailable = function () {
+    return !!this.availableCells().length;
+};
 
+// Check if the specified cell is taken
+Board.prototype.cellAvailable = function (cell) {
+    return !this.cellOccupied(cell);
+};
 
-Board.prototype.insertPiece = function () {
-    if (!this.boardIsFull()) {                                            // if there are
-        var freeCellsNr = this.availableCells.length;
-        var freeCells = this.availableCells;
-        var oneFreeCellId = Math.floor(Math.random() * freeCellsNr);   // select a random cell
-        var value = Math.floor(Math.random() * (BW.MAX_PIECE_VALUE)) +1;
-        var position = this.availableCells[oneFreeCellId];                     // set as position for the cell
+Board.prototype.cellOccupied = function (cell) {
+    return !!this.cellContent(cell);
+};
 
-        var isTypeA = this.thereAreMoreA();                             // set the type of piece
-        var piece = new Piece(position,isTypeA, value);                                          // create new piece;
-        var cells = this.cells;
-        cells[position] = piece;                                      // put the piece in the board
-        freeCells.splice(oneFreeCellId, 1);                          // remove from availableCells array
-        if (isTypeA){                                                   //  typeA or typeB +1
-            this.piecesCount.b++
-        } else this.piecesCount.a++;
+Board.prototype.cellContent = function (cell) {
+    if (this.withinBounds(cell)) {
+        return this.cells[cell.x][cell.y];
+    } else {
+        return null;
+    }
+};
 
+// Inserts a piece at its position
+Board.prototype.insertPiece = function (piece) {
+    this.cells[piece.x][piece.y] = piece;
+};
 
-// if the board is full: GAME OVER
+Board.prototype.removePiece = function (piece) {
+    this.cells[piece.x][piece.y] = null;
+};
 
-    } else Game.gameOver("board is full");
+Board.prototype.withinBounds = function (position) {
+    return position.x >= 0 && position.x < this.size.x &&
+        position.y >= 0 && position.y < this.size.y;
+};
+
+Board.prototype.countType = function (isTypeA) {
+    if (isTypeA) {
+        this.piecesCount.b++;
+    } else {
+        this.piecesCount.a++
+    }
 };
 
 

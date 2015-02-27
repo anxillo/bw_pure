@@ -4,9 +4,7 @@
 // Globals
 var BW =  {
     BOARD_SIZE_X : 5,
-    BOARD_SIZE_Y : 5,
-    STARTING_PIECES : 10,
-    MAX_PIECE_VALUE : 5
+    BOARD_SIZE_Y : 5
 
 };
 
@@ -28,7 +26,7 @@ BW.getCoords = function (nr) {
 };
 // Go when ready
 window.requestAnimationFrame(function () {
-    new Game(); //grid size [x, y]
+    new Game();
 });
 
 
