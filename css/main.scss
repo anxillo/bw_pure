@@ -6,7 +6,7 @@ $field-width: 320px;
 $num-cell-x: 5;
 $num-cell-y: 5;
 $color-empty-cell: #e6e6e6;
-$cell-margin: 10px;
+$cell-margin: 6px;
 $cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
 //: ($field-width / $num-cell-x) * $num-cell-y;
 $tile-border-radius: $cell-size / 2;
@@ -23,7 +23,7 @@ $tile-gold-glow-color: lighten($tile-gold-color, 15%);
 
 $game-container-margin-top: 40px;
 $game-container-background: #999999;
-$height: 22px;
+$height: 26px;
 
 
 html, body {
