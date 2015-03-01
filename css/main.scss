@@ -2,7 +2,7 @@
 @import "fonts/roboto.css";
 
 
-$field-width: 340px;
+$field-width: 320px;
 $num-cell-x: 5;
 $num-cell-y: 5;
 $color-empty-cell: #e6e6e6;
@@ -23,7 +23,7 @@ $tile-gold-glow-color: lighten($tile-gold-color, 15%);
 
 $game-container-margin-top: 40px;
 $game-container-background: #999999;
-$height: 20px;
+$height: 22px;
 
 
 html, body {

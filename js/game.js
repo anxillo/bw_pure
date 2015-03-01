@@ -186,6 +186,7 @@ Game.prototype.move = function (direction, x,y) {
         self.addRandomPiece();
         self.addRandomPiece();
         self.addRandomPiece();
+        self.addRandomPiece();
 
     } else
 
@@ -203,7 +204,7 @@ Game.prototype.move = function (direction, x,y) {
         self.board.countType(true, -1);
         self.board.countType(false, -1);
 
-        //self.addRandomPiece();
+        self.addRandomPiece();
     }
 
 
