@@ -101,6 +101,7 @@ Board.prototype.availableCells = function () {
 };
 
 
+
 // Call callback for every cell
 Board.prototype.eachCell = function (callback) {
     for (var x = 0; x < this.size.x; x++) {

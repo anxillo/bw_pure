@@ -1,18 +1,18 @@
 @import "tools";
-@import "fonts/clear-sans.css";
+@import "fonts/roboto.css";
 
 
-$board-size-x: 540px;
+$field-width: 320px;
 $num-cell-x: 5;
 $num-cell-y: 5;
 $color-empty-cell: #e6e6e6;
-$cell-margin: 5px;
-$cell-size: ($board-size-x - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
-$board-size-y: ($board-size-x / $num-cell-x) * $num-cell-y;
+$cell-margin: 6px;
+$cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
+//: ($field-width / $num-cell-x) * $num-cell-y;
 $tile-border-radius: $cell-size / 2;
 $transition-speed: 100ms;
 
-$mobile-threshold: $board-size-x + 20px;
+$mobile-threshold: $field-width + 20px;
 
 $text-color: #999999;
 $bright-text-color: #f9f6f2;
@@ -23,7 +23,7 @@ $tile-gold-glow-color: lighten($tile-gold-color, 15%);
 
 $game-container-margin-top: 40px;
 $game-container-background: #999999;
-$height: 30px;
+$height: 20px;
 
 
 html, body {
@@ -32,12 +32,12 @@ html, body {
 
   background: white;
   //color: $text-color;
-  font-family:"Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-family:"robotoregular", "Helvetica Neue", Arial, sans-serif;
   //font-size: $cell-size / 2;
 }
 
 body {
-  margin: 80px 0;
+  margin: 50px 0;
 }
 
 .heading {
@@ -131,7 +131,7 @@ hr {
 }
 
 .container {
-  width: $board-size-x;
+  width: $field-width;
   margin: 0 auto;
 }
 
@@ -167,8 +167,8 @@ hr {
     touch-action: none;
     //background: $game-container-background;
     //border-radius: $tile-border-radius * 2;
-    width: $board-size-x;
-    height: $board-size-y;
+    width: $field-width;
+    height: $field-width;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -301,7 +301,7 @@ hr {
     font-weight: bold;
     //color:white;
     z-index: 10;
-    font-size: 35px;
+    font-size: 28px;
   }
 
   // Movement transition
@@ -313,9 +313,6 @@ hr {
 }
 
 
-/*
- * Modifiers
- */
 
 .piece-a .piece-inner {
   background-color: #f30053;
@@ -327,13 +324,6 @@ hr {
   background-color: #00bcd4;
   color: white;
 }
-
-
-
-/*
- * Animation class
- */
-
 
 
 
@@ -349,19 +339,6 @@ hr {
   @include animation-fill-mode(forwards);
 
 }
-
-
-
-
-
-
-/*
- * Animation keyframes
- */
-
-
-
-
 
 @include keyframes(appear) {
   0% {
@@ -395,6 +372,19 @@ hr {
     @include transform(opacity(0));
   }
 }
+
+
+
+
+/*
+ * Animation keyframes
+ */
+
+
+
+
+
+
 
 
 @include keyframes(move-up) {
@@ -444,10 +434,10 @@ hr {
 @include smaller($mobile-threshold) {
   // Redefine variables for smaller screens
   $field-width: 280px;
-  $grid-spacing: 10px;
-  $grid-row-cells: 4;
-  $tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
-  $tile-border-radius: 3px;
+  $cell-margin: 10px;
+  $num-cell-x: 5;
+  $cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
+  $tile-border-radius: $cell-size / 2;
   $game-container-margin-top: 17px;
 
   html, body {

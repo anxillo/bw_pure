@@ -4,7 +4,7 @@
 
 
 function Game () {
-    this.STARTING_PIECES = 12;
+    this.STARTING_PIECES = 14;
     this.MAX_PIECE_VALUE = 6;
 
     this.dom    = new DOM_handler();
@@ -29,7 +29,7 @@ Game.prototype.restart = function () {
 
 // Return true if the game is lost, or has won and the user hasn't kept playing
 Game.prototype.isGameTerminated = function () {
-    return this.over;
+    return this.over || this.won
 };
 
 
@@ -186,6 +186,7 @@ Game.prototype.move = function (direction, x,y) {
         self.addRandomPiece();
         self.addRandomPiece();
         self.addRandomPiece();
+
     } else
 
     // different color same value : boom
@@ -202,14 +203,22 @@ Game.prototype.move = function (direction, x,y) {
         self.board.countType(true, -1);
         self.board.countType(false, -1);
 
-        self.addRandomPiece();
-    } else {throw Error("problems in the movement analysis")}
+        //self.addRandomPiece();
+    }
 
 
     if(!this.board.cellsAvailable()) {
         this.over = true;
     }
 
+    if(this.board.piecesCount.a + this.board.piecesCount.b === 0) {
+        console.log("empty all board")
+        this.score = this.score * 10;
+        this.won = true;
+    }
+
+
+    console.log(this.board.piecesCount.a);
     this.refresh();
 
 };

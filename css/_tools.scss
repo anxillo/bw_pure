@@ -58,13 +58,10 @@
   }
 }
 
-@mixin material-Shadow {
-  //box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, .30);
+// Media queries
+@mixin smaller($width) {
+  @media screen and (max-width: $width) {
+    @content;
   }
-
-@mixin inner-Shadow {
-  //box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 -6px -20px 0 rgba(0, 0, 0, .30);
 }
 
