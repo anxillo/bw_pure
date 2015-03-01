@@ -4,8 +4,8 @@
 
 
 function Game () {
-    this.STARTING_PIECES = 10;
-    this.MAX_PIECE_VALUE = 5;
+    this.STARTING_PIECES = 12;
+    this.MAX_PIECE_VALUE = 6;
 
     this.dom    = new DOM_handler();
     this.inputManager = new HandleEvents();
@@ -197,8 +197,8 @@ Game.prototype.move = function (direction, x,y) {
         self.score += piece.value * next.value;
 
 
-            self.board.removePiece(piece);
-            self.board.removePiece(next);
+        self.board.removePiece(piece);
+        self.board.removePiece(next);
         self.board.countType(true, -1);
         self.board.countType(false, -1);
 

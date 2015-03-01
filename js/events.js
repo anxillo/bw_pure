@@ -59,8 +59,8 @@ HandleEvents.prototype.listen = function () {
     var self = this;
 
     // Respond to button presses
-    //this.bindButtonPress(".retry-button", this.restart);
-    //this.bindButtonPress(".restart-button", this.restart);
+    this.bindButtonPress(".retry-button", this.restart);
+    this.bindButtonPress(".restart-button", this.restart);
 
     // Respond to swipe events
     var touchStartClientX, touchStartClientY;

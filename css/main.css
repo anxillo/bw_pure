@@ -3,27 +3,152 @@ html, body {
   margin: 0;
   padding: 0;
   background: white;
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-  font-size: 12.4px; }
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif; }
+
+body {
+  margin: 80px 0; }
+
+.heading:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+h1.title {
+  font-size: 80px;
+  font-weight: bold;
+  margin: 0;
+  display: block;
+  float: left; }
+
+.score-container, .best-container {
+  position: relative;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 30px;
+  height: 30px;
+  line-height: 52px;
+  font-weight: bold;
+  color: #999999;
+  text-align: center; }
+  .score-container:after, .best-container:after {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    left: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: #999999; }
+  .score-container .score-addition, .best-container .score-addition {
+    position: absolute;
+    right: 30px;
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    color: rgba(153, 153, 153, 0.9);
+    z-index: 100;
+    -webkit-animation: move-up 600ms ease-in;
+    -moz-animation: move-up 600ms ease-in;
+    animation: move-up 600ms ease-in;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    animation-fill-mode: both; }
+
+.score-container:after {
+  content: "Score"; }
+
+.best-container:after {
+  content: "Best"; }
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.65; }
+
+a {
+  color: #999999;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer; }
+
+strong.important {
+  text-transform: uppercase; }
+
+hr {
+  border: none;
+  border-bottom: 1px solid white;
+  margin-top: 20px;
+  margin-bottom: 30px; }
 
 .container {
-  width: 340px;
+  width: 540px;
   margin: 0 auto; }
 
 .game-container {
+  margin-top: 40px;
   position: relative;
   padding: 5px;
   cursor: default;
   -webkit-touch-callout: none;
+  -ms-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -ms-touch-action: none;
   touch-action: none;
-  width: 340px;
-  height: 340px;
+  width: 540px;
+  height: 540px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
+  .game-container .game-message {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(249, 246, 242, 0.85);
+    z-index: 100;
+    text-align: center;
+    -webkit-animation: fade-in 800ms ease 1200ms;
+    -moz-animation: fade-in 800ms ease 1200ms;
+    animation: fade-in 800ms ease 1200ms;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    animation-fill-mode: both; }
+    .game-container .game-message p {
+      font-size: 60px;
+      font-weight: bold;
+      height: 60px;
+      line-height: 60px;
+      margin-top: 222px;
+      color: #999999; }
+    .game-container .game-message .lower {
+      display: block;
+      margin-top: 59px; }
+    .game-container .game-message a {
+      display: inline-block;
+      background: white;
+      border-radius: 3px;
+      padding: 0 20px;
+      text-decoration: none;
+      color: #999999;
+      height: 30px;
+      line-height: 30px;
+      font-size: 25px;
+      border: 1px solid #999999;
+      margin-left: 9px; }
+      .game-container .game-message a.keep-playing-button {
+        display: none; }
+    .game-container .game-message.game-won {
+      background: rgba(237, 194, 46, 0.5);
+      color: #f9f6f2; }
+      .game-container .game-message.game-won a.keep-playing-button {
+        display: inline-block; }
+    .game-container .game-message.game-won, .game-container .game-message.game-over {
+      display: block; }
 
 .board-container {
   position: absolute;
@@ -40,11 +165,11 @@ html, body {
 
 .board-cell {
   margin-right: 5px;
-  width: 62px;
-  height: 62px;
+  width: 102px;
+  height: 102px;
   float: left;
   background-color: #e6e6e6;
-  border-radius: 31px; }
+  border-radius: 51px; }
   .board-cell:last-child {
     margin-right: 0; }
 
@@ -53,109 +178,109 @@ html, body {
   z-index: 2; }
 
 .piece, .piece .piece-inner {
-  width: 62px;
-  height: 62px;
-  line-height: 62px; }
+  width: 102px;
+  height: 102px;
+  line-height: 102px; }
 .piece.piece-position-1-1 {
   -webkit-transform: translate(0px, 0px);
   -moz-transform: translate(0px, 0px);
   transform: translate(0px, 0px); }
 .piece.piece-position-1-2 {
-  -webkit-transform: translate(0px, 67px);
-  -moz-transform: translate(0px, 67px);
-  transform: translate(0px, 67px); }
+  -webkit-transform: translate(0px, 107px);
+  -moz-transform: translate(0px, 107px);
+  transform: translate(0px, 107px); }
 .piece.piece-position-1-3 {
-  -webkit-transform: translate(0px, 134px);
-  -moz-transform: translate(0px, 134px);
-  transform: translate(0px, 134px); }
+  -webkit-transform: translate(0px, 214px);
+  -moz-transform: translate(0px, 214px);
+  transform: translate(0px, 214px); }
 .piece.piece-position-1-4 {
-  -webkit-transform: translate(0px, 201px);
-  -moz-transform: translate(0px, 201px);
-  transform: translate(0px, 201px); }
+  -webkit-transform: translate(0px, 321px);
+  -moz-transform: translate(0px, 321px);
+  transform: translate(0px, 321px); }
 .piece.piece-position-1-5 {
-  -webkit-transform: translate(0px, 268px);
-  -moz-transform: translate(0px, 268px);
-  transform: translate(0px, 268px); }
+  -webkit-transform: translate(0px, 428px);
+  -moz-transform: translate(0px, 428px);
+  transform: translate(0px, 428px); }
 .piece.piece-position-2-1 {
-  -webkit-transform: translate(67px, 0px);
-  -moz-transform: translate(67px, 0px);
-  transform: translate(67px, 0px); }
+  -webkit-transform: translate(107px, 0px);
+  -moz-transform: translate(107px, 0px);
+  transform: translate(107px, 0px); }
 .piece.piece-position-2-2 {
-  -webkit-transform: translate(67px, 67px);
-  -moz-transform: translate(67px, 67px);
-  transform: translate(67px, 67px); }
+  -webkit-transform: translate(107px, 107px);
+  -moz-transform: translate(107px, 107px);
+  transform: translate(107px, 107px); }
 .piece.piece-position-2-3 {
-  -webkit-transform: translate(67px, 134px);
-  -moz-transform: translate(67px, 134px);
-  transform: translate(67px, 134px); }
+  -webkit-transform: translate(107px, 214px);
+  -moz-transform: translate(107px, 214px);
+  transform: translate(107px, 214px); }
 .piece.piece-position-2-4 {
-  -webkit-transform: translate(67px, 201px);
-  -moz-transform: translate(67px, 201px);
-  transform: translate(67px, 201px); }
+  -webkit-transform: translate(107px, 321px);
+  -moz-transform: translate(107px, 321px);
+  transform: translate(107px, 321px); }
 .piece.piece-position-2-5 {
-  -webkit-transform: translate(67px, 268px);
-  -moz-transform: translate(67px, 268px);
-  transform: translate(67px, 268px); }
+  -webkit-transform: translate(107px, 428px);
+  -moz-transform: translate(107px, 428px);
+  transform: translate(107px, 428px); }
 .piece.piece-position-3-1 {
-  -webkit-transform: translate(134px, 0px);
-  -moz-transform: translate(134px, 0px);
-  transform: translate(134px, 0px); }
+  -webkit-transform: translate(214px, 0px);
+  -moz-transform: translate(214px, 0px);
+  transform: translate(214px, 0px); }
 .piece.piece-position-3-2 {
-  -webkit-transform: translate(134px, 67px);
-  -moz-transform: translate(134px, 67px);
-  transform: translate(134px, 67px); }
+  -webkit-transform: translate(214px, 107px);
+  -moz-transform: translate(214px, 107px);
+  transform: translate(214px, 107px); }
 .piece.piece-position-3-3 {
-  -webkit-transform: translate(134px, 134px);
-  -moz-transform: translate(134px, 134px);
-  transform: translate(134px, 134px); }
+  -webkit-transform: translate(214px, 214px);
+  -moz-transform: translate(214px, 214px);
+  transform: translate(214px, 214px); }
 .piece.piece-position-3-4 {
-  -webkit-transform: translate(134px, 201px);
-  -moz-transform: translate(134px, 201px);
-  transform: translate(134px, 201px); }
+  -webkit-transform: translate(214px, 321px);
+  -moz-transform: translate(214px, 321px);
+  transform: translate(214px, 321px); }
 .piece.piece-position-3-5 {
-  -webkit-transform: translate(134px, 268px);
-  -moz-transform: translate(134px, 268px);
-  transform: translate(134px, 268px); }
+  -webkit-transform: translate(214px, 428px);
+  -moz-transform: translate(214px, 428px);
+  transform: translate(214px, 428px); }
 .piece.piece-position-4-1 {
-  -webkit-transform: translate(201px, 0px);
-  -moz-transform: translate(201px, 0px);
-  transform: translate(201px, 0px); }
+  -webkit-transform: translate(321px, 0px);
+  -moz-transform: translate(321px, 0px);
+  transform: translate(321px, 0px); }
 .piece.piece-position-4-2 {
-  -webkit-transform: translate(201px, 67px);
-  -moz-transform: translate(201px, 67px);
-  transform: translate(201px, 67px); }
+  -webkit-transform: translate(321px, 107px);
+  -moz-transform: translate(321px, 107px);
+  transform: translate(321px, 107px); }
 .piece.piece-position-4-3 {
-  -webkit-transform: translate(201px, 134px);
-  -moz-transform: translate(201px, 134px);
-  transform: translate(201px, 134px); }
+  -webkit-transform: translate(321px, 214px);
+  -moz-transform: translate(321px, 214px);
+  transform: translate(321px, 214px); }
 .piece.piece-position-4-4 {
-  -webkit-transform: translate(201px, 201px);
-  -moz-transform: translate(201px, 201px);
-  transform: translate(201px, 201px); }
+  -webkit-transform: translate(321px, 321px);
+  -moz-transform: translate(321px, 321px);
+  transform: translate(321px, 321px); }
 .piece.piece-position-4-5 {
-  -webkit-transform: translate(201px, 268px);
-  -moz-transform: translate(201px, 268px);
-  transform: translate(201px, 268px); }
+  -webkit-transform: translate(321px, 428px);
+  -moz-transform: translate(321px, 428px);
+  transform: translate(321px, 428px); }
 .piece.piece-position-5-1 {
-  -webkit-transform: translate(268px, 0px);
-  -moz-transform: translate(268px, 0px);
-  transform: translate(268px, 0px); }
+  -webkit-transform: translate(428px, 0px);
+  -moz-transform: translate(428px, 0px);
+  transform: translate(428px, 0px); }
 .piece.piece-position-5-2 {
-  -webkit-transform: translate(268px, 67px);
-  -moz-transform: translate(268px, 67px);
-  transform: translate(268px, 67px); }
+  -webkit-transform: translate(428px, 107px);
+  -moz-transform: translate(428px, 107px);
+  transform: translate(428px, 107px); }
 .piece.piece-position-5-3 {
-  -webkit-transform: translate(268px, 134px);
-  -moz-transform: translate(268px, 134px);
-  transform: translate(268px, 134px); }
+  -webkit-transform: translate(428px, 214px);
+  -moz-transform: translate(428px, 214px);
+  transform: translate(428px, 214px); }
 .piece.piece-position-5-4 {
-  -webkit-transform: translate(268px, 201px);
-  -moz-transform: translate(268px, 201px);
-  transform: translate(268px, 201px); }
+  -webkit-transform: translate(428px, 321px);
+  -moz-transform: translate(428px, 321px);
+  transform: translate(428px, 321px); }
 .piece.piece-position-5-5 {
-  -webkit-transform: translate(268px, 268px);
-  -moz-transform: translate(268px, 268px);
-  transform: translate(268px, 268px); }
+  -webkit-transform: translate(428px, 428px);
+  -moz-transform: translate(428px, 428px);
+  transform: translate(428px, 428px); }
 
 .piece {
   position: absolute;
@@ -166,7 +291,7 @@ html, body {
   -moz-transition-property: -moz-transform;
   transition-property: transform; }
   .piece .piece-inner {
-    border-radius: 31px;
+    border-radius: 51px;
     text-align: center;
     font-weight: bold;
     z-index: 10;
@@ -303,5 +428,313 @@ html, body {
     -webkit-transform: opacity(0);
     -moz-transform: opacity(0);
     transform: opacity(0); } }
+@-webkit-keyframes move-up {
+  0% {
+    top: 25px;
+    opacity: 1; }
+  100% {
+    top: -50px;
+    opacity: 0; } }
+@-moz-keyframes move-up {
+  0% {
+    top: 25px;
+    opacity: 1; }
+  100% {
+    top: -50px;
+    opacity: 0; } }
+@keyframes move-up {
+  0% {
+    top: 25px;
+    opacity: 1; }
+  100% {
+    top: -50px;
+    opacity: 0; } }
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+.above-game:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+.game-intro {
+  float: left;
+  line-height: 42px;
+  margin-bottom: 0; }
+
+.restart-button {
+  display: inline-block;
+  background: white;
+  border-radius: 3px;
+  padding: 0 20px;
+  text-decoration: none;
+  color: #999999;
+  height: 30px;
+  line-height: 30px;
+  font-size: 25px;
+  border: 1px solid #999999;
+  display: block;
+  text-align: center;
+  float: right; }
+
+.game-explanation {
+  margin-top: 50px; }
+
+@media screen and (max-width: 560px) {
+  html, body {
+    font-size: 15px; }
+
+  body {
+    margin: 20px 0;
+    padding: 0 20px; }
+
+  h1.title {
+    font-size: 27px;
+    margin-top: 15px; }
+
+  .container {
+    width: 280px;
+    margin: 0 auto; }
+
+  .score-container, .best-container {
+    margin-top: 0;
+    padding: 15px 10px;
+    min-width: 40px; }
+
+  .heading {
+    margin-bottom: 10px; }
+
+  .game-intro {
+    width: 55%;
+    display: block;
+    box-sizing: border-box;
+    line-height: 1.65; }
+
+  .restart-button {
+    width: 42%;
+    padding: 0;
+    display: block;
+    box-sizing: border-box;
+    margin-top: 2px; }
+
+  .game-container {
+    margin-top: 40px;
+    position: relative;
+    padding: 5px;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -ms-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -ms-touch-action: none;
+    touch-action: none;
+    width: 540px;
+    height: 540px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    .game-container .game-message {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(249, 246, 242, 0.85);
+      z-index: 100;
+      text-align: center;
+      -webkit-animation: fade-in 800ms ease 1200ms;
+      -moz-animation: fade-in 800ms ease 1200ms;
+      animation: fade-in 800ms ease 1200ms;
+      -webkit-animation-fill-mode: both;
+      -moz-animation-fill-mode: both;
+      animation-fill-mode: both; }
+      .game-container .game-message p {
+        font-size: 60px;
+        font-weight: bold;
+        height: 60px;
+        line-height: 60px;
+        margin-top: 222px;
+        color: #999999; }
+      .game-container .game-message .lower {
+        display: block;
+        margin-top: 59px; }
+      .game-container .game-message a {
+        display: inline-block;
+        background: white;
+        border-radius: 3px;
+        padding: 0 20px;
+        text-decoration: none;
+        color: #999999;
+        height: 30px;
+        line-height: 30px;
+        font-size: 25px;
+        border: 1px solid #999999;
+        margin-left: 9px; }
+        .game-container .game-message a.keep-playing-button {
+          display: none; }
+      .game-container .game-message.game-won {
+        background: rgba(237, 194, 46, 0.5);
+        color: #f9f6f2; }
+        .game-container .game-message.game-won a.keep-playing-button {
+          display: inline-block; }
+      .game-container .game-message.game-won, .game-container .game-message.game-over {
+        display: block; }
+
+  .board-container {
+    position: absolute;
+    z-index: 1; }
+
+  .board-row {
+    margin-bottom: 5px; }
+    .board-row:last-child {
+      margin-bottom: 0; }
+    .board-row:after {
+      content: "";
+      display: block;
+      clear: both; }
+
+  .board-cell {
+    margin-right: 5px;
+    width: 102px;
+    height: 102px;
+    float: left;
+    background-color: #e6e6e6;
+    border-radius: 51px; }
+    .board-cell:last-child {
+      margin-right: 0; }
+
+  .pieces-container {
+    position: absolute;
+    z-index: 2; }
+
+  .piece, .piece .piece-inner {
+    width: 102px;
+    height: 102px;
+    line-height: 102px; }
+  .piece.piece-position-1-1 {
+    -webkit-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    transform: translate(0px, 0px); }
+  .piece.piece-position-1-2 {
+    -webkit-transform: translate(0px, 107px);
+    -moz-transform: translate(0px, 107px);
+    transform: translate(0px, 107px); }
+  .piece.piece-position-1-3 {
+    -webkit-transform: translate(0px, 214px);
+    -moz-transform: translate(0px, 214px);
+    transform: translate(0px, 214px); }
+  .piece.piece-position-1-4 {
+    -webkit-transform: translate(0px, 321px);
+    -moz-transform: translate(0px, 321px);
+    transform: translate(0px, 321px); }
+  .piece.piece-position-1-5 {
+    -webkit-transform: translate(0px, 428px);
+    -moz-transform: translate(0px, 428px);
+    transform: translate(0px, 428px); }
+  .piece.piece-position-2-1 {
+    -webkit-transform: translate(107px, 0px);
+    -moz-transform: translate(107px, 0px);
+    transform: translate(107px, 0px); }
+  .piece.piece-position-2-2 {
+    -webkit-transform: translate(107px, 107px);
+    -moz-transform: translate(107px, 107px);
+    transform: translate(107px, 107px); }
+  .piece.piece-position-2-3 {
+    -webkit-transform: translate(107px, 214px);
+    -moz-transform: translate(107px, 214px);
+    transform: translate(107px, 214px); }
+  .piece.piece-position-2-4 {
+    -webkit-transform: translate(107px, 321px);
+    -moz-transform: translate(107px, 321px);
+    transform: translate(107px, 321px); }
+  .piece.piece-position-2-5 {
+    -webkit-transform: translate(107px, 428px);
+    -moz-transform: translate(107px, 428px);
+    transform: translate(107px, 428px); }
+  .piece.piece-position-3-1 {
+    -webkit-transform: translate(214px, 0px);
+    -moz-transform: translate(214px, 0px);
+    transform: translate(214px, 0px); }
+  .piece.piece-position-3-2 {
+    -webkit-transform: translate(214px, 107px);
+    -moz-transform: translate(214px, 107px);
+    transform: translate(214px, 107px); }
+  .piece.piece-position-3-3 {
+    -webkit-transform: translate(214px, 214px);
+    -moz-transform: translate(214px, 214px);
+    transform: translate(214px, 214px); }
+  .piece.piece-position-3-4 {
+    -webkit-transform: translate(214px, 321px);
+    -moz-transform: translate(214px, 321px);
+    transform: translate(214px, 321px); }
+  .piece.piece-position-3-5 {
+    -webkit-transform: translate(214px, 428px);
+    -moz-transform: translate(214px, 428px);
+    transform: translate(214px, 428px); }
+  .piece.piece-position-4-1 {
+    -webkit-transform: translate(321px, 0px);
+    -moz-transform: translate(321px, 0px);
+    transform: translate(321px, 0px); }
+  .piece.piece-position-4-2 {
+    -webkit-transform: translate(321px, 107px);
+    -moz-transform: translate(321px, 107px);
+    transform: translate(321px, 107px); }
+  .piece.piece-position-4-3 {
+    -webkit-transform: translate(321px, 214px);
+    -moz-transform: translate(321px, 214px);
+    transform: translate(321px, 214px); }
+  .piece.piece-position-4-4 {
+    -webkit-transform: translate(321px, 321px);
+    -moz-transform: translate(321px, 321px);
+    transform: translate(321px, 321px); }
+  .piece.piece-position-4-5 {
+    -webkit-transform: translate(321px, 428px);
+    -moz-transform: translate(321px, 428px);
+    transform: translate(321px, 428px); }
+  .piece.piece-position-5-1 {
+    -webkit-transform: translate(428px, 0px);
+    -moz-transform: translate(428px, 0px);
+    transform: translate(428px, 0px); }
+  .piece.piece-position-5-2 {
+    -webkit-transform: translate(428px, 107px);
+    -moz-transform: translate(428px, 107px);
+    transform: translate(428px, 107px); }
+  .piece.piece-position-5-3 {
+    -webkit-transform: translate(428px, 214px);
+    -moz-transform: translate(428px, 214px);
+    transform: translate(428px, 214px); }
+  .piece.piece-position-5-4 {
+    -webkit-transform: translate(428px, 321px);
+    -moz-transform: translate(428px, 321px);
+    transform: translate(428px, 321px); }
+  .piece.piece-position-5-5 {
+    -webkit-transform: translate(428px, 428px);
+    -moz-transform: translate(428px, 428px);
+    transform: translate(428px, 428px); }
+
+  .tile .tile-inner {
+    font-size: 35px; }
+
+  .game-message p {
+    font-size: 30px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    margin-top: 90px !important; }
+  .game-message .lower {
+    margin-top: 30px !important; } }
 
 /*# sourceMappingURL=main.css.map */

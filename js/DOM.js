@@ -159,6 +159,8 @@ DOM_handler.prototype.message = function (won) {
 
     this.MESSAGE_CONTAINER.classList.add(type);
     this.MESSAGE_CONTAINER.getElementsByTagName("p")[0].textContent = message;
+
+
 };
 
 DOM_handler.prototype.clearMessage = function () {

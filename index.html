@@ -8,16 +8,31 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=0.7    , maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
 </head>
 <body>
     <div class="container">
-        <div class="game-message"></div>
-        <div class="score-container">
-            <div class="best-container"></div>
+        <div class="heading">
+            <h1 class="title"></h1>
+            <div class="scores-container">
+                <div class="score-container">0</div>
+                <div class="best-container">0</div>
+            </div>
+        </div>
+        <div class="above-game">
+            <p class="game-intro"></p>
+            <a class="restart-button">New Game</a>
         </div>
         <div class="game-container">
+            <div class="game-message">
+                <p></p>
+                <div class="lower">
+                    <!-- <a class="keep-playing-button">Keep going</a> -->
+                    <a class="retry-button">Try again</a>
+                </div>
+            </div>
             <div class="board-container">
                 <div class="board-row">
                     <div class="board-cell"></div>
