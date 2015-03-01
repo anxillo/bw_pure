@@ -41,7 +41,7 @@ Game.prototype.setup = function () {
     // Reload the game from a previous game if present
     if (previousState) {
         this.board        = new Board(
-            previousState.board.cells); // Reload grid
+            previousState.board.cells); // Reload board
         this.score       = previousState.score;
         this.over        = previousState.over;
         this.won         = previousState.won;
@@ -53,7 +53,7 @@ Game.prototype.setup = function () {
         this.won         = false;
         this.keepPlaying = false;
 
-        // Add the initial tiles
+        // Add the initial pieces
         this.addStartPieces();
     }
 
@@ -61,7 +61,7 @@ Game.prototype.setup = function () {
     this.refresh();
 };
 
-// Set up the initial tiles to start the game with
+// Set up the initial pieces to start the game with
 Game.prototype.addStartPieces = function () {
     for (var i = 0; i < this.STARTING_PIECES; i++) {
         this.addRandomPiece();
@@ -69,7 +69,7 @@ Game.prototype.addStartPieces = function () {
     console.dir(this.board.piecesCount);
 };
 
-// Adds a tile in a random position
+// Adds a piece in a random position
 Game.prototype.addRandomPiece = function () {
     if (this.board.cellsAvailable()) {
         var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
@@ -81,7 +81,7 @@ Game.prototype.addRandomPiece = function () {
     }
 };
 
-// Sends the updated grid to the dom
+// Sends the updated board to the dom
 Game.prototype.refresh = function () {
 
     if (this.storageManager.getBestScore() < this.score) {
@@ -119,28 +119,87 @@ Game.prototype.serialize = function () {
     };
 };
 
-// Save all tile positions and remove merger info
+// Save all piece positions and remove merger info
 Game.prototype.preparePieces = function () {
+
+
     this.board.eachCell(function (x, y, piece) {
         if (piece) {
             piece.mergedFrom = null;
+            piece.customClass = null;
             piece.savePosition();
+
         }
     });
 };
 
-// Move a tile and its representation
+// Move a piece and its representation
 Game.prototype.movePiece = function (piece, cell) {
     this.board.cells[piece.x][piece.y] = null;
-    this.board.cells[cell.x][cell.y] = tile;
+    this.board.cells[cell.x][cell.y] = piece;
     piece.updatePosition(cell);
+    this.board.cells[cell.x][cell.y].customClass = "piece-new";
+
+
+
+
 };
 
 
 Game.prototype.move = function (direction, x,y) {
-    console.log("moved " + direction + "x: " + x + " Y: " + y);
+    var self = this;
+
+    if (this.isGameTerminated()) return; // Don't do anything if the game's over
+
+    var cell = { x: x, y: y };
+    var piece = self.board.cellContent(cell);
+    var vector     = this.getVector(direction);
+    var positions = self.findFarthestPosition(cell, vector);
+    var next      = self.board.cellContent(positions.next);
+
+    // Save the current piece positions and remove merger information
+
+    this.preparePieces();
+
+
+
+        self.movePiece(piece, positions.farthest);
+
+
+
+
+    this.refresh();
 
 };
 
+
+// Get the vector representing the chosen direction
+Game.prototype.getVector = function (direction) {
+    // Vectors representing piece movement
+    var map = {
+        0: { x: 0,  y: -1 }, // Up
+        1: { x: 1,  y: 0 },  // Right
+        2: { x: 0,  y: 1 },  // Down
+        3: { x: -1, y: 0 }   // Left
+    };
+
+    return map[direction];
+};
+
+Game.prototype.findFarthestPosition = function (cell, vector) {
+    var previous;
+
+    // Progress towards the vector direction until an obstacle is found
+    do {
+        previous = cell;
+        cell     = { x: previous.x + vector.x, y: previous.y + vector.y };
+    } while (this.board.withinBounds(cell) &&
+    this.board.cellAvailable(cell));
+
+    return {
+        farthest: previous,
+        next: cell // Used to check if a merge is required
+    };
+};
 
 

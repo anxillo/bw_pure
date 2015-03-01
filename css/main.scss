@@ -201,7 +201,7 @@ html, body {
   0% {
 
     @include transform(scale(1));
-
+    @include transform(opacity(1))
   }
 
   50% {
@@ -211,6 +211,7 @@ html, body {
 
   100% {
     @include transform(scale(0));
+    @include transform(opacity(0));
   }
 }
 

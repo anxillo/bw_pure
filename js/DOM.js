@@ -77,69 +77,27 @@ DOM_handler.prototype.addPiece = function (piece) {
         // Make sure that the piece gets rendered in the previous position first
         window.requestAnimationFrame(function () {
             classes[2] = self.positionClass({ x: piece.x, y: piece.y });
+            self.applyPositionData (inner, { x: piece.x, y: piece.y });
             self.applyClasses(wrapper, classes); // Update the position
         });
-    } else if (piece.mergedFrom) {
-        classes.push("piece-merged");
-        this.applyClasses(wrapper, classes);
 
-        // Render the pieces that merged
-        piece.mergedFrom.forEach(function (merged) {
-            self.addPiece(merged);
-        });
     } else {
         classes.push("piece-new");
         this.applyClasses(wrapper, classes);
     }
 
-    // Add the inner part of the piece to the wrapper
-    wrapper.appendChild(inner);
-
-    // Put the piece on the board
-    this.PIECES_CONTAINER.appendChild(wrapper);
-};
-
-
-
-
-
-/* La mia versione
-DOM_handler.prototype.addPiece = function (piece) {
-    var _this = this;
-    var wrapper   = document.createElement("div");
-    var inner     = document.createElement("div");
-    var nr  = piece.previousPosition || piece.nr;
-    var typePiece = piece.isTypeA;
-    var typePieceClass = typePiece ? "piece-a" : "piece-b";
-    var positionClass  =  this.positionClass(nr);
-    var classes = ["piece",  typePieceClass, positionClass];
-
-    this.applyClasses(wrapper, classes);
-    this.applyPositionData (inner, nr);
-
-    inner.classList.add("piece-inner");
-    inner.textContent = piece.value;
-
-
-
-    if (piece.previousPosition) {
-        // Make sure that the piece gets rendered in the previous position first
-        window.requestAnimationFrame(function () {
-            classes[2] = _this.positionClass(nr);
-            _this.applyClasses(wrapper, classes); // Update the position
-        });
+    if(piece.customClass) {
+        classes.push(piece.customClass);
+        this.applyClasses(wrapper, classes);
     }
 
     // Add the inner part of the piece to the wrapper
     wrapper.appendChild(inner);
 
-
-
     // Put the piece on the board
     this.PIECES_CONTAINER.appendChild(wrapper);
 };
 
-*/
 
 
 DOM_handler.prototype.normalizePosition = function (position) {
@@ -148,7 +106,7 @@ DOM_handler.prototype.normalizePosition = function (position) {
 
 
 DOM_handler.prototype.applyPositionData = function (element, position) {
-    position = this.normalizePosition(position);
+    //position = this.normalizePosition(position);
     element.setAttribute("Data-x", position.x);
     element.setAttribute("Data-y", position.y);
 };
