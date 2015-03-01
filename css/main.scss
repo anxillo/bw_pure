@@ -2,11 +2,11 @@
 @import "fonts/roboto.css";
 
 
-$field-width: 320px;
+$field-width: 340px;
 $num-cell-x: 5;
 $num-cell-y: 5;
 $color-empty-cell: #e6e6e6;
-$cell-margin: 6px;
+$cell-margin: 10px;
 $cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
 //: ($field-width / $num-cell-x) * $num-cell-y;
 $tile-border-radius: $cell-size / 2;
