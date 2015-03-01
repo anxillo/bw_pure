@@ -81,15 +81,20 @@ DOM_handler.prototype.addPiece = function (piece) {
             self.applyClasses(wrapper, classes); // Update the position
         });
 
+    } else if (piece.mergedFrom) {
+        classes.push("tile-merged");
+        this.applyClasses(wrapper, classes);
+
+        // Render the tiles that merged
+        piece.mergedFrom.forEach(function (merged) {
+            self.addPiece(merged);
+        });
     } else {
         classes.push("piece-new");
         this.applyClasses(wrapper, classes);
     }
 
-    if(piece.customClass) {
-        classes.push(piece.customClass);
-        this.applyClasses(wrapper, classes);
-    }
+
 
     // Add the inner part of the piece to the wrapper
     wrapper.appendChild(inner);

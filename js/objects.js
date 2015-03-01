@@ -9,6 +9,8 @@ function Piece(position, isTypeA, value){
     this.value              = value;
     this.previousPosition   = null;
     this.mergedFrom         = null;
+    this.removeMe           = null;
+    this.customClass        = null;
 }
 
 Piece.prototype.savePosition = function () {
@@ -41,13 +43,13 @@ Piece.prototype.serialize = function () {
 
 function Board(previousState) {
     this.size               = {x: BW.BOARD_SIZE_X, y: BW.BOARD_SIZE_Y};
-    this.cells              = previousState ? this.fromState(previousState) : this.create();
+    this.cells              = previousState ? this.fromState(previousState) : this.createMe();
     this.piecesCount        = {a : 0, b : 0};
 
 }
 
 // Build a grid of the specified size
-Board.prototype.create = function () {
+Board.prototype.createMe = function () {
     var cells = [];
 
     for (var x = 0; x < this.size.x; x++) {
@@ -70,7 +72,7 @@ Board.prototype.fromState = function (state) {
 
         for (var y = 0; y < this.size.y; y++) {
             var piece = state[x][y];
-            row.push(piece ? new Piece(piece.position, piece.value, piece.isTypeA) : null);
+            row.push(piece ? new Piece(piece.position, piece.isTypeA, piece.value) : null);
         }
     }
 
@@ -152,11 +154,11 @@ Board.prototype.withinBounds = function (position) {
         position.y >= 0 && position.y < this.size.y;
 };
 
-Board.prototype.countType = function (isTypeA) {
+Board.prototype.countType = function (isTypeA, amount) {
     if (isTypeA) {
-        this.piecesCount.b++;
+        this.piecesCount.b = this.piecesCount.b + amount;
     } else {
-        this.piecesCount.a++
+        this.piecesCount.a = this.piecesCount.a + amount;
     }
 };
 

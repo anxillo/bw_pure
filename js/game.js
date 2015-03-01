@@ -20,10 +20,10 @@ function Game () {
     this.setup();
 }
 
-//  Restart the game - ToDo
+//  Restart the game
 Game.prototype.restart = function () {
-    // this.storageManager.clearGameState() - ToDo
-    // this.dom.continueGame(); - ToDo
+     this.storageManager.clearGameState();
+     this.dom.continueGame();
     this.setup();
 };
 
@@ -76,7 +76,7 @@ Game.prototype.addRandomPiece = function () {
         console.log (value);
         var isTypeA = this.board.thereAreMoreA();
         var piece   = new Piece(this.board.randomAvailableCell(), isTypeA, value);
-        this.board.countType(isTypeA);
+        this.board.countType(isTypeA, 1);
         this.board.insertPiece(piece);
     }
 };
@@ -90,13 +90,13 @@ Game.prototype.refresh = function () {
 
 
     // Clear the state when the game is over (game over only, not win)
-    /* ToDo
+
     if (this.over) {
-        this.storageManager.clearGameState();
+       // this.storageManager.clearGameState();
     } else {
-        this.storageManager.setGameState(this.serialize());
+       // this.storageManager.setGameState(this.serialize());
     }
-    */
+
 
     this.dom.refresh(this.board, {
         score:      this.score,
@@ -111,7 +111,7 @@ Game.prototype.refresh = function () {
 // Represent the current game as an object
 Game.prototype.serialize = function () {
     return {
-        board:        this.board.serialize(),
+        board:       this.board.serialize(),
         score:       this.score,
         over:        this.over,
         won:         this.won,
@@ -138,11 +138,8 @@ Game.prototype.movePiece = function (piece, cell) {
     this.board.cells[piece.x][piece.y] = null;
     this.board.cells[cell.x][cell.y] = piece;
     piece.updatePosition(cell);
-    this.board.cells[cell.x][cell.y].customClass = "piece-new";
 
-
-
-
+    // this.board.cells[cell.x][cell.y].customClass = "piece-new";
 };
 
 
@@ -161,12 +158,57 @@ Game.prototype.move = function (direction, x,y) {
 
     this.preparePieces();
 
-
-
+    //next is not a piece, just move near
+    if (!next || piece.isTypeA !== next.isTypeA && piece.value !== next.value) {
+        console.log("movement: border");
         self.movePiece(piece, positions.farthest);
+    } else
 
 
+    // same color: sum,
+    if(piece.isTypeA === next.isTypeA) {
+        console.log("movement.sum");
+        //var type = this.board.thereAreMoreA();
+        var merged = new Piece(positions.next, piece.isTypeA,  piece.value + next.value);
+        merged.mergedFrom = [piece, next];
 
+        self.board.insertPiece(merged);
+        self.board.removePiece(piece);
+
+        // Converge the two tiles' positions
+        piece.updatePosition(positions.next);
+
+        // Update the score
+        self.score += merged.value;
+
+        // Update piece count
+        self.board.countType(next.isTypeA, -1);
+        self.addRandomPiece();
+        self.addRandomPiece();
+        self.addRandomPiece();
+    } else
+
+    // different color same value : boom
+
+    if( piece.isTypeA !== next.isTypeA && piece.value === next.value ) {
+        console.log("movement: boom");
+
+
+        self.score += piece.value * next.value;
+
+
+            self.board.removePiece(piece);
+            self.board.removePiece(next);
+        self.board.countType(true, -1);
+        self.board.countType(false, -1);
+
+        self.addRandomPiece();
+    } else {throw Error("problems in the movement analysis")}
+
+
+    if(!this.board.cellsAvailable()) {
+        this.over = true;
+    }
 
     this.refresh();
 
