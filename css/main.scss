@@ -2,11 +2,11 @@
 @import "fonts/clear-sans.css";
 
 
-$board-size-x: 540px;
+$board-size-x: 340px;
 $num-cell-x: 5;
 $num-cell-y: 5;
 $color-empty-cell: #e6e6e6;
-$cell-margin: 10px;
+$cell-margin: 5px;
 $cell-size: ($board-size-x - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
 $board-size-y: ($board-size-x / $num-cell-x) * $num-cell-y;
 $tile-border-radius: $cell-size / 2;
@@ -20,7 +20,7 @@ html, body {
   background: white;
   //color: $text-color;
   font-family:"Roboto", "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px;
+  font-size: $cell-size / 5;
 }
 
 .container {
