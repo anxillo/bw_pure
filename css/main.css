@@ -24,7 +24,7 @@ h1.title {
   position: relative;
   display: inline-block;
   padding: 15px 25px;
-  font-size: 26px;
+  font-size: 20px;
   height: 26px;
   line-height: 48px;
   font-weight: bold;
@@ -131,13 +131,13 @@ hr {
     .game-container .game-message a {
       display: inline-block;
       background: white;
-      border-radius: 3px;
-      padding: 0 20px;
+      border-radius: 28.4px;
       text-decoration: none;
       color: #999999;
-      height: 26px;
-      line-height: 26px;
-      font-size: 21px;
+      height: 56.8px;
+      width: 56.8px;
+      line-height: 56.8px;
+      font-size: 12px;
       border: 1px solid #999999;
       margin-left: 9px; }
       .game-container .game-message a.keep-playing-button {
@@ -471,13 +471,13 @@ hr {
 .restart-button {
   display: inline-block;
   background: white;
-  border-radius: 3px;
-  padding: 0 20px;
+  border-radius: 28.4px;
   text-decoration: none;
   color: #999999;
-  height: 26px;
-  line-height: 26px;
-  font-size: 21px;
+  height: 56.8px;
+  width: 56.8px;
+  line-height: 56.8px;
+  font-size: 12px;
   border: 1px solid #999999;
   display: block;
   text-align: center;
@@ -569,13 +569,13 @@ hr {
       .game-container .game-message a {
         display: inline-block;
         background: white;
-        border-radius: 3px;
-        padding: 0 20px;
+        border-radius: 28.4px;
         text-decoration: none;
         color: #999999;
-        height: 26px;
-        line-height: 26px;
-        font-size: 21px;
+        height: 56.8px;
+        width: 56.8px;
+        line-height: 56.8px;
+        font-size: 12px;
         border: 1px solid #999999;
         margin-left: 9px; }
         .game-container .game-message a.keep-playing-button {

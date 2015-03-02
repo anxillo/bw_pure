@@ -58,9 +58,8 @@ h1.title {
   position: relative;
   display: inline-block;
   //background: $game-container-background;
-
   padding: 15px 25px;
-  font-size: $height;
+  font-size: 20px;
   height: $height;
   line-height: $height + 22;
   font-weight: bold;
@@ -140,13 +139,14 @@ hr {
   display: inline-block;
   //background: $color-empty-cell;
   background: white;
-  border-radius: 3px;
-  padding: 0 20px;
+  border-radius: $tile-border-radius;
+  //padding: 0 20px;
   text-decoration: none;
   color: $text-color;
-  height: $height ;
-  line-height: $height;
-  font-size: $height - 5;
+  height: $cell-size; // $height ;
+  width: $cell-size;
+  line-height: $cell-size; //$height;
+  font-size: 12px;
   border: 1px solid $text-color;
 
 }

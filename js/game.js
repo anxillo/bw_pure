@@ -5,7 +5,7 @@
 
 function Game () {
     this.STARTING_PIECES = 14;
-    this.MAX_PIECE_VALUE = 6;
+    this.MAX_PIECE_VALUE = 5;
 
     this.dom    = new DOM_handler();
     this.inputManager = new HandleEvents();
