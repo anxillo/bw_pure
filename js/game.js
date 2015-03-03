@@ -5,7 +5,7 @@
 
 function Game () {
     this.STARTING_PIECES = 14;
-    this.MAX_PIECE_VALUE = 5;
+    this.MAX_PIECE_VALUE = 6;
 
     this.dom    = new DOM_handler();
     this.inputManager = new HandleEvents();
@@ -78,6 +78,7 @@ Game.prototype.addStartPieces = function () {
 Game.prototype.addRandomPiece = function () {
     if (this.board.cellsAvailable()) {
         var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
+
         console.log (value);
         var isTypeA = this.board.thereAreMoreA();
         var piece   = new Piece(this.board.randomAvailableCell(), isTypeA, value);
@@ -193,9 +194,13 @@ Game.prototype.move = function (direction, x,y) {
 
         // Update piece count
         self.board.countType(next.isTypeA, -1);
-        self.addRandomPiece();
-        self.addRandomPiece();
-        self.addRandomPiece();
+        //try with randomize the number of new Pieces
+        //var howManyNew = Math.floor(Math.random() * 5);
+
+        for (var i = 0; i < 4; i++) {
+            self.addRandomPiece();
+        }
+
 
 
     } else
@@ -213,8 +218,10 @@ Game.prototype.move = function (direction, x,y) {
         self.board.removePiece(next);
         self.board.countType(true, -1);
         self.board.countType(false, -1);
-
-        self.addRandomPiece();
+        console.log(this.board.piecesCount.a + this.board.piecesCount.b);
+        if (this.board.piecesCount.a + this.board.piecesCount.b !== 0) {
+            self.addRandomPiece();
+        }
     }
 
 
