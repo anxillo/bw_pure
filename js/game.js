@@ -35,23 +35,27 @@ Game.prototype.isGameTerminated = function () {
 
 // Set up the game
 Game.prototype.setup = function () {
-    //var previousState = this.storageManager.getGameState();
-    var previousState = false;
+    var previousState = this.storageManager.getGameState();
+
+    //var previousState = false;
+
 
     // Reload the game from a previous game if present
     if (previousState) {
-        this.board        = new Board(
-            previousState.board.cells); // Reload board
+        this.board        = new Board(  previousState.board.size,
+                                        previousState.board.cells,
+                                        previousState.board.piecesCount); // Reload board
+
         this.score       = previousState.score;
         this.over        = previousState.over;
         this.won         = previousState.won;
-        this.keepPlaying = previousState.keepPlaying;
+        //this.keepPlaying = previousState.keepPlaying;
     } else {
         this.board       = new Board();
         this.score       = 0;
         this.over        = false;
         this.won         = false;
-        this.keepPlaying = false;
+        //this.keepPlaying = false;
 
         // Add the initial pieces
         this.addStartPieces();
@@ -92,9 +96,10 @@ Game.prototype.refresh = function () {
     // Clear the state when the game is over (game over only, not win)
 
     if (this.over) {
-       // this.storageManager.clearGameState();
+        this.storageManager.clearGameState();
     } else {
-       // this.storageManager.setGameState(this.serialize());
+        this.storageManager.setGameState(this.serialize());
+
     }
 
 
@@ -106,6 +111,7 @@ Game.prototype.refresh = function () {
         terminated: this.isGameTerminated()
     });
 
+
 };
 
 // Represent the current game as an object
@@ -114,9 +120,11 @@ Game.prototype.serialize = function () {
         board:       this.board.serialize(),
         score:       this.score,
         over:        this.over,
-        won:         this.won,
-        keepPlaying: this.keepPlaying
+        won:         this.won
+        //keepPlaying: this.keepPlaying
     };
+
+
 };
 
 // Save all piece positions and remove merger info
@@ -186,7 +194,7 @@ Game.prototype.move = function (direction, x,y) {
         self.addRandomPiece();
         self.addRandomPiece();
         self.addRandomPiece();
-        self.addRandomPiece();
+
 
     } else
 
@@ -219,7 +227,7 @@ Game.prototype.move = function (direction, x,y) {
     }
 
 
-    console.log(this.board.piecesCount.a);
+
     this.refresh();
 
 };

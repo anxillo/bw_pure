@@ -28,9 +28,10 @@ Piece.prototype.serialize = function () {
             x: this.x,
             y: this.y
         },
-        value: this.value,
-        isTypeA: this.isTypeA
+        isTypeA: this.isTypeA,
+        value: this.value
     };
+
 };
 
 
@@ -41,10 +42,10 @@ Piece.prototype.serialize = function () {
  * Board: the board where the pieces are
  */
 
-function Board(previousState) {
-    this.size               = {x: BW.BOARD_SIZE_X, y: BW.BOARD_SIZE_Y};
+function Board(size, previousState, piecesCount) {
+    this.size               = size ? size : {x: BW.BOARD_SIZE_X, y: BW.BOARD_SIZE_Y};
     this.cells              = previousState ? this.fromState(previousState) : this.createMe();
-    this.piecesCount        = {a : 0, b : 0};
+    this.piecesCount        = piecesCount ?  {a: piecesCount.a, b: piecesCount.b } : {a: 0, b: 0};  //check storage to pass those values too (todo)
 
 }
 
@@ -75,8 +76,8 @@ Board.prototype.fromState = function (state) {
             row.push(piece ? new Piece(piece.position, piece.isTypeA, piece.value) : null);
         }
     }
-
     return cells;
+
 };
 
 // Find the first available random position
@@ -161,6 +162,29 @@ Board.prototype.countType = function (isTypeA, amount) {
     } else {
         this.piecesCount.a = this.piecesCount.a + amount;
     }
+};
+
+Board.prototype.serialize = function () {
+    var cellState = [];
+
+    for (var x = 0; x < this.size; x++) {
+
+        var row = cellState[x] = [];
+
+        for (var y = 0; y < this.size; y++) {
+            row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);
+
+        }
+    }
+
+    return {
+        size: this.size,
+        cells: cellState,
+        piecesCount: {
+            a: this.piecesCount.a,
+            b: this.piecesCount.b
+        }
+    };
 };
 
 
