@@ -40,6 +40,7 @@ Game.prototype.setup = function () {
     //var previousState = false;
 
 
+
     // Reload the game from a previous game if present
     if (previousState) {
         this.board        = new Board(  previousState.board.size,
@@ -100,6 +101,9 @@ Game.prototype.refresh = function () {
     } else {
         this.storageManager.setGameState(this.serialize());
 
+
+
+
     }
 
 
@@ -116,6 +120,8 @@ Game.prototype.refresh = function () {
 
 // Represent the current game as an object
 Game.prototype.serialize = function () {
+    console.dir(this.board.serialize());
+
     return {
         board:       this.board.serialize(),
         score:       this.score,
@@ -136,7 +142,6 @@ Game.prototype.preparePieces = function () {
             piece.mergedFrom = null;
             piece.customClass = null;
             piece.savePosition();
-
         }
     });
 };
@@ -168,15 +173,12 @@ Game.prototype.move = function (direction, x,y) {
 
     //next is not a piece, just move near
     if (!next || piece.isTypeA !== next.isTypeA && piece.value !== next.value) {
-        console.log("movement: border");
         self.movePiece(piece, positions.farthest);
     } else
 
 
     // same color: sum,
     if(piece.isTypeA === next.isTypeA) {
-        console.log("movement.sum");
-        //var type = this.board.thereAreMoreA();
         var merged = new Piece(positions.next, piece.isTypeA,  piece.value + next.value);
         merged.mergedFrom = [piece, next];
 
@@ -201,7 +203,7 @@ Game.prototype.move = function (direction, x,y) {
     // different color same value : boom
 
     if( piece.isTypeA !== next.isTypeA && piece.value === next.value ) {
-        console.log("movement: boom");
+
 
 
         self.score += piece.value * next.value;
@@ -221,7 +223,6 @@ Game.prototype.move = function (direction, x,y) {
     }
 
     if(this.board.piecesCount.a + this.board.piecesCount.b === 0) {
-        console.log("empty all board")
         this.score = this.score * 10;
         this.won = true;
     }

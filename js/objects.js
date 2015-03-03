@@ -72,8 +72,8 @@ Board.prototype.fromState = function (state) {
         var row = cells[x] = [];
 
         for (var y = 0; y < this.size.y; y++) {
-            var piece = state[x][y];
-            row.push(piece ? new Piece(piece.position, piece.isTypeA, piece.value) : null);
+        var  piece = state[x][y];
+           row.push(piece ? new Piece(piece.position, piece.isTypeA, piece.value) : null);
         }
     }
     return cells;
@@ -165,26 +165,31 @@ Board.prototype.countType = function (isTypeA, amount) {
 };
 
 Board.prototype.serialize = function () {
+
     var cellState = [];
 
-    for (var x = 0; x < this.size; x++) {
 
+
+    for (var x = 0; x < this.size.x; x++) {
         var row = cellState[x] = [];
 
-        for (var y = 0; y < this.size; y++) {
-            row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);
+        for (var y = 0; y < this.size.y; y++) {
 
+            row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);
         }
     }
 
     return {
-        size: this.size,
+        size: {
+            x: this.size.x,
+            y: this.size.y
+        },
         cells: cellState,
         piecesCount: {
             a: this.piecesCount.a,
             b: this.piecesCount.b
         }
-    };
+    }
 };
 
 
