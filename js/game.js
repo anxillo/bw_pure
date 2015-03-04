@@ -5,7 +5,7 @@
 
 function Game () {
     this.STARTING_PIECES = 14;
-    this.MAX_PIECE_VALUE = 6;
+    this.MAX_PIECE_VALUE = 5;
 
     this.dom    = new DOM_handler();
     this.inputManager = new HandleEvents();
@@ -197,7 +197,7 @@ Game.prototype.move = function (direction, x,y) {
         //try with randomize the number of new Pieces
         //var howManyNew = Math.floor(Math.random() * 5);
 
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 5; i++) {
             self.addRandomPiece();
         }
 
