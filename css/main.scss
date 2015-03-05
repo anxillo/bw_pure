@@ -10,7 +10,7 @@ $cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
 $tile-border-radius: $cell-size / 2;
 $score-font-size: 50px;
 $piece-font-size: 30px;
-
+$mobile-width: 300px;
 //color
 $tile-color: #e6e6e6;
 $text-color: #999999;
@@ -359,3 +359,92 @@ body {
   //float: right;
 }
 
+
+/*
+ *Mobile media
+ */
+
+$field-width: 280px;
+$num-cell-x: 5;
+$num-cell-y: 5;
+$cell-margin: 5px;
+$cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
+$tile-border-radius: $cell-size / 2;
+$score-font-size: 30px;
+$piece-font-size: 20px;
+$game-container-margin-top: 20px;
+
+@include smaller($mobile-width) {
+  body {
+    margin: 20px 0;
+  }
+
+  .container {
+    width: $field-width;
+  }
+
+  .score-container, .best-container {
+    padding: 15px $cell-margin;
+    font-size: $score-font-size;
+    line-height: $score-font-size;
+  }
+
+  .score-addition {
+    font-size: $score-font-size;
+    line-height: $score-font-size;
+  }
+
+  .button {
+    border-radius: $tile-border-radius;
+    height: $cell-size;
+    width: $cell-size;
+    line-height: $cell-size;
+    font-size: $piece-font-size;
+  }
+
+  .game-container {
+    margin-top: $game-container-margin-top;
+    padding: $cell-margin;
+    width: $field-width;
+    height: $field-width;
+  }
+
+  .game-message p {
+    font-size: $score-font-size;
+  }
+
+  .board-row {
+    margin-bottom: $cell-margin;
+  }
+
+  .board-cell {
+    margin-right: $cell-margin;
+    width: $cell-size;
+    height: $cell-size;
+    float: left;
+    border-radius: $tile-border-radius;
+  }
+
+  .piece {
+    &, .piece-inner {
+      width: ceil($cell-size);
+      height: ceil($cell-size);
+      line-height: ceil($cell-size);
+      font-size: $piece-font-size;
+    }
+
+    @for $x from 1 through $num-cell-x {
+      @for $y from 1 through $num-cell-y {
+        &.piece-position-#{$x}-#{$y} {
+          $xPos: floor(($cell-size + $cell-margin) * ($x - 1));
+          $yPos: floor(($cell-size + $cell-margin) * ($y - 1));
+          @include transform(translate($xPos, $yPos));
+        }
+      }
+    }
+  }
+
+  .restart-button {
+    @include button;
+  }
+}
