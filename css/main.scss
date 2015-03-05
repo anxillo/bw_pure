@@ -5,7 +5,6 @@
 $field-width: 480px;
 $num-cell-x: 5;
 $num-cell-y: 5;
-$color-empty-cell: #e6e6e6;
 $cell-margin: 10px;
 $cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
 $tile-border-radius: $cell-size / 2;
@@ -17,19 +16,20 @@ $tile-color: #e6e6e6;
 $text-color: #999999;
 $red: #f30053;
 $blue: #00bcd4;
+$color-empty-cell: #e6e6e6;
 $background: #ffffff;
 
 //animations
 $transition-speed: 100ms;
 
 
-$game-container-background: #999999;
-$height: 26px;
-$bright-text-color: #f9f6f2;
+//$game-container-background: #999999;
+//$height: 26px;
+//$bright-text-color: #f9f6f2;
 
 
-$tile-gold-color: #edc22e;
-$tile-gold-glow-color: lighten($tile-gold-color, 15%);
+//$tile-gold-color: #edc22e;
+//$tile-gold-glow-color: lighten($tile-gold-color, 15%);
 
 $game-container-margin-top: 40px;
 
@@ -54,17 +54,16 @@ body {
 .score-container, .best-container {
   position: relative;
   display: inline-block;
-  padding: 15px 0px;
+  padding: 15px $cell-margin;
   font-size: $score-font-size;
   line-height: $score-font-size;
   font-weight: bold;
   color: $text-color;
   text-align: center;
-  font-weight: bolder;
 
   .score-addition {
     position: absolute;
-    right: 30px;
+    //right: 30px;
     color: $red;
     font-size: $score-font-size;
     line-height: $score-font-size;
@@ -163,8 +162,8 @@ body {
       @include animation-fill-mode(both);
 
       &.game-won {
-        background: rgba($tile-gold-color, .5);
-        color: $background;
+        background: rgba($background, 1);
+        color: $text-color;
 
       }
 
@@ -360,6 +359,3 @@ body {
   //float: right;
 }
 
-.game-explanation {
-  margin-top: 50px;
-}

@@ -16,16 +16,14 @@ body {
 .score-container, .best-container {
   position: relative;
   display: inline-block;
-  padding: 15px 0px;
+  padding: 15px 10px;
   font-size: 50px;
   line-height: 50px;
   font-weight: bold;
   color: #999999;
-  text-align: center;
-  font-weight: bolder; }
+  text-align: center; }
   .score-container .score-addition, .best-container .score-addition {
     position: absolute;
-    right: 30px;
     color: #f30053;
     font-size: 50px;
     line-height: 50px;
@@ -102,8 +100,8 @@ body {
       font-size: 30px;
       font-weight: bold; }
     .game-container .game-message.game-won {
-      background: rgba(237, 194, 46, 0.5);
-      color: #ffffff; }
+      background: white;
+      color: #999999; }
     .game-container .game-message.game-won, .game-container .game-message.game-over {
       display: block; }
 
@@ -436,8 +434,5 @@ body {
   font-size: 30px;
   font-weight: bold;
   text-align: center; }
-
-.game-explanation {
-  margin-top: 50px; }
 
 /*# sourceMappingURL=main.css.map */
