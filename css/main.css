@@ -443,7 +443,7 @@ body {
     margin: 20px 0; }
 
   .container {
-    width: 280px; }
+    width: 310px; }
 
   .score-container, .best-container {
     padding: 15px 5px;
@@ -455,17 +455,17 @@ body {
     line-height: 30px; }
 
   .button {
-    border-radius: 25px;
-    height: 50px;
-    width: 50px;
-    line-height: 50px;
+    border-radius: 28px;
+    height: 56px;
+    width: 56px;
+    line-height: 56px;
     font-size: 20px; }
 
   .game-container {
     margin-top: 20px;
     padding: 5px;
-    width: 280px;
-    height: 280px; }
+    width: 310px;
+    height: 310px; }
 
   .game-message p {
     font-size: 30px; }
@@ -475,126 +475,126 @@ body {
 
   .board-cell {
     margin-right: 5px;
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
     float: left;
-    border-radius: 25px; }
+    border-radius: 28px; }
 
   .piece, .piece .piece-inner {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
     font-size: 20px; }
   .piece.piece-position-1-1 {
     -webkit-transform: translate(0px, 0px);
     -moz-transform: translate(0px, 0px);
     transform: translate(0px, 0px); }
   .piece.piece-position-1-2 {
-    -webkit-transform: translate(0px, 55px);
-    -moz-transform: translate(0px, 55px);
-    transform: translate(0px, 55px); }
+    -webkit-transform: translate(0px, 61px);
+    -moz-transform: translate(0px, 61px);
+    transform: translate(0px, 61px); }
   .piece.piece-position-1-3 {
-    -webkit-transform: translate(0px, 110px);
-    -moz-transform: translate(0px, 110px);
-    transform: translate(0px, 110px); }
+    -webkit-transform: translate(0px, 122px);
+    -moz-transform: translate(0px, 122px);
+    transform: translate(0px, 122px); }
   .piece.piece-position-1-4 {
-    -webkit-transform: translate(0px, 165px);
-    -moz-transform: translate(0px, 165px);
-    transform: translate(0px, 165px); }
+    -webkit-transform: translate(0px, 183px);
+    -moz-transform: translate(0px, 183px);
+    transform: translate(0px, 183px); }
   .piece.piece-position-1-5 {
-    -webkit-transform: translate(0px, 220px);
-    -moz-transform: translate(0px, 220px);
-    transform: translate(0px, 220px); }
+    -webkit-transform: translate(0px, 244px);
+    -moz-transform: translate(0px, 244px);
+    transform: translate(0px, 244px); }
   .piece.piece-position-2-1 {
-    -webkit-transform: translate(55px, 0px);
-    -moz-transform: translate(55px, 0px);
-    transform: translate(55px, 0px); }
+    -webkit-transform: translate(61px, 0px);
+    -moz-transform: translate(61px, 0px);
+    transform: translate(61px, 0px); }
   .piece.piece-position-2-2 {
-    -webkit-transform: translate(55px, 55px);
-    -moz-transform: translate(55px, 55px);
-    transform: translate(55px, 55px); }
+    -webkit-transform: translate(61px, 61px);
+    -moz-transform: translate(61px, 61px);
+    transform: translate(61px, 61px); }
   .piece.piece-position-2-3 {
-    -webkit-transform: translate(55px, 110px);
-    -moz-transform: translate(55px, 110px);
-    transform: translate(55px, 110px); }
+    -webkit-transform: translate(61px, 122px);
+    -moz-transform: translate(61px, 122px);
+    transform: translate(61px, 122px); }
   .piece.piece-position-2-4 {
-    -webkit-transform: translate(55px, 165px);
-    -moz-transform: translate(55px, 165px);
-    transform: translate(55px, 165px); }
+    -webkit-transform: translate(61px, 183px);
+    -moz-transform: translate(61px, 183px);
+    transform: translate(61px, 183px); }
   .piece.piece-position-2-5 {
-    -webkit-transform: translate(55px, 220px);
-    -moz-transform: translate(55px, 220px);
-    transform: translate(55px, 220px); }
+    -webkit-transform: translate(61px, 244px);
+    -moz-transform: translate(61px, 244px);
+    transform: translate(61px, 244px); }
   .piece.piece-position-3-1 {
-    -webkit-transform: translate(110px, 0px);
-    -moz-transform: translate(110px, 0px);
-    transform: translate(110px, 0px); }
+    -webkit-transform: translate(122px, 0px);
+    -moz-transform: translate(122px, 0px);
+    transform: translate(122px, 0px); }
   .piece.piece-position-3-2 {
-    -webkit-transform: translate(110px, 55px);
-    -moz-transform: translate(110px, 55px);
-    transform: translate(110px, 55px); }
+    -webkit-transform: translate(122px, 61px);
+    -moz-transform: translate(122px, 61px);
+    transform: translate(122px, 61px); }
   .piece.piece-position-3-3 {
-    -webkit-transform: translate(110px, 110px);
-    -moz-transform: translate(110px, 110px);
-    transform: translate(110px, 110px); }
+    -webkit-transform: translate(122px, 122px);
+    -moz-transform: translate(122px, 122px);
+    transform: translate(122px, 122px); }
   .piece.piece-position-3-4 {
-    -webkit-transform: translate(110px, 165px);
-    -moz-transform: translate(110px, 165px);
-    transform: translate(110px, 165px); }
+    -webkit-transform: translate(122px, 183px);
+    -moz-transform: translate(122px, 183px);
+    transform: translate(122px, 183px); }
   .piece.piece-position-3-5 {
-    -webkit-transform: translate(110px, 220px);
-    -moz-transform: translate(110px, 220px);
-    transform: translate(110px, 220px); }
+    -webkit-transform: translate(122px, 244px);
+    -moz-transform: translate(122px, 244px);
+    transform: translate(122px, 244px); }
   .piece.piece-position-4-1 {
-    -webkit-transform: translate(165px, 0px);
-    -moz-transform: translate(165px, 0px);
-    transform: translate(165px, 0px); }
+    -webkit-transform: translate(183px, 0px);
+    -moz-transform: translate(183px, 0px);
+    transform: translate(183px, 0px); }
   .piece.piece-position-4-2 {
-    -webkit-transform: translate(165px, 55px);
-    -moz-transform: translate(165px, 55px);
-    transform: translate(165px, 55px); }
+    -webkit-transform: translate(183px, 61px);
+    -moz-transform: translate(183px, 61px);
+    transform: translate(183px, 61px); }
   .piece.piece-position-4-3 {
-    -webkit-transform: translate(165px, 110px);
-    -moz-transform: translate(165px, 110px);
-    transform: translate(165px, 110px); }
+    -webkit-transform: translate(183px, 122px);
+    -moz-transform: translate(183px, 122px);
+    transform: translate(183px, 122px); }
   .piece.piece-position-4-4 {
-    -webkit-transform: translate(165px, 165px);
-    -moz-transform: translate(165px, 165px);
-    transform: translate(165px, 165px); }
+    -webkit-transform: translate(183px, 183px);
+    -moz-transform: translate(183px, 183px);
+    transform: translate(183px, 183px); }
   .piece.piece-position-4-5 {
-    -webkit-transform: translate(165px, 220px);
-    -moz-transform: translate(165px, 220px);
-    transform: translate(165px, 220px); }
+    -webkit-transform: translate(183px, 244px);
+    -moz-transform: translate(183px, 244px);
+    transform: translate(183px, 244px); }
   .piece.piece-position-5-1 {
-    -webkit-transform: translate(220px, 0px);
-    -moz-transform: translate(220px, 0px);
-    transform: translate(220px, 0px); }
+    -webkit-transform: translate(244px, 0px);
+    -moz-transform: translate(244px, 0px);
+    transform: translate(244px, 0px); }
   .piece.piece-position-5-2 {
-    -webkit-transform: translate(220px, 55px);
-    -moz-transform: translate(220px, 55px);
-    transform: translate(220px, 55px); }
+    -webkit-transform: translate(244px, 61px);
+    -moz-transform: translate(244px, 61px);
+    transform: translate(244px, 61px); }
   .piece.piece-position-5-3 {
-    -webkit-transform: translate(220px, 110px);
-    -moz-transform: translate(220px, 110px);
-    transform: translate(220px, 110px); }
+    -webkit-transform: translate(244px, 122px);
+    -moz-transform: translate(244px, 122px);
+    transform: translate(244px, 122px); }
   .piece.piece-position-5-4 {
-    -webkit-transform: translate(220px, 165px);
-    -moz-transform: translate(220px, 165px);
-    transform: translate(220px, 165px); }
+    -webkit-transform: translate(244px, 183px);
+    -moz-transform: translate(244px, 183px);
+    transform: translate(244px, 183px); }
   .piece.piece-position-5-5 {
-    -webkit-transform: translate(220px, 220px);
-    -moz-transform: translate(220px, 220px);
-    transform: translate(220px, 220px); }
+    -webkit-transform: translate(244px, 244px);
+    -moz-transform: translate(244px, 244px);
+    transform: translate(244px, 244px); }
 
   .restart-button {
     display: inline-block;
     background: #e6e6e6;
-    border-radius: 25px;
+    border-radius: 28px;
     text-decoration: none;
     color: #999999;
-    height: 50px;
-    width: 50px;
-    line-height: 50px;
+    height: 56px;
+    width: 56px;
+    line-height: 56px;
     font-size: 20px;
     font-weight: bold; } }
 
