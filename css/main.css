@@ -438,7 +438,7 @@ body {
 /*
  *Mobile media
  */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 520px) {
   body {
     margin: 20px 0; }
 
