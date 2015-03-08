@@ -1,5 +1,6 @@
 @import "tools";
-@import "fonts/roboto.css";
+
+@include myfonts;
 
 //size
 $field-width: 480px;
