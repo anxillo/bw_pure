@@ -29,17 +29,17 @@ body {
 h1, p, ol, ul {
   color: #999999; }
 
-.score-container, .best-container {
+.score-container, .best-container, .moves-left {
   font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
   position: relative;
   display: inline-block;
   padding: 15px 10px;
-  font-size: 50px;
-  line-height: 50px;
+  font-size: 40px;
+  line-height: 40px;
   font-weight: bold;
   color: #999999;
   text-align: center; }
-  .score-container .score-addition, .best-container .score-addition {
+  .score-container .score-addition, .best-container .score-addition, .moves-left .score-addition {
     position: absolute;
     color: #f30053;
     font-weight: bold;
@@ -50,6 +50,9 @@ h1, p, ol, ul {
     -webkit-animation-fill-mode: both;
     -moz-animation-fill-mode: both;
     animation-fill-mode: both; }
+
+.moves-left {
+  font-size: 20px; }
 
 .score-container {
   color: #f30053;
@@ -202,7 +205,7 @@ h1, p, ol, ul {
     -moz-animation-fill-mode: both;
     animation-fill-mode: both; }
     .game-container .game-message p {
-      font-size: 50px;
+      font-size: 40px;
       font-weight: bold;
       color: #999999; }
     .game-container .game-message .lower {
@@ -593,10 +596,13 @@ h1, p, ol, ul {
     width: 310px;
     height: 100%; }
 
-  .score-container, .best-container {
+  .score-container, .best-container, .moves-left {
     padding: 5px 7px;
     font-size: 30px;
     line-height: 30px; }
+
+  .moves-left {
+    font-size: 15px; }
 
   .score-addition {
     font-size: 30px;

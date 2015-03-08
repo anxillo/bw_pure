@@ -6,6 +6,7 @@
 function Game () {
     this.STARTING_PIECES = 14;
     this.MAX_PIECE_VALUE = 5;
+    this.MAX_MOVES = 100;
 
     this.dom    = new DOM_handler();
     this.inputManager = new HandleEvents();
@@ -66,12 +67,14 @@ Game.prototype.setup = function () {
         this.score       = previousState.score;
         this.over        = previousState.over;
         this.won         = previousState.won;
+        this.moves       = previousState.moves;
         //this.keepPlaying = previousState.keepPlaying;
     } else {
         this.board       = new Board();
         this.score       = 0;
         this.over        = false;
         this.won         = false;
+        this.moves       = this.MAX_MOVES;
         //this.keepPlaying = false;
 
         // Add the initial pieces
@@ -104,6 +107,12 @@ Game.prototype.addRandomPiece = function () {
 // Sends the updated board to the dom
 Game.prototype.refresh = function () {
 
+    this.moves = this.moves - 1;
+
+    if (this.moves === 0) {
+        this.over = true;
+    }
+
     if (this.storageManager.getBestScore() < this.score) {
         this.storageManager.setBestScore(this.score);
     }
@@ -116,15 +125,14 @@ Game.prototype.refresh = function () {
     } else {
         this.storageManager.setGameState(this.serialize());
 
-
-
-
     }
+
 
 
     this.dom.refresh(this.board, {
         score:      this.score,
         over:       this.over,
+        moves:      this.moves,
         won:        this.won,
         bestScore:  this.storageManager.getBestScore(),
         terminated: this.isGameTerminated()
@@ -135,13 +143,13 @@ Game.prototype.refresh = function () {
 
 // Represent the current game as an object
 Game.prototype.serialize = function () {
-    console.dir(this.board.serialize());
 
     return {
         board:       this.board.serialize(),
         score:       this.score,
         over:        this.over,
-        won:         this.won
+        won:         this.won,
+        moves:       this.moves
         //keepPlaying: this.keepPlaying
     };
 
@@ -244,7 +252,7 @@ Game.prototype.move = function (direction, x,y) {
     }
 
     if(this.board.piecesCount.a + this.board.piecesCount.b === 0) {
-        this.score = this.score * 10;
+        this.score = this.score * this.moves;
         this.won = true;
     }
 

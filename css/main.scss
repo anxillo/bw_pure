@@ -9,7 +9,7 @@ $num-cell-y: 5;
 $cell-margin: 10px;
 $cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
 $tile-border-radius: $cell-size / 2;
-$score-font-size: 50px;
+$score-font-size: 40px;
 $piece-font-size: 30px;
 $mobile-width: 520px;
 //color
@@ -59,8 +59,8 @@ h1, p, ol, ul {
  color: $text-color;
 }
 
-.score-container, .best-container {
-  font-family:"robotoblack", "Helvetica Neue", Arial, sans-serif;
+.score-container, .best-container, .moves-left {
+  font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
   position: relative;
   display: inline-block;
   padding: 15px $cell-margin;
@@ -69,6 +69,7 @@ h1, p, ol, ul {
   font-weight: bold;
   color: $text-color;
   text-align: center;
+
 
   .score-addition {
     position: absolute;
@@ -86,6 +87,9 @@ h1, p, ol, ul {
 
 }
 
+.moves-left {
+  font-size: $score-font-size / 2;
+}
 
 
 .score-container {
@@ -544,10 +548,14 @@ $game-container-margin-top: 10px;
     height: 100%;
   }
 
-  .score-container, .best-container {
+  .score-container, .best-container, .moves-left {
     padding: 5px 7px;
     font-size: $score-font-size;
     line-height: $score-font-size;
+  }
+
+  .moves-left {
+    font-size: $score-font-size / 2;
   }
 
   .score-addition {
@@ -680,6 +688,8 @@ $game-container-margin-top: 10px;
     font-size: $score-font-size;
     line-height: $score-font-size;
   }
+
+
 
 }
 
