@@ -94,8 +94,6 @@ Game.prototype.addStartPieces = function () {
 Game.prototype.addRandomPiece = function () {
     if (this.board.cellsAvailable()) {
         var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
-
-        console.log (value);
         var isTypeA = this.board.thereAreMoreA();
         var piece   = new Piece(this.board.randomAvailableCell(), isTypeA, value);
         this.board.countType(isTypeA, 1);
@@ -187,7 +185,6 @@ Game.prototype.move = function (direction, x,y) {
     // Save the current piece positions and remove merger information
 
     this.preparePieces();
-
     //next is not a piece, just move near
     if (!next || piece.isTypeA !== next.isTypeA && piece.value !== next.value) {
         self.movePiece(piece, positions.farthest);
@@ -236,7 +233,7 @@ Game.prototype.move = function (direction, x,y) {
         self.board.countType(true, -1);
         self.board.countType(false, -1);
         console.log(this.board.piecesCount.a + this.board.piecesCount.b);
-        if (this.board.piecesCount.a + this.board.piecesCount.b !== 0) {
+        if (this.board.piecesCount.a + this.board.piecesCount.b > 2) {
             self.addRandomPiece();
         }
     }
