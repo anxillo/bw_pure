@@ -41,17 +41,25 @@ html, body {
   padding: 0;
   background: white;
   font-family:"robotoregular", "Helvetica Neue", Arial, sans-serif;
+  overflow: hidden;
+  height: 100%
 }
 
 body {
-  margin: 50px 0;
+
+  min-height: 100%;
 }
 
 .heading {
   @include clearfix;
 }
 
+h1, p, ol, ul {
+ color: $text-color;
+}
+
 .score-container, .best-container {
+  font-family:"robotoblack", "Helvetica Neue", Arial, sans-serif;
   position: relative;
   display: inline-block;
   padding: 15px $cell-margin;
@@ -63,16 +71,21 @@ body {
 
   .score-addition {
     position: absolute;
-    //right: 30px;
+    //left: $field-width / 2;
+    //top: $field-width / 2;
     color: $red;
-    font-size: $score-font-size;
-    line-height: $score-font-size;
+    //font-size: $score-font-size;
+    //line-height: $score-font-size;
     font-weight: bold;
-    z-index: 100;
+    z-index: 12;
     @include animation(move-up 600ms ease-in);
     @include animation-fill-mode(both);
+    //@include box_shadow(3);
   }
+
 }
+
+
 
 .score-container {
   color: $red;
@@ -89,10 +102,93 @@ body {
   margin: 0 auto;
 }
 
+.mainMenu {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($background, 1);
+  z-index:20;
+  text-align: center;
+  margin: 0 auto;
+
+}
+
+.howTo {
+  display: none;
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba($background, 1);
+  z-index:15;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.play-button {
+  background-image: url("../asset/hi/play.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: $cell-size * 2 !important;
+  height: $cell-size * 2 !important;
+  border-radius:  $tile-border-radius * 2 !important;
+
+}
+
+.how-button {
+  background-image: url("../asset/hi/question.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.back-button, .back-button-howTo {
+  background-image: url("../asset/hi/back.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.restart-button, .retry-button {
+  background-image: url("../asset/hi/repeat.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.slide-left {
+  @include animation(slide-left ease-in-out $transition-speed * 5);
+  @include animation-fill-mode(both);
+}
+
+.slide-right {
+  @include animation(slide-right ease-in-out $transition-speed * 5);
+  @include animation-fill-mode(both);
+}
+
+
+.menuContainer {
+  //position: absolute;
+  text-align: center;
+}
+
+.howToContainer {
+  width: $field-width;
+  height: $field-width;
+  margin: 0 auto;
+  padding: $cell-margin;
+  text-align: left;
+  background-image: url("../asset/hi/howto.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  margin-bottom: 50px;
+}
+
+
 // Styles for buttons
 @mixin button {
   display: inline-block;
-  background: $tile-color;
+  background-color: $color-empty-cell;
   border-radius: $tile-border-radius;
   text-decoration: none;
   color: $text-color;
@@ -103,10 +199,46 @@ body {
   font-weight: bold;
 }
 
+.menuHeading {
+  //width: $field-width;
+  //margin-bottom: $cell-size * 4;
+  //margin-top: $cell-size;
+  text-align: center;
+  background-image: url("../asset/hi/title.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  width: $field-width;
+  height: 200px;margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+.howToHeading {
+  //margin-top: $cell-size;
+}
+
+.menuButton {
+  @include button;
+  margin: $cell-margin / 2;
+  @include box_shadow(2);
+}
+
+.menuButton:active {
+  //background-color: $red;
+  @include box_shadow(1);
+ // margin: 2px solid $red;
+}
+
+.piece .piece-inner:active {
+  @include box_shadow(2);
+}
+
+
+
+
 @mixin game-field {
   .game-container {
-    margin-top: $game-container-margin-top;
-    position: relative;
+    //margin-top: $game-container-margin-top;
+    position: absolute;
     padding: $cell-margin;
     cursor: default;
     -webkit-touch-callout: none;
@@ -123,6 +255,7 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    //bottom: 50px;
 
     .game-message {
       display: none;
@@ -234,6 +367,8 @@ body {
 // End of game-field mixin
 @include game-field;
 
+
+
 .piece {
   position: absolute; // Makes transforms relative to the top-left corner
 
@@ -339,6 +474,30 @@ body {
   }
 }
 
+@include keyframes(slide-left) {
+  0% {
+    //opacity: 1;
+    left:0;
+  }
+
+  100% {
+    //opacity: 0;
+    left: -100%;
+  }
+}
+
+@include keyframes(slide-right) {
+  0% {
+    //opacity: 1;
+    left:-100%;
+  }
+
+  100% {
+    //opacity: 0;
+    left: 0;
+  }
+}
+
 
 .above-game {
   @include clearfix;
@@ -367,24 +526,25 @@ body {
 $field-width: 310px;
 $num-cell-x: 5;
 $num-cell-y: 5;
-$cell-margin: 5px;
+$cell-margin: 8px;
 $cell-size: ($field-width - $cell-margin * ($num-cell-x + 1)) / $num-cell-x;
 $tile-border-radius: $cell-size / 2;
 $score-font-size: 30px;
 $piece-font-size: 20px;
-$game-container-margin-top: 20px;
+$game-container-margin-top: 10px;
 
 @include smaller($mobile-width) {
   body {
-    margin: 20px 0;
+    //margin: 20px 0;
   }
 
   .container {
     width: $field-width;
+    height: 100%;
   }
 
   .score-container, .best-container {
-    padding: 15px $cell-margin;
+    padding: 5px 7px;
     font-size: $score-font-size;
     line-height: $score-font-size;
   }
@@ -407,6 +567,7 @@ $game-container-margin-top: 20px;
     padding: $cell-margin;
     width: $field-width;
     height: $field-width;
+    bottom: 150px;
   }
 
   .game-message p {
@@ -446,5 +607,105 @@ $game-container-margin-top: 20px;
 
   .restart-button {
     @include button;
+  }
+
+  .score-addition {
+    font-size: $score-font-size;
+    line-height: $score-font-size;
+  }
+
+  .menuHeading {
+    //width: $field-width;
+    margin-bottom: $cell-size * 2;
+    margin-top: $cell-size;
+  }
+
+  .howToHeading {
+    margin-top: $cell-size;
+  }
+
+  .menuButton {
+    @include button;
+    margin: $cell-margin / 2,
+  }
+
+  .howToContainer {
+    //width: $field-width;
+    // margin: auto;
+    padding: $cell-margin;
+  }
+
+  .play-button {
+    background-image: url("../asset/low/play.png");
+    width: $cell-size * 2 !important;
+    height: $cell-size * 2 !important;
+    border-radius:  $tile-border-radius * 2 !important;
+  }
+
+  .how-button {
+    background-image: url("../asset/low/question.png");
+  }
+
+  .back-button, .back-button-howTo {
+    background-image: url("../asset/low/back.png");
+  }
+
+  .restart-button, .retry-button {
+    background-image: url("../asset/low/repeat.png");
+  }
+
+  .howToContainer {
+    width: $field-width;
+    height: $field-width + 50;
+    margin: 0 auto;
+    padding: $cell-margin;
+    background-image: url("../asset/low/howto.png");
+    //margin-bottom: 50px;
+  }
+
+  .menuHeading {
+
+    text-align: center;
+    background-image: url("../asset/low/title.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    width: $field-width;
+    height: 150px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+  }
+
+  .score-addition {
+    font-size: $score-font-size;
+    line-height: $score-font-size;
+  }
+
+}
+
+
+/*
+  tablets
+ */
+
+@media
+only screen and (orientation:portrait) {
+  .game-container {
+    bottom: 150px;
+  }
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (max-width: 320px) {
+  .game-container {
+    bottom: 50px;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .menuHeading {
+    padding-bottom: 50px;
   }
 }

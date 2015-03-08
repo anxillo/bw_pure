@@ -3,17 +3,23 @@ html, body {
   margin: 0;
   padding: 0;
   background: white;
-  font-family: "robotoregular", "Helvetica Neue", Arial, sans-serif; }
+  font-family: "robotoregular", "Helvetica Neue", Arial, sans-serif;
+  overflow: hidden;
+  height: 100%; }
 
 body {
-  margin: 50px 0; }
+  min-height: 100%; }
 
 .heading:after {
   content: "";
   display: block;
   clear: both; }
 
+h1, p, ol, ul {
+  color: #999999; }
+
 .score-container, .best-container {
+  font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
   position: relative;
   display: inline-block;
   padding: 15px 10px;
@@ -25,10 +31,8 @@ body {
   .score-container .score-addition, .best-container .score-addition {
     position: absolute;
     color: #f30053;
-    font-size: 50px;
-    line-height: 50px;
     font-weight: bold;
-    z-index: 100;
+    z-index: 12;
     -webkit-animation: move-up 600ms ease-in;
     -moz-animation: move-up 600ms ease-in;
     animation: move-up 600ms ease-in;
@@ -48,9 +52,114 @@ body {
   width: 480px;
   margin: 0 auto; }
 
+.mainMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 20;
+  text-align: center;
+  margin: 0 auto; }
+
+.howTo {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 15;
+  text-align: center;
+  margin: 0 auto; }
+
+.play-button {
+  background-image: url("../asset/hi/play.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 168px !important;
+  height: 168px !important;
+  border-radius: 84px !important; }
+
+.how-button {
+  background-image: url("../asset/hi/question.png");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.back-button, .back-button-howTo {
+  background-image: url("../asset/hi/back.png");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.restart-button, .retry-button {
+  background-image: url("../asset/hi/repeat.png");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.slide-left {
+  -webkit-animation: slide-left ease-in-out 500ms;
+  -moz-animation: slide-left ease-in-out 500ms;
+  animation: slide-left ease-in-out 500ms;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+.slide-right {
+  -webkit-animation: slide-right ease-in-out 500ms;
+  -moz-animation: slide-right ease-in-out 500ms;
+  animation: slide-right ease-in-out 500ms;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+.menuContainer {
+  text-align: center; }
+
+.howToContainer {
+  width: 480px;
+  height: 480px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: left;
+  background-image: url("../asset/hi/howto.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  margin-bottom: 50px; }
+
+.menuHeading {
+  text-align: center;
+  background-image: url("../asset/hi/title.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  width: 480px;
+  height: 200px;
+  margin: 0 auto;
+  margin-bottom: 100px; }
+
+.menuButton {
+  display: inline-block;
+  background-color: #e6e6e6;
+  border-radius: 42px;
+  text-decoration: none;
+  color: #999999;
+  height: 84px;
+  width: 84px;
+  line-height: 84px;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
+.menuButton:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+
+.piece .piece-inner:active {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
 .game-container {
-  margin-top: 40px;
-  position: relative;
+  position: absolute;
   padding: 10px;
   cursor: default;
   -webkit-touch-callout: none;
@@ -90,7 +199,7 @@ body {
       margin-top: 59px; }
     .game-container .game-message a {
       display: inline-block;
-      background: #e6e6e6;
+      background-color: #e6e6e6;
       border-radius: 42px;
       text-decoration: none;
       color: #999999;
@@ -410,6 +519,36 @@ body {
     opacity: 0; }
   100% {
     opacity: 1; } }
+@-webkit-keyframes slide-left {
+  0% {
+    left: 0; }
+  100% {
+    left: -100%; } }
+@-moz-keyframes slide-left {
+  0% {
+    left: 0; }
+  100% {
+    left: -100%; } }
+@keyframes slide-left {
+  0% {
+    left: 0; }
+  100% {
+    left: -100%; } }
+@-webkit-keyframes slide-right {
+  0% {
+    left: -100%; }
+  100% {
+    left: 0; } }
+@-moz-keyframes slide-right {
+  0% {
+    left: -100%; }
+  100% {
+    left: 0; } }
+@keyframes slide-right {
+  0% {
+    left: -100%; }
+  100% {
+    left: 0; } }
 .above-game {
   text-align: center; }
   .above-game:after {
@@ -424,7 +563,7 @@ body {
 
 .restart-button {
   display: inline-block;
-  background: #e6e6e6;
+  background-color: #e6e6e6;
   border-radius: 42px;
   text-decoration: none;
   color: #999999;
@@ -439,14 +578,12 @@ body {
  *Mobile media
  */
 @media screen and (max-width: 520px) {
-  body {
-    margin: 20px 0; }
-
   .container {
-    width: 310px; }
+    width: 310px;
+    height: 100%; }
 
   .score-container, .best-container {
-    padding: 15px 5px;
+    padding: 5px 7px;
     font-size: 30px;
     line-height: 30px; }
 
@@ -455,147 +592,227 @@ body {
     line-height: 30px; }
 
   .button {
-    border-radius: 28px;
-    height: 56px;
-    width: 56px;
-    line-height: 56px;
+    border-radius: 26.2px;
+    height: 52.4px;
+    width: 52.4px;
+    line-height: 52.4px;
     font-size: 20px; }
 
   .game-container {
-    margin-top: 20px;
-    padding: 5px;
+    margin-top: 10px;
+    padding: 8px;
     width: 310px;
-    height: 310px; }
+    height: 310px;
+    bottom: 150px; }
 
   .game-message p {
     font-size: 30px; }
 
   .board-row {
-    margin-bottom: 5px; }
+    margin-bottom: 8px; }
 
   .board-cell {
-    margin-right: 5px;
-    width: 56px;
-    height: 56px;
+    margin-right: 8px;
+    width: 52.4px;
+    height: 52.4px;
     float: left;
-    border-radius: 28px; }
+    border-radius: 26.2px; }
 
   .piece, .piece .piece-inner {
-    width: 56px;
-    height: 56px;
-    line-height: 56px;
+    width: 53px;
+    height: 53px;
+    line-height: 53px;
     font-size: 20px; }
   .piece.piece-position-1-1 {
     -webkit-transform: translate(0px, 0px);
     -moz-transform: translate(0px, 0px);
     transform: translate(0px, 0px); }
   .piece.piece-position-1-2 {
-    -webkit-transform: translate(0px, 61px);
-    -moz-transform: translate(0px, 61px);
-    transform: translate(0px, 61px); }
+    -webkit-transform: translate(0px, 60px);
+    -moz-transform: translate(0px, 60px);
+    transform: translate(0px, 60px); }
   .piece.piece-position-1-3 {
-    -webkit-transform: translate(0px, 122px);
-    -moz-transform: translate(0px, 122px);
-    transform: translate(0px, 122px); }
+    -webkit-transform: translate(0px, 120px);
+    -moz-transform: translate(0px, 120px);
+    transform: translate(0px, 120px); }
   .piece.piece-position-1-4 {
-    -webkit-transform: translate(0px, 183px);
-    -moz-transform: translate(0px, 183px);
-    transform: translate(0px, 183px); }
+    -webkit-transform: translate(0px, 181px);
+    -moz-transform: translate(0px, 181px);
+    transform: translate(0px, 181px); }
   .piece.piece-position-1-5 {
-    -webkit-transform: translate(0px, 244px);
-    -moz-transform: translate(0px, 244px);
-    transform: translate(0px, 244px); }
+    -webkit-transform: translate(0px, 241px);
+    -moz-transform: translate(0px, 241px);
+    transform: translate(0px, 241px); }
   .piece.piece-position-2-1 {
-    -webkit-transform: translate(61px, 0px);
-    -moz-transform: translate(61px, 0px);
-    transform: translate(61px, 0px); }
+    -webkit-transform: translate(60px, 0px);
+    -moz-transform: translate(60px, 0px);
+    transform: translate(60px, 0px); }
   .piece.piece-position-2-2 {
-    -webkit-transform: translate(61px, 61px);
-    -moz-transform: translate(61px, 61px);
-    transform: translate(61px, 61px); }
+    -webkit-transform: translate(60px, 60px);
+    -moz-transform: translate(60px, 60px);
+    transform: translate(60px, 60px); }
   .piece.piece-position-2-3 {
-    -webkit-transform: translate(61px, 122px);
-    -moz-transform: translate(61px, 122px);
-    transform: translate(61px, 122px); }
+    -webkit-transform: translate(60px, 120px);
+    -moz-transform: translate(60px, 120px);
+    transform: translate(60px, 120px); }
   .piece.piece-position-2-4 {
-    -webkit-transform: translate(61px, 183px);
-    -moz-transform: translate(61px, 183px);
-    transform: translate(61px, 183px); }
+    -webkit-transform: translate(60px, 181px);
+    -moz-transform: translate(60px, 181px);
+    transform: translate(60px, 181px); }
   .piece.piece-position-2-5 {
-    -webkit-transform: translate(61px, 244px);
-    -moz-transform: translate(61px, 244px);
-    transform: translate(61px, 244px); }
+    -webkit-transform: translate(60px, 241px);
+    -moz-transform: translate(60px, 241px);
+    transform: translate(60px, 241px); }
   .piece.piece-position-3-1 {
-    -webkit-transform: translate(122px, 0px);
-    -moz-transform: translate(122px, 0px);
-    transform: translate(122px, 0px); }
+    -webkit-transform: translate(120px, 0px);
+    -moz-transform: translate(120px, 0px);
+    transform: translate(120px, 0px); }
   .piece.piece-position-3-2 {
-    -webkit-transform: translate(122px, 61px);
-    -moz-transform: translate(122px, 61px);
-    transform: translate(122px, 61px); }
+    -webkit-transform: translate(120px, 60px);
+    -moz-transform: translate(120px, 60px);
+    transform: translate(120px, 60px); }
   .piece.piece-position-3-3 {
-    -webkit-transform: translate(122px, 122px);
-    -moz-transform: translate(122px, 122px);
-    transform: translate(122px, 122px); }
+    -webkit-transform: translate(120px, 120px);
+    -moz-transform: translate(120px, 120px);
+    transform: translate(120px, 120px); }
   .piece.piece-position-3-4 {
-    -webkit-transform: translate(122px, 183px);
-    -moz-transform: translate(122px, 183px);
-    transform: translate(122px, 183px); }
+    -webkit-transform: translate(120px, 181px);
+    -moz-transform: translate(120px, 181px);
+    transform: translate(120px, 181px); }
   .piece.piece-position-3-5 {
-    -webkit-transform: translate(122px, 244px);
-    -moz-transform: translate(122px, 244px);
-    transform: translate(122px, 244px); }
+    -webkit-transform: translate(120px, 241px);
+    -moz-transform: translate(120px, 241px);
+    transform: translate(120px, 241px); }
   .piece.piece-position-4-1 {
-    -webkit-transform: translate(183px, 0px);
-    -moz-transform: translate(183px, 0px);
-    transform: translate(183px, 0px); }
+    -webkit-transform: translate(181px, 0px);
+    -moz-transform: translate(181px, 0px);
+    transform: translate(181px, 0px); }
   .piece.piece-position-4-2 {
-    -webkit-transform: translate(183px, 61px);
-    -moz-transform: translate(183px, 61px);
-    transform: translate(183px, 61px); }
+    -webkit-transform: translate(181px, 60px);
+    -moz-transform: translate(181px, 60px);
+    transform: translate(181px, 60px); }
   .piece.piece-position-4-3 {
-    -webkit-transform: translate(183px, 122px);
-    -moz-transform: translate(183px, 122px);
-    transform: translate(183px, 122px); }
+    -webkit-transform: translate(181px, 120px);
+    -moz-transform: translate(181px, 120px);
+    transform: translate(181px, 120px); }
   .piece.piece-position-4-4 {
-    -webkit-transform: translate(183px, 183px);
-    -moz-transform: translate(183px, 183px);
-    transform: translate(183px, 183px); }
+    -webkit-transform: translate(181px, 181px);
+    -moz-transform: translate(181px, 181px);
+    transform: translate(181px, 181px); }
   .piece.piece-position-4-5 {
-    -webkit-transform: translate(183px, 244px);
-    -moz-transform: translate(183px, 244px);
-    transform: translate(183px, 244px); }
+    -webkit-transform: translate(181px, 241px);
+    -moz-transform: translate(181px, 241px);
+    transform: translate(181px, 241px); }
   .piece.piece-position-5-1 {
-    -webkit-transform: translate(244px, 0px);
-    -moz-transform: translate(244px, 0px);
-    transform: translate(244px, 0px); }
+    -webkit-transform: translate(241px, 0px);
+    -moz-transform: translate(241px, 0px);
+    transform: translate(241px, 0px); }
   .piece.piece-position-5-2 {
-    -webkit-transform: translate(244px, 61px);
-    -moz-transform: translate(244px, 61px);
-    transform: translate(244px, 61px); }
+    -webkit-transform: translate(241px, 60px);
+    -moz-transform: translate(241px, 60px);
+    transform: translate(241px, 60px); }
   .piece.piece-position-5-3 {
-    -webkit-transform: translate(244px, 122px);
-    -moz-transform: translate(244px, 122px);
-    transform: translate(244px, 122px); }
+    -webkit-transform: translate(241px, 120px);
+    -moz-transform: translate(241px, 120px);
+    transform: translate(241px, 120px); }
   .piece.piece-position-5-4 {
-    -webkit-transform: translate(244px, 183px);
-    -moz-transform: translate(244px, 183px);
-    transform: translate(244px, 183px); }
+    -webkit-transform: translate(241px, 181px);
+    -moz-transform: translate(241px, 181px);
+    transform: translate(241px, 181px); }
   .piece.piece-position-5-5 {
-    -webkit-transform: translate(244px, 244px);
-    -moz-transform: translate(244px, 244px);
-    transform: translate(244px, 244px); }
+    -webkit-transform: translate(241px, 241px);
+    -moz-transform: translate(241px, 241px);
+    transform: translate(241px, 241px); }
 
   .restart-button {
     display: inline-block;
-    background: #e6e6e6;
-    border-radius: 28px;
+    background-color: #e6e6e6;
+    border-radius: 26.2px;
     text-decoration: none;
     color: #999999;
-    height: 56px;
-    width: 56px;
-    line-height: 56px;
+    height: 52.4px;
+    width: 52.4px;
+    line-height: 52.4px;
     font-size: 20px;
-    font-weight: bold; } }
+    font-weight: bold; }
+
+  .score-addition {
+    font-size: 30px;
+    line-height: 30px; }
+
+  .menuHeading {
+    margin-bottom: 104.8px;
+    margin-top: 52.4px; }
+
+  .howToHeading {
+    margin-top: 52.4px; }
+
+  .menuButton {
+    display: inline-block;
+    background-color: #e6e6e6;
+    border-radius: 26.2px;
+    text-decoration: none;
+    color: #999999;
+    height: 52.4px;
+    width: 52.4px;
+    line-height: 52.4px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 4px; }
+
+  .howToContainer {
+    padding: 8px; }
+
+  .play-button {
+    background-image: url("../asset/low/play.png");
+    width: 104.8px !important;
+    height: 104.8px !important;
+    border-radius: 52.4px !important; }
+
+  .how-button {
+    background-image: url("../asset/low/question.png"); }
+
+  .back-button, .back-button-howTo {
+    background-image: url("../asset/low/back.png"); }
+
+  .restart-button, .retry-button {
+    background-image: url("../asset/low/repeat.png"); }
+
+  .howToContainer {
+    width: 310px;
+    height: 360px;
+    margin: 0 auto;
+    padding: 8px;
+    background-image: url("../asset/low/howto.png"); }
+
+  .menuHeading {
+    text-align: center;
+    background-image: url("../asset/low/title.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    width: 310px;
+    height: 150px;
+    margin: 0 auto;
+    padding-bottom: 100px; }
+
+  .score-addition {
+    font-size: 30px;
+    line-height: 30px; } }
+/*
+  tablets
+ */
+@media only screen and (orientation: portrait) {
+  .game-container {
+    bottom: 150px; } }
+/* iPhone 4 ----------- */
+@media only screen and (max-width: 320px) {
+  .game-container {
+    bottom: 50px; }
+
+  body {
+    margin: 0; }
+
+  .menuHeading {
+    padding-bottom: 50px; } }
 
 /*# sourceMappingURL=main.css.map */

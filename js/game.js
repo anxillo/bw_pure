@@ -14,6 +14,9 @@ function Game () {
 
     this.inputManager.on("move", this.move.bind(this));
     this.inputManager.on("restart", this.restart.bind(this));
+    this.inputManager.on("closeMenu", this.closeMenu.bind(this));
+    this.inputManager.on("openMenu", this.openMenu.bind(this));
+    this.inputManager.on("openHowTo", this.openHowTo.bind(this));
     //this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
 
 
@@ -30,6 +33,19 @@ Game.prototype.restart = function () {
 // Return true if the game is lost, or has won and the user hasn't kept playing
 Game.prototype.isGameTerminated = function () {
     return this.over || this.won
+};
+
+Game.prototype.closeMenu = function () {
+    this.dom.closeMenu();
+
+};
+
+Game.prototype.openMenu = function () {
+    this.dom.openMenu();
+};
+
+Game.prototype.openHowTo = function () {
+    this.dom.openHowTo();
 };
 
 
@@ -191,6 +207,7 @@ Game.prototype.move = function (direction, x,y) {
 
         // Update the score
         self.score += merged.value;
+
 
         // Update piece count
         self.board.countType(next.isTypeA, -1);

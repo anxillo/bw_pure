@@ -61,6 +61,11 @@ HandleEvents.prototype.listen = function () {
     // Respond to button presses
     this.bindButtonPress(".retry-button", this.restart);
     this.bindButtonPress(".restart-button", this.restart);
+    this.bindButtonPress(".play-button", this.closeMenu);
+    this.bindButtonPress(".back-button", this.openMenu);
+    this.bindButtonPress(".back-button-howTo", this.openMenu);
+    this.bindButtonPress(".how-button", this.openHowTo);
+
 
     // Respond to swipe events
     var touchStartClientX, touchStartClientY;
@@ -158,6 +163,21 @@ HandleEvents.prototype.keepPlaying = function (event) {
     event.preventDefault();
     this.emit("keepPlaying");
 };
+
+HandleEvents.prototype.closeMenu = function (event) {
+    event.preventDefault();
+    this.emit("closeMenu");
+};
+
+HandleEvents.prototype.openMenu = function (event) {
+    event.preventDefault();
+    this.emit("openMenu");
+};
+
+HandleEvents.prototype.openHowTo = function (event) {
+    event.preventDefault();
+    this.emit("openHowTo");
+}
 
 HandleEvents.prototype.bindButtonPress = function (selector, fn) {
     var button = document.querySelector(selector);

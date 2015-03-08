@@ -6,11 +6,39 @@ function DOM_handler () {
     this.SCORE_CONTAINER   = document.querySelector(".score-container");
     this.BEST_CONTAINER    = document.querySelector(".best-container");
     this.MESSAGE_CONTAINER = document.querySelector(".game-message");
+    this.MAIN_MENU = document.querySelector(".mainMenu");
+    this.HOW_TO = document.querySelector(".howTo");
 
     this.score = 0;
 
 
 }
+
+
+DOM_handler.prototype.closeMenu = function () {
+    this.HOW_TO.style.display = "none";
+    if (this.MAIN_MENU.classList.contains("slide-right")) {
+        this.MAIN_MENU.classList.remove("slide-right");
+    }
+    this.MAIN_MENU.classList.add("slide-left");
+};
+
+DOM_handler.prototype.openMenu = function() {
+    this.clearMessage();
+    //this.MESSAGE_CONTAINER.style.display = "none";
+    if (this.MAIN_MENU.classList.contains("slide-left")) {
+        this.MAIN_MENU.classList.remove("slide-left");
+    }
+    this.MAIN_MENU.classList.add("slide-right");
+};
+
+DOM_handler.prototype.openHowTo = function () {
+    this.HOW_TO.style.display = "block";
+    if (this.MAIN_MENU.classList.contains("slide-right")) {
+        this.MAIN_MENU.classList.remove("slide-right");
+    }
+    this.MAIN_MENU.classList.add("slide-left");
+};
 
 
 /*
@@ -148,6 +176,7 @@ DOM_handler.prototype.updateScore = function (score) {
         this.SCORE_CONTAINER.appendChild(addition);
     }
 };
+
 
 DOM_handler.prototype.updateBestScore = function (bestScore) {
     this.BEST_CONTAINER.textContent = bestScore;
