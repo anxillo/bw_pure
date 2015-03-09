@@ -13,12 +13,12 @@ $score-font-size: 40px;
 $piece-font-size: 30px;
 $mobile-width: 520px;
 //color
-$tile-color: #e6e6e6;
+$tile-color: #515151;
 $text-color: #999999;
 $red: #f30053;
 $blue: #00bcd4;
-$color-empty-cell: #e6e6e6;
-$background: #ffffff;
+$color-empty-cell: #565656;
+$background: #2e2e2e;
 
 //animations
 $transition-speed: 100ms;
@@ -40,7 +40,7 @@ $game-container-margin-top: 40px;
 html, body {
   margin: 0;
   padding: 0;
-  background: white;
+  background: $background;
   font-family:"robotoregular", "Helvetica Neue", Arial, sans-serif;
   overflow: hidden;
   height: 100%
@@ -183,7 +183,7 @@ h1, p, ol, ul {
   margin: 0 auto;
   padding: $cell-margin;
   text-align: left;
-  background-image: url("../asset/hi/howto.png");
+  //background-image: url("../asset/hi/howto.png");
   background-repeat: no-repeat;
   background-position: center top;
   margin-bottom: 50px;
@@ -338,6 +338,7 @@ h1, p, ol, ul {
     background-color: $color-empty-cell;
     //border: 1px solid white;
     border-radius: $tile-border-radius;
+    @include inner-shadow;
 
     &:last-child {
       margin-right: 0;
@@ -354,7 +355,7 @@ h1, p, ol, ul {
       width: ceil($cell-size);
       height: ceil($cell-size);
       line-height: ceil($cell-size);
-      //@include material-Shadow;
+
     }
 
     @for $x from 1 through $num-cell-x {
@@ -668,7 +669,7 @@ $game-container-margin-top: 10px;
     height: $field-width + 50;
     margin: 0 auto;
     padding: $cell-margin;
-    background-image: url("../asset/low/howto.png");
+    //background-image: url("../asset/low/howto.png");
     //margin-bottom: 50px;
   }
 
