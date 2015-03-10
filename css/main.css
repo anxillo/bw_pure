@@ -252,10 +252,7 @@ h1, p, ol, ul {
   height: 84px;
   float: left;
   background-color: #565656;
-  border-radius: 42px;
-  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.19), inset 0 6px 6px rgba(0, 0, 0, 0.23);
-  -webkit-box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.19), inset 0 6px 6px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.19), inset 0 6px 6px rgba(0, 0, 0, 0.23); }
+  border-radius: 42px; }
   .board-cell:last-child {
     margin-right: 0; }
 

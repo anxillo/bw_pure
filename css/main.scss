@@ -338,7 +338,7 @@ h1, p, ol, ul {
     background-color: $color-empty-cell;
     //border: 1px solid white;
     border-radius: $tile-border-radius;
-    @include inner-shadow;
+    //@include inner-shadow;
 
     &:last-child {
       margin-right: 0;
