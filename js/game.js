@@ -18,7 +18,7 @@ function Game () {
     this.inputManager.on("closeMenu", this.closeMenu.bind(this));
     this.inputManager.on("openMenu", this.openMenu.bind(this));
     this.inputManager.on("openHowTo", this.openHowTo.bind(this));
-    //this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
+
 
 
     this.setup();

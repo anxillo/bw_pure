@@ -12,6 +12,7 @@ $tile-border-radius: $cell-size / 2;
 $score-font-size: 40px;
 $piece-font-size: 30px;
 $mobile-width: 520px;
+
 //color
 $tile-color: #515151;
 $text-color: #999999;
@@ -23,19 +24,7 @@ $background: #2e2e2e;
 //animations
 $transition-speed: 100ms;
 
-
-//$game-container-background: #999999;
-//$height: 26px;
-//$bright-text-color: #f9f6f2;
-
-
-//$tile-gold-color: #edc22e;
-//$tile-gold-glow-color: lighten($tile-gold-color, 15%);
-
 $game-container-margin-top: 40px;
-
-
-
 
 html, body {
   margin: 0;
@@ -73,16 +62,11 @@ h1, p, ol, ul {
 
   .score-addition {
     position: absolute;
-    //left: $field-width / 2;
-    //top: $field-width / 2;
     color: $red;
-    //font-size: $score-font-size;
-    //line-height: $score-font-size;
     font-weight: bold;
     z-index: 12;
     @include animation(move-up 600ms ease-in);
     @include animation-fill-mode(both);
-    //@include box_shadow(3);
   }
 
 }
@@ -205,9 +189,6 @@ h1, p, ol, ul {
 }
 
 .menuHeading {
-  //width: $field-width;
-  //margin-bottom: $cell-size * 4;
-  //margin-top: $cell-size;
   text-align: center;
   background-image: url("../asset/hi/title.png");
   background-repeat: no-repeat;
@@ -228,9 +209,7 @@ h1, p, ol, ul {
 }
 
 .menuButton:active {
-  //background-color: $red;
   @include box_shadow(1);
- // margin: 2px solid $red;
 }
 
 .piece .piece-inner:active {
@@ -242,7 +221,6 @@ h1, p, ol, ul {
 
 @mixin game-field {
   .game-container {
-    //margin-top: $game-container-margin-top;
     position: absolute;
     padding: $cell-margin;
     cursor: default;
@@ -260,7 +238,6 @@ h1, p, ol, ul {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    //bottom: 50px;
 
     .game-message {
       display: none;
@@ -276,12 +253,7 @@ h1, p, ol, ul {
       p {
         font-size: $score-font-size;
         font-weight: bold;
-        //height: 60px;
-        //line-height: 60px;
-        //margin-top: 222px;
         color: $text-color;
-        // height: $field-width;
-        // line-height: $field-width;
       }
 
       .lower {
@@ -291,8 +263,6 @@ h1, p, ol, ul {
 
       a {
         @include button;
-        //margin-left: 9px;
-        // margin-top: 59px;
 
       }
 
