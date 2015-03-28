@@ -19,6 +19,10 @@ function Game () {
     this.inputManager.on("openMenu", this.openMenu.bind(this));
     this.inputManager.on("openHowTo", this.openHowTo.bind(this));
 
+    this.inputManager.on("nextHowTo1", this.nextHowTo1.bind(this));
+    this.inputManager.on("nextHowTo2", this.nextHowTo2.bind(this));
+    this.inputManager.on("nextHowTo3", this.nextHowTo3.bind(this));
+    this.inputManager.on("nextHowTo4", this.nextHowTo4.bind(this));
 
 
     this.setup();
@@ -47,6 +51,22 @@ Game.prototype.openMenu = function () {
 
 Game.prototype.openHowTo = function () {
     this.dom.openHowTo();
+};
+
+Game.prototype.nextHowTo1 = function () {
+    this.dom.nextHowTo(1);
+};
+
+Game.prototype.nextHowTo2 = function () {
+    this.dom.nextHowTo(2);
+};
+
+Game.prototype.nextHowTo3 = function () {
+    this.dom.nextHowTo(3);
+};
+
+Game.prototype.nextHowTo4 = function () {
+    this.dom.nextHowTo(4);
 };
 
 

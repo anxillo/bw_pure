@@ -26,8 +26,16 @@ body {
   display: block;
   clear: both; }
 
-h1, p, ol, ul {
+h1, h3, p, ol, ul {
   color: #999999; }
+
+hr {
+  color: #999999;
+  background-color: #999999;
+  height: 1px;
+  width: 80%;
+  border: 0 none;
+  margin: 2em; }
 
 .score-container, .best-container, .moves-left {
   font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
@@ -89,6 +97,38 @@ h1, p, ol, ul {
   text-align: center;
   margin: 0 auto; }
 
+.howToContainer {
+  display: none; }
+
+.howToContainer1 {
+  display: block; }
+
+.howToImage {
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 470px;
+  height: 88px;
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
+.howToImage0 {
+  background-image: url("../asset/hi/howTo_0.gif"); }
+
+.howToImage1 {
+  background-image: url("../asset/hi/howTo_1.gif"); }
+
+.howToImage2 {
+  background-image: url("../asset/hi/howTo_2.gif"); }
+
+.howToImage3 {
+  background-image: url("../asset/hi/howTo_3.gif"); }
+
+.howToImage4 {
+  background-image: url("../asset/hi/howTo_4.gif"); }
+
+.howToImage5 {
+  background-image: url("../asset/hi/howTo_5.gif"); }
+
 .play-button {
   background-image: url("../asset/hi/play.png");
   background-repeat: no-repeat;
@@ -106,6 +146,15 @@ h1, p, ol, ul {
   background-image: url("../asset/hi/back.png");
   background-repeat: no-repeat;
   background-position: center center; }
+
+.next-button {
+  background-image: url("../asset/hi/next.png");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.howToBottom {
+  position: absolute;
+  bottom: 75px; }
 
 .restart-button, .retry-button {
   background-image: url("../asset/hi/repeat.png");
@@ -791,6 +840,9 @@ h1, p, ol, ul {
     height: 104.8px !important;
     border-radius: 52.4px !important; }
 
+  .next-button {
+    background-image: url("../asset/low/next.png"); }
+
   .how-button {
     background-image: url("../asset/low/question.png"); }
 
@@ -799,6 +851,28 @@ h1, p, ol, ul {
 
   .restart-button, .retry-button {
     background-image: url("../asset/low/repeat.png"); }
+
+  .howToImage {
+    width: 300px;
+    height: 56px; }
+
+  .howToImage0 {
+    background-image: url("../asset/low/howTo_0.gif"); }
+
+  .howToImage1 {
+    background-image: url("../asset/low/howTo_1.gif"); }
+
+  .howToImage2 {
+    background-image: url("../asset/low/howTo_2.gif"); }
+
+  .howToImage3 {
+    background-image: url("../asset/low/howTo_3.gif"); }
+
+  .howToImage4 {
+    background-image: url("../asset/low/howTo_4.gif"); }
+
+  .howToImage5 {
+    background-image: url("../asset/low/howTo_5.gif"); }
 
   .howToContainer {
     width: 310px;

@@ -24,6 +24,9 @@ $background: #2e2e2e;
 //animations
 $transition-speed: 100ms;
 
+//howTopages
+$howToPages: 5;
+
 $game-container-margin-top: 40px;
 
 html, body {
@@ -44,8 +47,17 @@ body {
   @include clearfix;
 }
 
-h1, p, ol, ul {
+h1, h3, p, ol, ul {
  color: $text-color;
+}
+
+hr {
+  color: $text-color;
+  background-color: $text-color;
+  height: 1px;
+  width: 80%;
+  border: 0 none;
+  margin: 2em;
 }
 
 .score-container, .best-container, .moves-left {
@@ -117,6 +129,29 @@ h1, p, ol, ul {
   margin: 0 auto;
 }
 
+.howToContainer {
+  display: none;
+}
+
+.howToContainer1 {
+  display: block;
+}
+
+.howToImage {
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 470px;
+  height: 88px;
+  margin-top: 2em;
+  margin-bottom:  2em;
+}
+
+@for $v from 0 through $howToPages {
+  .howToImage#{$v} {
+    background-image: url("../asset/hi/howTo_#{$v}.gif");
+  }
+}
+
 .play-button {
   background-image: url("../asset/hi/play.png");
   background-repeat: no-repeat;
@@ -138,6 +173,20 @@ h1, p, ol, ul {
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+.next-button {
+  background-image: url("../asset/hi/next.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+.howToBottom {
+  position:absolute;
+  bottom: 75px;
+
+}
+
 
 .restart-button, .retry-button {
   background-image: url("../asset/hi/repeat.png");
@@ -615,11 +664,17 @@ $game-container-margin-top: 10px;
     padding: $cell-margin;
   }
 
+
+
   .play-button {
     background-image: url("../asset/low/play.png");
     width: $cell-size * 2 !important;
     height: $cell-size * 2 !important;
     border-radius:  $tile-border-radius * 2 !important;
+  }
+
+  .next-button {
+    background-image: url("../asset/low/next.png");
   }
 
   .how-button {
@@ -630,8 +685,20 @@ $game-container-margin-top: 10px;
     background-image: url("../asset/low/back.png");
   }
 
+
   .restart-button, .retry-button {
     background-image: url("../asset/low/repeat.png");
+  }
+
+  .howToImage {
+    width: 300px;
+    height: 56px;
+  }
+
+  @for $v from 0 through $howToPages {
+    .howToImage#{$v} {
+      background-image: url("../asset/low/howTo_#{$v}.gif");
+    }
   }
 
   .howToContainer {

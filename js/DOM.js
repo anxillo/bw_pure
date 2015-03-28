@@ -34,11 +34,24 @@ DOM_handler.prototype.openMenu = function() {
 };
 
 DOM_handler.prototype.openHowTo = function () {
+    this.nextHowTo(0);
     this.HOW_TO.style.display = "block";
     if (this.MAIN_MENU.classList.contains("slide-right")) {
         this.MAIN_MENU.classList.remove("slide-right");
     }
     this.MAIN_MENU.classList.add("slide-left");
+};
+
+DOM_handler.prototype.nextHowTo = function (page) {
+    hideThem = document.querySelectorAll('.howToContainer');
+    for (var i = 0; i < hideThem.length; i++) {
+        hideThem[i].style.display = "none";
+    }
+
+    hideThem[page].style.display = "block";
+
+
+
 };
 
 

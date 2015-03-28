@@ -65,6 +65,10 @@ HandleEvents.prototype.listen = function () {
     this.bindButtonPress(".back-button", this.openMenu);
     this.bindButtonPress(".back-button-howTo", this.openMenu);
     this.bindButtonPress(".how-button", this.openHowTo);
+    this.bindButtonPress(".nextHowTo1", this.nextHowTo1);
+    this.bindButtonPress(".nextHowTo2", this.nextHowTo2);
+    this.bindButtonPress(".nextHowTo3", this.nextHowTo3);
+    this.bindButtonPress(".nextHowTo4", this.nextHowTo4);
 
 
     // Respond to swipe events
@@ -177,7 +181,27 @@ HandleEvents.prototype.openMenu = function (event) {
 HandleEvents.prototype.openHowTo = function (event) {
     event.preventDefault();
     this.emit("openHowTo");
-}
+};
+
+HandleEvents.prototype.nextHowTo1 = function (event) {
+    event.preventDefault();
+    this.emit("nextHowTo1");
+};
+
+HandleEvents.prototype.nextHowTo2 = function (event) {
+    event.preventDefault();
+    this.emit("nextHowTo2");
+};
+
+HandleEvents.prototype.nextHowTo3 = function (event) {
+    event.preventDefault();
+    this.emit("nextHowTo3");
+};
+
+HandleEvents.prototype.nextHowTo4 = function (event) {
+    event.preventDefault();
+    this.emit("nextHowTo4");
+};
 
 HandleEvents.prototype.bindButtonPress = function (selector, fn) {
     var button = document.querySelector(selector);
