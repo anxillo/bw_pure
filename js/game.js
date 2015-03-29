@@ -41,15 +41,25 @@ Game.prototype.isGameTerminated = function () {
 };
 
 Game.prototype.closeMenu = function () {
+    if (typeof admob != 'undefined') {
+        admob.showBannerAd(true);
+    }
+
     this.dom.closeMenu();
 
 };
 
 Game.prototype.openMenu = function () {
+    if (typeof admob != 'undefined') {
+        admob.showBannerAd(false);
+    }
     this.dom.openMenu();
 };
 
 Game.prototype.openHowTo = function () {
+    if (typeof admob != 'undefined') {
+        admob.showBannerAd(false);
+    }
     this.dom.openHowTo();
 };
 

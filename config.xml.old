@@ -4,9 +4,9 @@
 		id        = "com.anxillo.game.entropix"
 		versionCode=""
 		version   = "0.2">
-		<name>Numberball</name>
+		<name>Calnum</name>
 		<description>
-Puzzle game. Alpha version.		</description>
+Addictive puzzle game	</description>
 		<author href="" email="andrea.a.giro@gmail.com">
 Andrea Girò
 		</author>
