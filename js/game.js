@@ -126,8 +126,7 @@ Game.prototype.addStartPieces = function () {
 // Adds a piece in a random position
 Game.prototype.addRandomPiece = function () {
     if (this.board.cellsAvailable()) {
-        //var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
-        var value = 4;
+        var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
         var isTypeA = this.board.thereAreMoreA();
         var piece   = new Piece(this.board.randomAvailableCell(), isTypeA, value);
         this.board.countType(isTypeA, 1);
