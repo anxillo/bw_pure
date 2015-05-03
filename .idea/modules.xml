@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/bw_pure.iml" filepath="$PROJECT_DIR$/.idea/bw_pure.iml" />
+      <module fileurl="file://$USER_HOME$/Projects/numentum/.idea/numentum.iml" filepath="$USER_HOME$/Projects/numentum/.idea/numentum.iml" />
     </modules>
   </component>
 </project>

@@ -8,7 +8,7 @@ function DOM_handler () {
     this.MESSAGE_CONTAINER = document.querySelector(".game-message");
     this.MAIN_MENU = document.querySelector(".mainMenu");
     this.HOW_TO = document.querySelector(".howTo");
-    this.MOVES_CONTAINER = document.querySelector(".moves-left")
+    this.MOVES_CONTAINER = document.querySelector(".moves-left");
 
     this.score = 0;
 
@@ -194,7 +194,7 @@ DOM_handler.prototype.updateScore = function (score) {
 
 DOM_handler.prototype.updateMoves = function(moves) {
     this.MOVES_CONTAINER.textContent = moves;
-}
+};
 
 DOM_handler.prototype.updateBestScore = function (bestScore) {
     this.BEST_CONTAINER.textContent = bestScore;

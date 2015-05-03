@@ -60,11 +60,16 @@ hr {
   margin: 2em;
 }
 
+.scores-container {
+
+  padding: 15px $cell-margin;
+}
+
 .score-container, .best-container, .moves-left {
   font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
-  position: relative;
-  display: inline-block;
-  padding: 15px $cell-margin;
+  //position: relative;
+  //display: inline-block;
+  //padding: 15px $cell-margin;
   font-size: $score-font-size;
   line-height: $score-font-size;
   font-weight: bold;
@@ -83,19 +88,43 @@ hr {
 
 }
 
+.score-wrapper, .moves-wrapper, .best-wrapper {
+  float:left;
+  width:33%;
+
+  text-align: center;
+
+
+}
+
+.score-label, .moves-label, .best-label {
+  font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
+  font-weight: bold;
+  color: $text-color;
+  font-size: $score-font-size / 4;
+  line-height: $score-font-size /4;
+
+
+}
+
+.best-wrapper {
+  @include clearfix;
+}
+
 .moves-left {
-  font-size: $score-font-size / 2;
+
 }
 
 
-.score-container {
+.score-container, .score-label {
   color: $red;
-  float: left;
+  //float: left;
+
 }
 
-.best-container {
+.best-container, .best-label {
   color: $blue;
-  float: right;
+  //float: right;
 }
 
 .container {
@@ -527,6 +556,7 @@ hr {
 .above-game {
   @include clearfix;
   text-align: center;
+  margin-top: 25px;
 }
 
 
@@ -574,9 +604,7 @@ $game-container-margin-top: 10px;
     line-height: $score-font-size;
   }
 
-  .moves-left {
-    font-size: $score-font-size / 2;
-  }
+
 
   .score-addition {
     font-size: $score-font-size;
@@ -756,5 +784,10 @@ only screen and (max-width: 320px) {
 
   .menuHeading {
     padding-bottom: 50px;
+  }
+
+  .above-game {
+
+    margin-top: 0px;
   }
 }

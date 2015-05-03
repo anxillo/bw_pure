@@ -37,11 +37,11 @@ hr {
   border: 0 none;
   margin: 2em; }
 
+.scores-container {
+  padding: 15px 10px; }
+
 .score-container, .best-container, .moves-left {
   font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
-  position: relative;
-  display: inline-block;
-  padding: 15px 10px;
   font-size: 40px;
   line-height: 40px;
   font-weight: bold;
@@ -59,16 +59,28 @@ hr {
     -moz-animation-fill-mode: both;
     animation-fill-mode: both; }
 
-.moves-left {
-  font-size: 20px; }
+.score-wrapper, .moves-wrapper, .best-wrapper {
+  float: left;
+  width: 33%;
+  text-align: center; }
 
-.score-container {
-  color: #f30053;
-  float: left; }
+.score-label, .moves-label, .best-label {
+  font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
+  font-weight: bold;
+  color: #999999;
+  font-size: 10px;
+  line-height: 10px; }
 
-.best-container {
-  color: #00bcd4;
-  float: right; }
+.best-wrapper:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+.score-container, .score-label {
+  color: #f30053; }
+
+.best-container, .best-label {
+  color: #00bcd4; }
 
 .container {
   width: 480px;
@@ -618,7 +630,8 @@ hr {
   100% {
     left: 0; } }
 .above-game {
-  text-align: center; }
+  text-align: center;
+  margin-top: 25px; }
   .above-game:after {
     content: "";
     display: block;
@@ -654,9 +667,6 @@ hr {
     padding: 5px 7px;
     font-size: 30px;
     line-height: 30px; }
-
-  .moves-left {
-    font-size: 15px; }
 
   .score-addition {
     font-size: 30px;
@@ -908,6 +918,9 @@ hr {
     margin: 0; }
 
   .menuHeading {
-    padding-bottom: 50px; } }
+    padding-bottom: 50px; }
+
+  .above-game {
+    margin-top: 0px; } }
 
 /*# sourceMappingURL=main.css.map */
