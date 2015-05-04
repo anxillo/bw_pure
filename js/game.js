@@ -31,6 +31,15 @@ function Game () {
 //  Restart the game
 Game.prototype.restart = function () {
 
+    admob.requestInterstitialAd({
+        publisherId:          "ca-app-pub-4711044414330488/7526333057",
+        interstitialAdId:     "ca-app-pub-4711044414330488/3176858659",
+        autoShowInterstitial: true
+    });
+
+    if (typeof admob != 'undefined') {
+        admob.showInterstitialAd();
+    }
      this.storageManager.clearGameState();
      this.dom.continueGame();
     this.setup();
@@ -84,9 +93,6 @@ Game.prototype.nextHowTo4 = function () {
 // Set up the game
 Game.prototype.setup = function () {
 
-    if (typeof admob != 'undefined') {
-        admob.showInterstitialAd();
-    }
 
     var previousState = this.storageManager.getGameState();
 
