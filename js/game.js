@@ -30,6 +30,9 @@ function Game () {
 
 //  Restart the game
 Game.prototype.restart = function () {
+    if (typeof admob != 'undefined') {
+        admob.showInterstitialAd();
+    }
      this.storageManager.clearGameState();
      this.dom.continueGame();
     this.setup();
