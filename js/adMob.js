@@ -13,7 +13,7 @@ function onDeviceReady () {
     admob.requestInterstitialAd({
         publisherId:          "ca-app-pub-4711044414330488/7526333057",
         interstitialAdId:     "ca-app-pub-4711044414330488/3176858659",
-        autoShowInterstitial: true
+        autoShowInterstitial: false
     });
 
 
