@@ -32,16 +32,15 @@ function Game () {
 Game.prototype.restart = function () {
 
 
-
-    if (typeof admob != 'undefined') {
+    if (typeof admob != 'undefined' && this.storageManager.getBestScore() < 15000) {
         admob.showInterstitialAd();
-    }
 
-    admob.requestInterstitialAd({
-        publisherId:          "ca-app-pub-4711044414330488/7526333057",
-        interstitialAdId:     "ca-app-pub-4711044414330488/3176858659",
-        autoShowInterstitial: false
-    });
+        admob.requestInterstitialAd({
+            publisherId: "ca-app-pub-4711044414330488/7526333057",
+            interstitialAdId: "ca-app-pub-4711044414330488/3176858659",
+            autoShowInterstitial: false
+        });
+    }
 
 
      this.storageManager.clearGameState();
@@ -55,7 +54,7 @@ Game.prototype.isGameTerminated = function () {
 };
 
 Game.prototype.closeMenu = function () {
-    if (typeof admob != 'undefined') {
+    if (typeof admob != 'undefined' && this.storageManager.getBestScore() < 15000) {
         admob.showBannerAd(true);
     }
 
@@ -142,7 +141,8 @@ Game.prototype.addStartPieces = function () {
 // Adds a piece in a random position
 Game.prototype.addRandomPiece = function () {
     if (this.board.cellsAvailable()) {
-        var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
+        //var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
+        var value =4;
         var isTypeA = this.board.thereAreMoreA();
         var piece   = new Piece(this.board.randomAvailableCell(), isTypeA, value);
         this.board.countType(isTypeA, 1);
