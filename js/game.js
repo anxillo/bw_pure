@@ -32,7 +32,7 @@ function Game () {
 Game.prototype.restart = function () {
 
 
-    if (typeof admob != 'undefined' && this.storageManager.getBestScore() < 15000) {
+    if (typeof admob != 'undefined') {
         admob.showInterstitialAd();
 
         admob.requestInterstitialAd({
@@ -54,7 +54,7 @@ Game.prototype.isGameTerminated = function () {
 };
 
 Game.prototype.closeMenu = function () {
-    if (typeof admob != 'undefined' && this.storageManager.getBestScore() < 15000) {
+    if (typeof admob != 'undefined') {
         admob.showBannerAd(true);
     }
 
@@ -141,8 +141,7 @@ Game.prototype.addStartPieces = function () {
 // Adds a piece in a random position
 Game.prototype.addRandomPiece = function () {
     if (this.board.cellsAvailable()) {
-        //var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
-        var value =4;
+        var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
         var isTypeA = this.board.thereAreMoreA();
         var piece   = new Piece(this.board.randomAvailableCell(), isTypeA, value);
         this.board.countType(isTypeA, 1);

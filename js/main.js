@@ -1,4 +1,4 @@
-// Wait till the browser is ready to render the game (avoids glitches)
+
 window.requestAnimationFrame(function () {
     doStuff();
 
@@ -7,9 +7,7 @@ window.requestAnimationFrame(function () {
 
 
 
-});/**
- * Created by repower on 24.02.15.
- */
+});
 
 
 function doStuff(){
