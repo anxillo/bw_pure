@@ -31,15 +31,19 @@ function Game () {
 //  Restart the game
 Game.prototype.restart = function () {
 
+
+
+    if (typeof admob != 'undefined') {
+        admob.showInterstitialAd();
+    }
+
     admob.requestInterstitialAd({
         publisherId:          "ca-app-pub-4711044414330488/7526333057",
         interstitialAdId:     "ca-app-pub-4711044414330488/3176858659",
         autoShowInterstitial: true
     });
 
-    if (typeof admob != 'undefined') {
-        admob.showInterstitialAd();
-    }
+
      this.storageManager.clearGameState();
      this.dom.continueGame();
     this.setup();
