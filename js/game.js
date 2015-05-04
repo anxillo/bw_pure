@@ -30,9 +30,7 @@ function Game () {
 
 //  Restart the game
 Game.prototype.restart = function () {
-    if (typeof admob != 'undefined') {
-        admob.showInterstitialAd();
-    }
+
      this.storageManager.clearGameState();
      this.dom.continueGame();
     this.setup();
@@ -85,6 +83,11 @@ Game.prototype.nextHowTo4 = function () {
 
 // Set up the game
 Game.prototype.setup = function () {
+
+    if (typeof admob != 'undefined') {
+        admob.showInterstitialAd();
+    }
+
     var previousState = this.storageManager.getGameState();
 
     //var previousState = false;
@@ -154,6 +157,7 @@ Game.prototype.refresh = function () {
     // Clear the state when the game is over (game over only, not win)
 
     if (this.over) {
+
         this.storageManager.clearGameState();
     } else {
         this.storageManager.setGameState(this.serialize());
