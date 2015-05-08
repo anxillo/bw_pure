@@ -3,6 +3,9 @@
  */
 function onDeviceReady () {
 
+    if (navigator.splashscreen && navigator.splashscreen.hide) {
+        navigator.splashscreen.hide();
+    }
 
     admob.createBannerView({
         publisherId: "ca-app-pub-4711044414330488/7526333057",
