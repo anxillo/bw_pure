@@ -1,6 +1,4 @@
-/**
- * Created by repower on 27.02.15.
- */
+
 window.fakeStorage = {
     _data: {},
 

@@ -24,6 +24,10 @@ function Game () {
     this.inputManager.on("nextHowTo3", this.nextHowTo3.bind(this));
     this.inputManager.on("nextHowTo4", this.nextHowTo4.bind(this));
 
+    this.inputManager.on("switchSound", this.switchSound.bind(this));
+
+
+
 
     this.setup();
 }
@@ -92,6 +96,11 @@ Game.prototype.nextHowTo4 = function () {
     this.dom.nextHowTo(4);
 };
 
+Game.prototype.switchSound = function () {
+    this.hasSound = !this.hasSound;
+    this.dom.switchSound(this.hasSound);
+
+};
 
 // Set up the game
 Game.prototype.setup = function () {
@@ -113,6 +122,7 @@ Game.prototype.setup = function () {
         this.over        = previousState.over;
         this.won         = previousState.won;
         this.moves       = previousState.moves;
+        this.hasSound    = previousState.hasSound;
         //this.keepPlaying = previousState.keepPlaying;
     } else {
         this.board       = new Board();
@@ -120,6 +130,7 @@ Game.prototype.setup = function () {
         this.over        = false;
         this.won         = false;
         this.moves       = this.MAX_MOVES;
+        this.hasSound    = true;
         //this.keepPlaying = false;
 
         // Add the initial pieces
@@ -195,7 +206,8 @@ Game.prototype.serialize = function () {
         score:       this.score,
         over:        this.over,
         won:         this.won,
-        moves:       this.moves
+        moves:       this.moves,
+        hasSound:    this.hassound
         //keepPlaying: this.keepPlaying
     };
 

@@ -69,6 +69,8 @@ HandleEvents.prototype.listen = function () {
     this.bindButtonPress(".nextHowTo2", this.nextHowTo2);
     this.bindButtonPress(".nextHowTo3", this.nextHowTo3);
     this.bindButtonPress(".nextHowTo4", this.nextHowTo4);
+    this.bindButtonPress(".sound-button", this.soundButton);
+
 
 
     // Respond to swipe events
@@ -201,6 +203,11 @@ HandleEvents.prototype.nextHowTo3 = function (event) {
 HandleEvents.prototype.nextHowTo4 = function (event) {
     event.preventDefault();
     this.emit("nextHowTo4");
+};
+
+HandleEvents.prototype.soundButton = function (event) {
+    event.preventDefault();
+    this.emit("switchSound");
 };
 
 HandleEvents.prototype.bindButtonPress = function (selector, fn) {

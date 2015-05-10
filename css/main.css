@@ -170,6 +170,21 @@ hr {
   background-repeat: no-repeat;
   background-position: center center; }
 
+.share-button {
+  background-image: url("../asset/hi/share.png");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.sound-button {
+  background-image: url("../asset/hi/sound.png");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.nosound-button {
+  background-image: url("../asset/hi/nosound.png");
+  background-repeat: no-repeat;
+  background-position: center center; }
+
 .howToBottom {
   position: absolute;
   bottom: 25px; }
@@ -864,6 +879,15 @@ hr {
 
   .back-button, .back-button-howTo {
     background-image: url("../asset/low/back.png"); }
+
+  .share-button {
+    background-image: url("../asset/low/share.png"); }
+
+  .sound-button {
+    background-image: url("../asset/low/sound.png"); }
+
+  .nosound-button {
+    background-image: url("../asset/low/nosound.png"); }
 
   .restart-button, .retry-button {
     background-image: url("../asset/low/repeat.png"); }

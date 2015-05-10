@@ -9,7 +9,7 @@ function DOM_handler () {
     this.MAIN_MENU = document.querySelector(".mainMenu");
     this.HOW_TO = document.querySelector(".howTo");
     this.MOVES_CONTAINER = document.querySelector(".moves-left");
-
+    this.SOUND_BUTTON = document.querySelector(".sound-button");
     this.score = 0;
 
 
@@ -49,9 +49,15 @@ DOM_handler.prototype.nextHowTo = function (page) {
     }
 
     hideThem[page].style.display = "block";
+};
 
 
-
+DOM_handler.prototype.switchSound = function (hasSound) {
+    if(hasSound) {
+        this.SOUND_BUTTON.classList.remove("nosound-button");
+    } else {
+        this.SOUND_BUTTON.classList.add("nosound-button");
+    }
 };
 
 
