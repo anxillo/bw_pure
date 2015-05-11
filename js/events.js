@@ -211,8 +211,9 @@ HandleEvents.prototype.soundButton = function (event) {
 };
 
 HandleEvents.prototype.bindButtonPress = function (selector, fn) {
+
     var button = document.querySelector(selector);
-    button.addEventListener("click", fn.bind(this));
+    //button.addEventListener("click", fn.bind(this));
     button.addEventListener(this.eventTouchend, fn.bind(this));
 };
 

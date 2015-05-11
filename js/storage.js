@@ -22,6 +22,7 @@ window.fakeStorage = {
 function StorageManager() {
     this.bestScoreKey     = "bestScore";
     this.gameStateKey     = "gameState";
+    this.hasSoundKey      = "hasSound";
 
     var supported = this.localStorageSupported();
     this.storage = supported ? window.localStorage : window.fakeStorage;
@@ -48,6 +49,28 @@ StorageManager.prototype.getBestScore = function () {
 StorageManager.prototype.setBestScore = function (score) {
     this.storage.setItem(this.bestScoreKey, score);
 };
+
+StorageManager.prototype.getHasSound = function () {
+    var storageToBool = true;
+    if (this.storage.getItem(this.hasSoundKey) == "hasNoSound") {
+        storageToBool = false;
+    }
+    return storageToBool;
+};
+
+StorageManager.prototype.setHasSound = function (hasSound) {
+    var stringToStorage = "";
+
+    if (hasSound) {
+        stringToStorage = "hasSound";
+    } else {
+        stringToStorage = "hasNoSound";
+    }
+
+    this.storage.setItem(this.hasSoundKey, stringToStorage);
+};
+
+
 
 // Game state getters/setters and clearing
 StorageManager.prototype.getGameState = function () {

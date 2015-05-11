@@ -4,11 +4,12 @@
 // Globals
 var BW =  {
     BOARD_SIZE_X : 5,
-    BOARD_SIZE_Y : 5
+    BOARD_SIZE_Y : 5,
+    src : ""
 
 };
 
-BW.getNr = function (x,y) {
+/*BW.getNr = function (x,y) {
     var nr;
     nr = y * BW.BOARD_SIZE_X + x;
     return nr;
@@ -23,9 +24,14 @@ BW.getCoords = function (nr) {
 
     return coords;
 
-};
+
+
+}; */
 // Go when ready
 window.requestAnimationFrame(function () {
+
+
+
     new Game();
 });
 

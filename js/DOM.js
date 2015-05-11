@@ -53,11 +53,23 @@ DOM_handler.prototype.nextHowTo = function (page) {
 
 
 DOM_handler.prototype.switchSound = function (hasSound) {
-    if(hasSound) {
-        this.SOUND_BUTTON.classList.remove("nosound-button");
-    } else {
-        this.SOUND_BUTTON.classList.add("nosound-button");
+
+    if (hasSound !== false) {
+
+        if(this.SOUND_BUTTON.classList.contains("nosound-icon")){
+            this.SOUND_BUTTON.classList.remove("nosound-icon");
+        }
+        this.SOUND_BUTTON.classList.add("sound-icon");
+
+    }  else  {
+
+        if(this.SOUND_BUTTON.classList.contains("sound-icon")){
+            this.SOUND_BUTTON.classList.remove("sound-icon");
+        }
+        this.SOUND_BUTTON.classList.add("nosound-icon");
     }
+
+
 };
 
 
@@ -81,6 +93,7 @@ DOM_handler.prototype.refresh = function (board, metadata) {
         self.updateScore(metadata.score);
         self.updateBestScore(metadata.bestScore);
         self.updateMoves(metadata.moves);
+
 
         if (metadata.terminated) {
             if (metadata.over) {

@@ -20,6 +20,17 @@ function onDeviceReady () {
     });
 
 
+    if (device.platform == "Android") {
+        BW.src = "/android_asset/www/";
+    }
+
+
+
+    BW.popSound = new Media (BW.src + "asset/sounds/pop.wav");
+    BW.clickSound = new Media (BW.src + "asset/sounds/click.ogg");
+    BW.swipeSound = new Media (BW.src + "asset/sounds/swipe.wav");
+    BW.blobSound = new Media (BW.src + "asset/sounds/blob.wav");
+    BW.finalSound = new Media (BW.src + "asset/sounds/final.wav");
 
 
 }

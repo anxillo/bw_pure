@@ -222,13 +222,13 @@ hr {
   background-position: center center;
 }
 
-.sound-button {
+.sound-icon {
   background-image: url("../asset/hi/sound.png");
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.nosound-button {
+.nosound-icon {
   background-image: url("../asset/hi/nosound.png");
   background-repeat: no-repeat;
   background-position: center center;
@@ -741,11 +741,11 @@ $game-container-margin-top: 10px;
     background-image: url("../asset/low/share.png");
   }
 
-  .sound-button{
+  .sound-icon{
     background-image: url("../asset/low/sound.png");
   }
 
-  .nosound-button{
+  .nosound-icon{
     background-image: url("../asset/low/nosound.png");
   }
 

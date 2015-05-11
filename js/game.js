@@ -26,7 +26,8 @@ function Game () {
 
     this.inputManager.on("switchSound", this.switchSound.bind(this));
 
-
+    this.hasSound    = this.storageManager.getHasSound();
+    this.dom.switchSound(this.hasSound);
 
 
     this.setup();
@@ -34,7 +35,9 @@ function Game () {
 
 //  Restart the game
 Game.prototype.restart = function () {
-
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
 
     if (typeof admob != 'undefined') {
         admob.showInterstitialAd();
@@ -54,12 +57,18 @@ Game.prototype.restart = function () {
 
 // Return true if the game is lost, or has won and the user hasn't kept playing
 Game.prototype.isGameTerminated = function () {
+
     return this.over || this.won
 };
 
 Game.prototype.closeMenu = function () {
+
     if (typeof admob != 'undefined') {
         admob.showBannerAd(true);
+    }
+
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
     }
 
     this.dom.closeMenu();
@@ -70,6 +79,11 @@ Game.prototype.openMenu = function () {
     if (typeof admob != 'undefined') {
         admob.showBannerAd(false);
     }
+
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
+
     this.dom.openMenu();
 };
 
@@ -77,34 +91,70 @@ Game.prototype.openHowTo = function () {
     if (typeof admob != 'undefined') {
         admob.showBannerAd(false);
     }
+
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
+
     this.dom.openHowTo();
 };
 
 Game.prototype.nextHowTo1 = function () {
+
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
+
     this.dom.nextHowTo(1);
 };
 
 Game.prototype.nextHowTo2 = function () {
+
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
+
     this.dom.nextHowTo(2);
 };
 
 Game.prototype.nextHowTo3 = function () {
+
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
+
     this.dom.nextHowTo(3);
 };
 
 Game.prototype.nextHowTo4 = function () {
+
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
+
     this.dom.nextHowTo(4);
 };
 
 Game.prototype.switchSound = function () {
-    this.hasSound = !this.hasSound;
+
+    if(this.hasSound === true){
+        this.hasSound = false;
+    } else {
+        this.hasSound = true;
+    }
+
+
+    //this.storageManager.setGameState(this.serialize());
+    this.storageManager.setHasSound(this.hasSound);
     this.dom.switchSound(this.hasSound);
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
 
 };
 
 // Set up the game
 Game.prototype.setup = function () {
-
 
     var previousState = this.storageManager.getGameState();
 
@@ -122,7 +172,7 @@ Game.prototype.setup = function () {
         this.over        = previousState.over;
         this.won         = previousState.won;
         this.moves       = previousState.moves;
-        this.hasSound    = previousState.hasSound;
+        //this.hasSound    = previousState.hasSound;
         //this.keepPlaying = previousState.keepPlaying;
     } else {
         this.board       = new Board();
@@ -130,12 +180,16 @@ Game.prototype.setup = function () {
         this.over        = false;
         this.won         = false;
         this.moves       = this.MAX_MOVES;
-        this.hasSound    = true;
+        //this.hasSound    = true;
         //this.keepPlaying = false;
+
+
 
         // Add the initial pieces
         this.addStartPieces();
+
     }
+
 
     // Update the DOM
     this.refresh();
@@ -163,7 +217,7 @@ Game.prototype.addRandomPiece = function () {
 // Sends the updated board to the dom
 Game.prototype.refresh = function () {
 
-    this.moves = this.moves - 1;
+    //this.moves = this.moves - 1;
 
     if (this.moves === 0) {
         this.over = true;
@@ -177,6 +231,10 @@ Game.prototype.refresh = function () {
     // Clear the state when the game is over (game over only, not win)
 
     if (this.over) {
+
+        if (typeof BW.finalSound != 'undefined' && this.hasSound) {
+            BW.finalSound.play();
+        }
 
         this.storageManager.clearGameState();
     } else {
@@ -207,7 +265,7 @@ Game.prototype.serialize = function () {
         over:        this.over,
         won:         this.won,
         moves:       this.moves,
-        hasSound:    this.hassound
+        //hasSound:    this.hasSound
         //keepPlaying: this.keepPlaying
     };
 
@@ -253,12 +311,23 @@ Game.prototype.move = function (direction, x,y) {
     this.preparePieces();
     //next is not a piece, just move near
     if (!next || piece.isTypeA !== next.isTypeA && piece.value !== next.value) {
+        this.moves = this.moves - 1;
+        if (typeof BW.swipeSound != 'undefined' && this.hasSound) {
+            BW.swipeSound.play();
+        }
+
         self.movePiece(piece, positions.farthest);
     } else
 
 
     // same color: sum,
     if(piece.isTypeA === next.isTypeA) {
+        this.moves = this.moves - 1;
+
+        if (typeof BW.blobSound != 'undefined' && this.hasSound) {
+            BW.blobSound.play();
+        }
+
         var merged = new Piece(positions.next, piece.isTypeA,  piece.value + next.value);
         merged.mergedFrom = [piece, next];
 
@@ -289,7 +358,11 @@ Game.prototype.move = function (direction, x,y) {
 
     if( piece.isTypeA !== next.isTypeA && piece.value === next.value ) {
 
+        this.moves = this.moves - 1;
 
+        if (typeof BW.popSound != 'undefined' && this.hasSound) {
+            BW.popSound.play();
+        }
 
         self.score += piece.value * next.value;
 
@@ -311,6 +384,11 @@ Game.prototype.move = function (direction, x,y) {
 
     if(this.board.piecesCount.a + this.board.piecesCount.b === 0) {
         this.score = this.score * this.moves;
+
+        if (typeof BW.finalSound != 'undefined' && this.hasSound) {
+            BW.finalSound.play();
+        }
+
         this.won = true;
     }
 
