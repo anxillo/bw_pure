@@ -110,8 +110,27 @@ hr {
   color: $text-color;
   font-size: $score-font-size / 4;
   line-height: $score-font-size /4;
+}
 
+.menuTopScoreLabel {
+  font-family: "robotoregular", "Helvetica Neue", Arial, sans-serif;
+  font-weight: bold;
+  color: $text-color;
+  font-size: $score-font-size / 2;
+  line-height: $score-font-size /2;
+}
 
+.menuTopScore {
+  font-family: "roboregular", "Helvetica Neue", Arial, sans-serif;
+  //position: relative;
+  //display: inline-block;
+  //padding: 15px $cell-margin;
+  font-size: $score-font-size;
+  line-height: $score-font-size;
+  font-weight: bold;
+  color: $text-color;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .best-wrapper {
@@ -297,7 +316,7 @@ hr {
   background-position: center top;
   width: $field-width;
   height: 200px;margin: 0 auto;
-  margin-bottom: 100px;
+  //margin-bottom: 100px;
 }
 
 .howToHeading {
@@ -697,7 +716,7 @@ $game-container-margin-top: 10px;
 
   .menuHeading {
     //width: $field-width;
-    margin-bottom: $cell-size * 2;
+    //margin-bottom: $cell-size ;
     margin-top: $cell-size;
   }
 
@@ -782,7 +801,7 @@ $game-container-margin-top: 10px;
     width: $field-width;
     height: 150px;
     margin: 0 auto;
-    padding-bottom: 100px;
+    //padding-bottom: 100px;
   }
 
   .score-addition {
@@ -818,7 +837,7 @@ only screen and (max-width: 320px) {
   }
 
   .menuHeading {
-    padding-bottom: 50px;
+    //padding-bottom: 50px;
   }
 
   .above-game {

@@ -4,6 +4,7 @@
 function DOM_handler () {
     this.PIECES_CONTAINER = document.querySelector(".pieces-container");
     this.SCORE_CONTAINER   = document.querySelector(".score-container");
+    this.MENU_SCORE_CONTAINER = document.querySelector(".menuTopScore");
     this.BEST_CONTAINER    = document.querySelector(".best-container");
     this.MESSAGE_CONTAINER = document.querySelector(".game-message");
     this.MAIN_MENU = document.querySelector(".mainMenu");
@@ -16,6 +17,9 @@ function DOM_handler () {
 }
 
 
+
+
+
 DOM_handler.prototype.closeMenu = function () {
     this.HOW_TO.style.display = "none";
     if (this.MAIN_MENU.classList.contains("slide-right")) {
@@ -26,6 +30,7 @@ DOM_handler.prototype.closeMenu = function () {
 
 DOM_handler.prototype.openMenu = function() {
     this.clearMessage();
+
     //this.MESSAGE_CONTAINER.style.display = "none";
     if (this.MAIN_MENU.classList.contains("slide-left")) {
         this.MAIN_MENU.classList.remove("slide-left");
@@ -197,6 +202,7 @@ DOM_handler.prototype.clearContainer = function (container) {
 DOM_handler.prototype.updateScore = function (score) {
     this.clearContainer(this.SCORE_CONTAINER);
 
+
     var difference = score - this.score;
     this.score = score;
 
@@ -217,6 +223,7 @@ DOM_handler.prototype.updateMoves = function(moves) {
 
 DOM_handler.prototype.updateBestScore = function (bestScore) {
     this.BEST_CONTAINER.textContent = bestScore;
+    this.MENU_SCORE_CONTAINER.textContent = bestScore;
 };
 
 DOM_handler.prototype.message = function (won) {

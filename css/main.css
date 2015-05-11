@@ -77,6 +77,22 @@ hr {
   font-size: 10px;
   line-height: 10px; }
 
+.menuTopScoreLabel {
+  font-family: "robotoregular", "Helvetica Neue", Arial, sans-serif;
+  font-weight: bold;
+  color: #999999;
+  font-size: 20px;
+  line-height: 20px; }
+
+.menuTopScore {
+  font-family: "roboregular", "Helvetica Neue", Arial, sans-serif;
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #999999;
+  text-align: center;
+  margin-bottom: 50px; }
+
 .best-wrapper:after {
   content: "";
   display: block;
@@ -230,8 +246,7 @@ hr {
   background-position: center top;
   width: 480px;
   height: 200px;
-  margin: 0 auto;
-  margin-bottom: 100px; }
+  margin: 0 auto; }
 
 .menuButton {
   display: inline-block;
@@ -843,7 +858,6 @@ hr {
     line-height: 30px; }
 
   .menuHeading {
-    margin-bottom: 104.8px;
     margin-top: 52.4px; }
 
   .howToHeading {
@@ -927,8 +941,7 @@ hr {
     background-position: center top;
     width: 310px;
     height: 150px;
-    margin: 0 auto;
-    padding-bottom: 100px; }
+    margin: 0 auto; }
 
   .score-addition {
     font-size: 30px;
@@ -946,9 +959,6 @@ hr {
 
   body {
     margin: 0; }
-
-  .menuHeading {
-    padding-bottom: 50px; }
 
   .above-game {
     margin-top: 0px; } }

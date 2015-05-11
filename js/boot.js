@@ -5,7 +5,9 @@
 var BW =  {
     BOARD_SIZE_X : 5,
     BOARD_SIZE_Y : 5,
-    src : ""
+    src : "",
+    appSrc: "",
+    screenPre: ""
 
 };
 

@@ -25,6 +25,7 @@ function Game () {
     this.inputManager.on("nextHowTo4", this.nextHowTo4.bind(this));
 
     this.inputManager.on("switchSound", this.switchSound.bind(this));
+    this.inputManager.on("socialShare", this.socialShare.bind(this));
 
     this.hasSound    = this.storageManager.getHasSound();
     this.dom.switchSound(this.hasSound);
@@ -143,13 +144,45 @@ Game.prototype.switchSound = function () {
         this.hasSound = true;
     }
 
-
     //this.storageManager.setGameState(this.serialize());
     this.storageManager.setHasSound(this.hasSound);
     this.dom.switchSound(this.hasSound);
     if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
     }
+
+};
+
+Game.prototype.socialShare = function () {
+    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+        BW.clickSound.play();
+    }
+
+    //this.dom.closeMenu();
+
+    var label = "Hi! I'm playing Numentum and my highscore is " + this.storageManager.getBestScore();
+    label = label + ". Get it at " + BW.appSrc + " and try to beat me.";
+
+    var screenshot = "";
+    if (typeof navigator.screenshot.save !='undefined') {
+
+        navigator.screenshot.save(function(error,res){
+            if(error){
+                console.error(error);
+            }else{
+                console.log(res.filepath);
+                screenshot = BW.screenPre + res.filePath;
+                if(typeof window.plugins.socialsharing != 'undefined' ) {
+                    window.plugins.socialsharing.share(label, null, screenshot);
+                }
+            }
+        },'jpg',50,'numentumScreenshot');
+
+
+    }
+
+
+
 
 };
 
