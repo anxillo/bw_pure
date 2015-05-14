@@ -89,6 +89,10 @@ Game.prototype.openMenu = function () {
 };
 
 Game.prototype.openHowTo = function () {
+    if(typeof analytics != 'undefined') {
+        analytics.trackEvent('Button', 'click', "HowTo Button", 1);
+    }
+
     if (typeof admob != 'undefined') {
         admob.showBannerAd(false);
     }
@@ -154,6 +158,10 @@ Game.prototype.switchSound = function () {
 };
 
 Game.prototype.socialShare = function () {
+    if(typeof analytics != 'undefined') {
+        analytics.trackEvent('Button', 'click', 'Social Button', 1);
+    }
+
     if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
     }
@@ -169,6 +177,9 @@ Game.prototype.socialShare = function () {
         navigator.screenshot.save(function(error,res){
             if(error){
                 console.error(error);
+                if(typeof analytics != 'undefined') {
+                    analytics.trackEvent('Error', 'screenshot', 'Screenshot plugin error', 1);
+                }
             }else{
                 console.log(res.filepath);
                 screenshot = BW.screenPre + res.filePath;
@@ -188,6 +199,9 @@ Game.prototype.socialShare = function () {
 
 // Set up the game
 Game.prototype.setup = function () {
+    if(typeof analytics != 'undefined') {
+        analytics.trackEvent('Event', 'setup', 'new game setup', 1);
+    }
 
     var previousState = this.storageManager.getGameState();
 
@@ -264,6 +278,9 @@ Game.prototype.refresh = function () {
     // Clear the state when the game is over (game over only, not win)
 
     if (this.over) {
+        if(typeof analytics != 'undefined') {
+            analytics.trackEvent('Event', 'game over', 'Game Over', 1);
+        }
 
         if (typeof BW.finalSound != 'undefined' && this.hasSound) {
             BW.finalSound.play();
@@ -297,7 +314,7 @@ Game.prototype.serialize = function () {
         score:       this.score,
         over:        this.over,
         won:         this.won,
-        moves:       this.moves,
+        moves:       this.moves
         //hasSound:    this.hasSound
         //keepPlaying: this.keepPlaying
     };
@@ -417,6 +434,10 @@ Game.prototype.move = function (direction, x,y) {
 
     if(this.board.piecesCount.a + this.board.piecesCount.b === 0) {
         this.score = this.score * this.moves;
+
+        if(typeof analytics != 'undefined') {
+            analytics.trackEvent('Event', 'game won', 'game Won', 1);
+        }
 
         if (typeof BW.finalSound != 'undefined' && this.hasSound) {
             BW.finalSound.play();
