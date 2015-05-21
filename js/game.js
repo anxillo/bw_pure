@@ -36,8 +36,13 @@ function Game () {
 
 //  Restart the game
 Game.prototype.restart = function () {
-    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+
+    /*if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    } */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
     if (typeof admob != 'undefined') {
@@ -68,8 +73,13 @@ Game.prototype.closeMenu = function () {
         admob.showBannerAd(true);
     }
 
-    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+    /*if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    }
+    */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
     this.dom.closeMenu();
@@ -81,8 +91,13 @@ Game.prototype.openMenu = function () {
         admob.showBannerAd(false);
     }
 
-    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+    /*if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    }
+    */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
     this.dom.openMenu();
@@ -97,8 +112,13 @@ Game.prototype.openHowTo = function () {
         admob.showBannerAd(false);
     }
 
-    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+    /*if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    }
+    */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
     this.dom.openHowTo();
@@ -115,8 +135,13 @@ Game.prototype.nextHowTo1 = function () {
 
 Game.prototype.nextHowTo2 = function () {
 
-    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+    /*if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    }
+    */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
     this.dom.nextHowTo(2);
@@ -124,8 +149,12 @@ Game.prototype.nextHowTo2 = function () {
 
 Game.prototype.nextHowTo3 = function () {
 
-    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+    /*if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    } */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
     this.dom.nextHowTo(3);
@@ -133,8 +162,13 @@ Game.prototype.nextHowTo3 = function () {
 
 Game.prototype.nextHowTo4 = function () {
 
-    if (typeof BW.clickSound != 'undefined' && this.hasSound) {
+    /*if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    }
+    */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
     this.dom.nextHowTo(4);
@@ -156,8 +190,15 @@ Game.prototype.switchSound = function () {
     //this.storageManager.setGameState(this.serialize());
     this.storageManager.setHasSound(this.hasSound);
     this.dom.switchSound(this.hasSound);
+
+    /*
     if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    }
+    */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
 };
@@ -166,9 +207,14 @@ Game.prototype.socialShare = function () {
     if(typeof analytics != 'undefined') {
         analytics.trackEvent('Button', 'click', 'Social Button', 1);
     }
-
+    /*
     if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
+    }
+    */
+
+    if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+        window.plugins.NativeAudio.play( 'click' );
     }
 
 
@@ -292,8 +338,13 @@ Game.prototype.refresh = function () {
             analytics.trackEvent('Game End', 'game over', 'Game Over', 1);
         }
 
-        if (typeof BW.gameoverSound != 'undefined' && this.hasSound) {
+        /*if (typeof BW.gameoverSound != 'undefined' && this.hasSound) {
             BW.gameoverSound.play();
+        }
+        */
+
+        if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+            window.plugins.NativeAudio.play( 'gameover' );
         }
 
         this.storageManager.clearGameState();
@@ -372,8 +423,14 @@ Game.prototype.move = function (direction, x,y) {
     //next is not a piece, just move near
     if (!next || piece.isTypeA !== next.isTypeA && piece.value !== next.value) {
         this.moves = this.moves - 1;
-        if (typeof BW.swipeSound != 'undefined' && this.hasSound) {
+
+        /*if (typeof BW.swipeSound != 'undefined' && this.hasSound) {
             BW.swipeSound.play();
+        }
+        */
+
+        if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+            window.plugins.NativeAudio.play( 'swipe' );
         }
 
         self.movePiece(piece, positions.farthest);
@@ -384,8 +441,13 @@ Game.prototype.move = function (direction, x,y) {
     if(piece.isTypeA === next.isTypeA) {
         this.moves = this.moves - 1;
 
-        if (typeof BW.blobSound != 'undefined' && this.hasSound) {
+        /*if (typeof BW.blobSound != 'undefined' && this.hasSound) {
             BW.blobSound.play();
+        }
+        */
+
+        if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+            window.plugins.NativeAudio.play( 'blob' );
         }
 
         var merged = new Piece(positions.next, piece.isTypeA,  piece.value + next.value);
@@ -420,8 +482,12 @@ Game.prototype.move = function (direction, x,y) {
 
         this.moves = this.moves - 1;
 
-        if (typeof BW.popSound != 'undefined' && this.hasSound) {
+        /*if (typeof BW.popSound != 'undefined' && this.hasSound) {
             BW.popSound.play();
+        } */
+
+        if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+            window.plugins.NativeAudio.play( 'pop' );
         }
 
         self.score += piece.value * next.value;
@@ -449,8 +515,13 @@ Game.prototype.move = function (direction, x,y) {
             analytics.trackEvent('Game End', 'game won', 'game Won', 1);
         }
 
-        if (typeof BW.finalSound != 'undefined' && this.hasSound) {
+        /*if (typeof BW.finalSound != 'undefined' && this.hasSound) {
             BW.finalSound.play();
+        }
+        */
+
+        if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
+            window.plugins.NativeAudio.play( 'final' );
         }
 
         this.won = true;
