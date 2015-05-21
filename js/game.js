@@ -142,6 +142,11 @@ Game.prototype.nextHowTo4 = function () {
 
 Game.prototype.switchSound = function () {
 
+
+    if(typeof analytics != 'undefined') {
+        analytics.trackEvent('Button', 'click', "sound Button", 1);
+    }
+
     if(this.hasSound === true){
         this.hasSound = false;
     } else {
@@ -166,13 +171,14 @@ Game.prototype.socialShare = function () {
         BW.clickSound.play();
     }
 
+
     //this.dom.closeMenu();
 
     var label = "Hi! I'm playing Numentum and my highscore is " + this.storageManager.getBestScore();
     label = label + ". Get it at " + BW.appSrc + " and try to beat me.";
 
     var screenshot = "";
-    if (typeof navigator.screenshot.save !='undefined') {
+    if (typeof navigator.screenshot !='undefined') {
 
         navigator.screenshot.save(function(error,res){
             if(error){
@@ -184,12 +190,16 @@ Game.prototype.socialShare = function () {
                 console.log(res.filepath);
                 screenshot = BW.screenPre + res.filePath;
                 if(typeof window.plugins.socialsharing != 'undefined' ) {
-                    window.plugins.socialsharing.share(label, null, screenshot);
+                    if(screenshot!='') {
+                        window.plugins.socialsharing.share(label, null, screenshot);
+                    }
                 }
             }
         },'jpg',50,'numentumScreenshot');
+    }
 
-
+    if(typeof navigator.screenshot == 'undefined' && typeof window.plugins.socialsharing != 'undefined') {
+        window.plugins.socialsharing.share(label);
     }
 
 
@@ -279,11 +289,11 @@ Game.prototype.refresh = function () {
 
     if (this.over) {
         if(typeof analytics != 'undefined') {
-            analytics.trackEvent('Event', 'game over', 'Game Over', 1);
+            analytics.trackEvent('Game End', 'game over', 'Game Over', 1);
         }
 
-        if (typeof BW.finalSound != 'undefined' && this.hasSound) {
-            BW.finalSound.play();
+        if (typeof BW.gameoverSound != 'undefined' && this.hasSound) {
+            BW.gameoverSound.play();
         }
 
         this.storageManager.clearGameState();
@@ -436,7 +446,7 @@ Game.prototype.move = function (direction, x,y) {
         this.score = this.score * this.moves;
 
         if(typeof analytics != 'undefined') {
-            analytics.trackEvent('Event', 'game won', 'game Won', 1);
+            analytics.trackEvent('Game End', 'game won', 'game Won', 1);
         }
 
         if (typeof BW.finalSound != 'undefined' && this.hasSound) {

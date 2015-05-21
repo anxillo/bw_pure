@@ -300,9 +300,9 @@ hr {
     background: #2e2e2e;
     z-index: 100;
     text-align: center;
-    -webkit-animation: fade-in 800ms ease 1200ms;
-    -moz-animation: fade-in 800ms ease 1200ms;
-    animation: fade-in 800ms ease 1200ms;
+    -webkit-animation: fade-in 2000ms;
+    -moz-animation: fade-in 2000ms;
+    animation: fade-in 2000ms;
     -webkit-animation-fill-mode: both;
     -moz-animation-fill-mode: both;
     animation-fill-mode: both; }
@@ -953,12 +953,15 @@ hr {
   .game-container {
     bottom: 100px; } }
 /* iPhone 4 ----------- */
-@media only screen and (max-width: 320px) {
+@media only screen and (max-device-width: 320px) and (max-device-height: 480px) and (orientation: portrait) {
   .game-container {
     bottom: 55px; }
 
   body {
     margin: 0; }
+
+  .menuHeading {
+    margin-bottom: 10px; }
 
   .above-game {
     margin-top: 0px; } }

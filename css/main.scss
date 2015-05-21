@@ -387,7 +387,8 @@ hr {
 
       }
 
-      @include animation(fade-in 800ms ease $transition-speed * 12);
+      //@include animation(fade-in 800ms ease $transition-speed * 12);
+      @include animation(fade-in 2000ms);
       @include animation-fill-mode(both);
 
       &.game-won {
@@ -827,7 +828,10 @@ only screen and (orientation:portrait) {
 
 /* iPhone 4 ----------- */
 @media
-only screen and (max-width: 320px) {
+only screen
+and (max-device-width: 320px)
+and (max-device-height : 480px)
+  and (orientation:portrait) {
   .game-container {
     bottom: 55px;
   }
@@ -837,11 +841,11 @@ only screen and (max-width: 320px) {
   }
 
   .menuHeading {
-    //padding-bottom: 50px;
+    margin-bottom: 10px;
   }
 
   .above-game {
 
-    margin-top: 0px;
+      margin-top: 0px;
   }
 }
