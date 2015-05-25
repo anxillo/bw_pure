@@ -30,7 +30,7 @@ function onDeviceReady () {
     BW.appSrc = "http://num.ga-lab.com";
     BW.screenPre = "file://";
     if (device.platform == "Android") {
-        BW.src = "/android_asset/www/";
+        //BW.src = "/android_asset/www/";
 
     }
 
@@ -41,42 +41,36 @@ function onDeviceReady () {
         //pop
         window.plugins.NativeAudio.preloadSimple( 'pop', BW.src + 'asset/sounds/pop.mp3', function(msg){
         }, function(msg){
-            console.log( 'error: ' + msg );
             analytics.trackEvent('Error','onLoad','audio plugin pop', 1);
         });
 
         //click
         window.plugins.NativeAudio.preloadSimple( 'click', BW.src + 'asset/sounds/click.mp3', function(msg){
         }, function(msg){
-            console.log( 'error: ' + msg );
             analytics.trackEvent('Error','onLoad','audio plugin click', 1);
         });
 
         //swipe
         window.plugins.NativeAudio.preloadSimple( 'swipe', BW.src + 'asset/sounds/swipe.mp3', function(msg){
         }, function(msg){
-            console.log( 'error: ' + msg );
             analytics.trackEvent('Error','onLoad','audio plugin swipe', 1);
         });
 
         //blob
         window.plugins.NativeAudio.preloadSimple( 'blob', BW.src + 'asset/sounds/blob.mp3', function(msg){
         }, function(msg){
-            console.log( 'error: ' + msg );
             analytics.trackEvent('Error','onLoad','audio plugin blob', 1);
         });
 
         //final
         window.plugins.NativeAudio.preloadSimple( 'final', BW.src + 'asset/sounds/final.mp3', function(msg){
         }, function(msg){
-            console.log( 'error: ' + msg );
             analytics.trackEvent('Error','onLoad','audio plugin final', 1);
         });
 
         //gameover
         window.plugins.NativeAudio.preloadSimple( 'gameover', BW.src + 'asset/sounds/gameover.mp3', function(msg){
         }, function(msg){
-            console.log( 'error: ' + msg );
             analytics.trackEvent('Error','onLoad','audio plugin gameover', 1);
         });
 

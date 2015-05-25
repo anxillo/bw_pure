@@ -11,16 +11,12 @@ window.requestAnimationFrame(function () {
 
 
 function doStuff(){
-    console.log("doing stuff");
     var sel,
         x,
         y,
         selettore;
 
-
-
         sel = document.querySelector(".tile-position-1-4");
-    console.log("value: " +sel.firstChild);
         sel.addEventListener("click", function(){
 
             x = Math.floor(Math.random() * 4 ) + 1;

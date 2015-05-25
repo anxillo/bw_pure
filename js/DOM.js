@@ -3,6 +3,7 @@
  */
 function DOM_handler () {
     this.PIECES_CONTAINER = document.querySelector(".pieces-container");
+    this.GAME_POPUP = document.querySelector(".game-popup");
     this.SCORE_CONTAINER   = document.querySelector(".score-container");
     this.MENU_SCORE_CONTAINER = document.querySelector(".menuTopScore");
     this.BEST_CONTAINER    = document.querySelector(".best-container");
@@ -205,16 +206,29 @@ DOM_handler.prototype.updateScore = function (score) {
 
     var difference = score - this.score;
     this.score = score;
-
+    this.GAME_POPUP.textContent ="";
     this.SCORE_CONTAINER.textContent = this.score;
-
-    if (difference > 0) {
+    if (BW.newBestScore == 1) {
+        this.popupNewScore();
+    } else if (difference > 0) {
         var addition = document.createElement("div");
         addition.classList.add("score-addition");
         addition.textContent = "+" + difference;
-
-        this.SCORE_CONTAINER.appendChild(addition);
+        //this.SCORE_CONTAINER.appendChild(addition);
+        this.GAME_POPUP.appendChild(addition);
     }
+
+
+};
+
+DOM_handler.prototype.popupNewScore = function () {
+    BW.newBestScore = BW.newBestScore + 1;
+    var addition = document.createElement("div");
+    addition.classList.add("score-addition");
+    addition.textContent = "New best score!";
+    //this.SCORE_CONTAINER.appendChild(addition);
+    this.GAME_POPUP.appendChild(addition);
+
 };
 
 DOM_handler.prototype.updateMoves = function(moves) {
@@ -224,11 +238,12 @@ DOM_handler.prototype.updateMoves = function(moves) {
 DOM_handler.prototype.updateBestScore = function (bestScore) {
     this.BEST_CONTAINER.textContent = bestScore;
     this.MENU_SCORE_CONTAINER.textContent = bestScore;
+
 };
 
 DOM_handler.prototype.message = function (won) {
     var type    = won ? "game-won" : "game-over";
-    var message = won ? "You win!" : "Game over!";
+    var message = won ? "You won!" : "Game over!";
 
     this.MESSAGE_CONTAINER.classList.add(type);
     this.MESSAGE_CONTAINER.getElementsByTagName("p")[0].textContent = message;

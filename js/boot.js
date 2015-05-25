@@ -7,7 +7,9 @@ var BW =  {
     BOARD_SIZE_Y : 5,
     src : "",
     appSrc: "",
-    screenPre: ""
+    screenPre: "",
+    newBestScore: false
+
 
 };
 

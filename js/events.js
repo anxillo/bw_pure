@@ -32,11 +32,7 @@ function HandleEvents () {
             this.eventTouchend      = "mouseup";
     }
 
-    console.log(this.touchSupport);
-
-
     this.listen();
-
 }
 
 HandleEvents.prototype.on = function (event, callback) {
@@ -92,7 +88,6 @@ HandleEvents.prototype.listen = function () {
             }
         }
 
-        console.log(event.type);
         switch (event.type) {
             case "MSPointerDown":
                 touchStartClientX = event.pageX;
@@ -130,7 +125,7 @@ HandleEvents.prototype.listen = function () {
         }
 
         var touchEndClientX, touchEndClientY;
-        console.dir(event.touches);
+
         switch (event.type) {
             case "MSPointerUp":
                 touchEndClientX = event.pageX;

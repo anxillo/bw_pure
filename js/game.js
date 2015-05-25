@@ -13,6 +13,7 @@ function Game () {
     this.storageManager = new StorageManager();
     this.score  = 0;
 
+
     this.inputManager.on("move", this.move.bind(this));
     this.inputManager.on("restart", this.restart.bind(this));
     this.inputManager.on("closeMenu", this.closeMenu.bind(this));
@@ -40,6 +41,8 @@ Game.prototype.restart = function () {
     /*if (typeof BW.clickSound != 'undefined' && this.hasSound) {
         BW.clickSound.play();
     } */
+
+    BW.newBestScore = 0;
 
     if(window.plugins && window.plugins.NativeAudio && this.hasSound) {
         window.plugins.NativeAudio.play( 'click' );
@@ -228,12 +231,10 @@ Game.prototype.socialShare = function () {
 
         navigator.screenshot.save(function(error,res){
             if(error){
-                console.error(error);
-                if(typeof analytics != 'undefined') {
+                if (typeof analytics != 'undefined') {
                     analytics.trackEvent('Error', 'screenshot', 'Screenshot plugin error', 1);
                 }
-            }else{
-                console.log(res.filepath);
+            } else {
                 screenshot = BW.screenPre + res.filePath;
                 if(typeof window.plugins.socialsharing != 'undefined' ) {
                     if(screenshot!='') {
@@ -275,6 +276,7 @@ Game.prototype.setup = function () {
         this.over        = previousState.over;
         this.won         = previousState.won;
         this.moves       = previousState.moves;
+        BW.newBestScore  = previousState.newBestScore;
         //this.hasSound    = previousState.hasSound;
         //this.keepPlaying = previousState.keepPlaying;
     } else {
@@ -283,6 +285,7 @@ Game.prototype.setup = function () {
         this.over        = false;
         this.won         = false;
         this.moves       = this.MAX_MOVES;
+        BW.newBestScore  = 0;
         //this.hasSound    = true;
         //this.keepPlaying = false;
 
@@ -303,7 +306,6 @@ Game.prototype.addStartPieces = function () {
     for (var i = 0; i < this.STARTING_PIECES; i++) {
         this.addRandomPiece();
     }
-    console.dir(this.board.piecesCount);
 };
 
 // Adds a piece in a random position
@@ -328,7 +330,11 @@ Game.prototype.refresh = function () {
 
     if (this.storageManager.getBestScore() < this.score) {
         this.storageManager.setBestScore(this.score);
-    }
+        BW.newBestScore = BW.newBestScore + 1;
+        if (BW.newBestScore == 1 && window.plugins && window.plugins.NativeAudio && this.hasSound) {
+                window.plugins.NativeAudio.play('final');
+        }
+    };
 
 
     // Clear the state when the game is over (game over only, not win)
@@ -375,7 +381,8 @@ Game.prototype.serialize = function () {
         score:       this.score,
         over:        this.over,
         won:         this.won,
-        moves:       this.moves
+        moves:       this.moves,
+        newBestScore:BW.newBestScore
         //hasSound:    this.hasSound
         //keepPlaying: this.keepPlaying
     };
@@ -492,12 +499,11 @@ Game.prototype.move = function (direction, x,y) {
 
         self.score += piece.value * next.value;
 
-
         self.board.removePiece(piece);
         self.board.removePiece(next);
         self.board.countType(true, -1);
         self.board.countType(false, -1);
-        console.log(this.board.piecesCount.a + this.board.piecesCount.b);
+
         if (this.board.piecesCount.a + this.board.piecesCount.b > 2) {
             self.addRandomPiece();
         }

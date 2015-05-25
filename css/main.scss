@@ -18,6 +18,7 @@ $tile-color: #515151;
 $text-color: #999999;
 $red: #f30053;
 $blue: #00bcd4;
+$white: #ffffff;
 $color-empty-cell: #565656;
 $background: #2e2e2e;
 
@@ -28,6 +29,16 @@ $transition-speed: 100ms;
 $howToPages: 5;
 
 $game-container-margin-top: 40px;
+
+html {
+  -webkit-touch-callout: none;
+  -ms-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -ms-touch-action: none;
+  touch-action: none;
+}
 
 html, body {
   margin: 0;
@@ -67,6 +78,13 @@ hr {
   padding-right: 50px;
 }
 
+.game-popup {
+  position: absolute;
+  width: 100%;
+  z-index: 12;
+  //text-align: center;
+}
+
 .scores-container {
 
   padding: 15px $cell-margin;
@@ -84,16 +102,31 @@ hr {
   text-align: center;
 
 
-  .score-addition {
+  /*.score-addition {
     position: absolute;
     color: $red;
     font-weight: bold;
     z-index: 12;
     @include animation(move-up 600ms ease-in);
     @include animation-fill-mode(both);
-  }
+  } */
 
 }
+
+.score-addition {
+    position: absolute;
+    color: $white;
+    font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
+    font-size: $score-font-size;
+
+    font-weight: bold;
+    //z-index: 12;
+    width: 100%;
+    @include animation(move-up 600ms ease-in);
+    @include animation-fill-mode(both);
+    text-align: center;
+    //@include box_shadow(2);
+  }
 
 .score-wrapper, .moves-wrapper, .best-wrapper {
   float:left;
@@ -552,12 +585,16 @@ hr {
 
 @include keyframes(move-up) {
   0% {
-    top: 25px;
+    top: 100px;
     opacity: 1;
   }
 
+  /*50% {
+    opacity: 1;
+  } */
+
   100% {
-    top: -50px;
+    top: -300px;
     opacity: 0;
   }
 }

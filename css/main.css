@@ -10,6 +10,15 @@
   src: url("fonts/Roboto-Black-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/Roboto-Black-webfont.woff2") format("woff2"), url("fonts/Roboto-Black-webfont.woff") format("woff"), url("fonts/Roboto-Black-webfont.ttf") format("truetype"), url("fonts/Roboto-Black-webfont.svg#robotoblack") format("svg");
   font-weight: normal;
   font-style: normal; }
+html {
+  -webkit-touch-callout: none;
+  -ms-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -ms-touch-action: none;
+  touch-action: none; }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -43,6 +52,11 @@ hr {
   padding-left: 50px;
   padding-right: 50px; }
 
+.game-popup {
+  position: absolute;
+  width: 100%;
+  z-index: 12; }
+
 .scores-container {
   padding: 15px 10px; }
 
@@ -52,18 +66,30 @@ hr {
   line-height: 40px;
   font-weight: bold;
   color: #999999;
-  text-align: center; }
-  .score-container .score-addition, .best-container .score-addition, .moves-left .score-addition {
+  text-align: center;
+  /*.score-addition {
     position: absolute;
-    color: #f30053;
+    color: $red;
     font-weight: bold;
     z-index: 12;
-    -webkit-animation: move-up 600ms ease-in;
-    -moz-animation: move-up 600ms ease-in;
-    animation: move-up 600ms ease-in;
-    -webkit-animation-fill-mode: both;
-    -moz-animation-fill-mode: both;
-    animation-fill-mode: both; }
+    @include animation(move-up 600ms ease-in);
+    @include animation-fill-mode(both);
+  } */ }
+
+.score-addition {
+  position: absolute;
+  color: #ffffff;
+  font-family: "robotoblack", "Helvetica Neue", Arial, sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  width: 100%;
+  -webkit-animation: move-up 600ms ease-in;
+  -moz-animation: move-up 600ms ease-in;
+  animation: move-up 600ms ease-in;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
+  text-align: center; }
 
 .score-wrapper, .moves-wrapper, .best-wrapper {
   float: left;
@@ -601,24 +627,33 @@ hr {
     transform: opacity(0); } }
 @-webkit-keyframes move-up {
   0% {
-    top: 25px;
+    top: 100px;
     opacity: 1; }
+  /*50% {
+    opacity: 1;
+  } */
   100% {
-    top: -50px;
+    top: -300px;
     opacity: 0; } }
 @-moz-keyframes move-up {
   0% {
-    top: 25px;
+    top: 100px;
     opacity: 1; }
+  /*50% {
+    opacity: 1;
+  } */
   100% {
-    top: -50px;
+    top: -300px;
     opacity: 0; } }
 @keyframes move-up {
   0% {
-    top: 25px;
+    top: 100px;
     opacity: 1; }
+  /*50% {
+    opacity: 1;
+  } */
   100% {
-    top: -50px;
+    top: -300px;
     opacity: 0; } }
 @-webkit-keyframes fade-in {
   0% {
