@@ -27,7 +27,7 @@ function onDeviceReady () {
 
     //media plugin
 
-    BW.appSrc = "http://num.ga-lab.com";
+    BW.appSrc = "http://www.playnumentum.com";
     BW.screenPre = "file://";
     if (device.platform == "Android") {
         //BW.src = "/android_asset/www/";
