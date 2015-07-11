@@ -312,6 +312,7 @@ Game.prototype.addStartPieces = function () {
 Game.prototype.addRandomPiece = function () {
     if (this.board.cellsAvailable()) {
         var value   = Math.floor(Math.random() * this.MAX_PIECE_VALUE) + 1;
+        //var value = 4;
         var isTypeA = this.board.thereAreMoreA();
         var piece   = new Piece(this.board.randomAvailableCell(), isTypeA, value);
         this.board.countType(isTypeA, 1);
@@ -515,7 +516,7 @@ Game.prototype.move = function (direction, x,y) {
     }
 
     if(this.board.piecesCount.a + this.board.piecesCount.b === 0) {
-        this.score = this.score * this.moves;
+        this.score = this.score * 10;
 
         if(typeof analytics != 'undefined') {
             analytics.trackEvent('Game End', 'game won', 'game Won', 1);
